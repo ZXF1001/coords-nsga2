@@ -7,11 +7,12 @@
 [![Stars](https://img.shields.io/github/stars/ZXF1001/coord-nsga2.svg)](https://github.com/ZXF1001/coord-nsga2/stargazers) -->
 
 A Python library implementing a coordinate-based NSGA-II for multi-objective optimization. It features specialized constraints, crossover, and mutation operators that work directly on coordinate points.
-
+(developing...)
 --------------------------------------------------------------------------------
 
 ## Table of Contents
 - [coords-nsga2](#coords-nsga2)
+  - [(developing...)](#developing)
   - [Table of Contents](#table-of-contents)
   - [Features](#features)
   - [Installation](#installation)
