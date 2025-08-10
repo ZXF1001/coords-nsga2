@@ -1,0 +1,26 @@
+[build-system]
+requires = ["hatchling>=1.18", "hatch-vcs"]
+build-backend = "hatchling.build"
+
+[project]
+name = "coords-nsga2"
+dynamic = ["version"]
+description = "A Python library implementing a coordinate-based NSGA-II for multi-objective optimization."
+authors = [
+    {name = "Xiaofeng Zhang", email = "xiaofeng1001@outlook.com"}
+]
+dependencies = [
+    "numpy>=1.23.0"
+    "tqdm>=4.0.0"
+    "shapely>=2.0.0"
+]
+requires-python = ">= 3.9"
+readme = "README.md"
+license = {text = "MIT"}
+
+[project.urls]
+Homepage = "https://github.com/ZXF1001/coords-nsga2"
+
+[tool.hatch.version]
+source = "vcs"
+tag-pattern = "v(?P<version>.*)"

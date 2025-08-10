@@ -6,7 +6,7 @@
 [![Forks](https://img.shields.io/github/forks/ZXF1001/coord-nsga2.svg)](https://github.com/ZXF1001/coord-nsga2/network)
 [![Stars](https://img.shields.io/github/stars/ZXF1001/coord-nsga2.svg)](https://github.com/ZXF1001/coord-nsga2/stargazers) -->
 
-A Python library implementing a coordinate-based NSGA-II for multi-objective optimization. It features specialized constraints, crossover, and mutation operators that work directly on coordinate points
+A Python library implementing a coordinate-based NSGA-II for multi-objective optimization. It features specialized constraints, crossover, and mutation operators that work directly on coordinate points.
 
 --------------------------------------------------------------------------------
 
@@ -51,7 +51,7 @@ pip install -e .
 
 ```python
 import numpy as np
-from coord_nsga2 import NSGA2, Problem
+from coords_nsga2 import NSGA2, Problem
 
 # Define your objective functions
 def objective_1(coords):
