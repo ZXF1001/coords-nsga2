@@ -1,3 +1,6 @@
+import numpy as np
+
+
 def fast_non_dominated_sort(values1, values2):
     """
     输入：values1, values2 为两个目标函数的值列表；
@@ -13,6 +16,8 @@ def fast_non_dominated_sort(values1, values2):
     # 确定支配关系
     for p in range(num_population):
         for q in range(num_population):
+            if p == q:
+                continue
             # p 支配 q：p 在所有目标上都不差于 q，且至少在一个目标上优于 q
             if (values1[p] > values1[q] and values2[p] >= values2[q]) or (values1[p] >= values1[q] and values2[p] > values2[q]):
                 dominated_solutions[p].append(q)
@@ -43,48 +48,49 @@ def fast_non_dominated_sort(values1, values2):
 
 def sort_by_values(idx_lst, values_lst):
     # 根据values对list进行排序
-    needed_values = [values_lst[i] for i in idx_lst]
-    sorted_list = [x for _, x in sorted(zip(needed_values, idx_lst))]
-    return sorted_list
+    idx_arr = np.array(idx_lst)
+    values_arr = np.array(values_lst)[idx_arr]
 
+    # 根据values进行排序
+    sorted_idx_arr = idx_arr[np.argsort(values_arr)]
+    return sorted_idx_arr
 
 def crowding_distance(values1, values2, front):
     """
-    输入：values1, values2 为两个目标函数的值列表；front 为一个前沿中的解的索引列表
-    输出：返回一个列表，列表中的每个元素是一个解的拥挤距离
+    Calculate crowding distance for solutions in a Pareto front.
+    
+    Args:
+        values1, values2: Lists/arrays of objective function values
+        front: List of indices representing solutions in the current front
+        
+    Returns:
+        ndarray: Crowding distances for solutions in the front
     """
-    # 初始化拥挤距离
-    distance = [0.0] * len(front)
+    if len(front) <= 2:
+        return np.full(len(front), np.inf)
 
-    # 对每个目标进行排序（根据values的值给front里的index排序）
-    sorted1 = sort_by_values(front, values1)
-    sorted2 = sorted1[::-1]
-    # 计算每个解的拥挤距离
-    # ! 注意：这里min的对象是整个种群，因此min可能会受到惩罚函数较大系数的影响。最好的解决方案是惩罚函数乘一个适中的系数，避免把拥挤度距离小到抹去。
-    min1, max1 = min(values1), max(values1)
-    min2, max2 = min(values2), max(values2)
-    if (min1 == max1) and (min2 == max2):
-        return distance
-
-    for i, ind in enumerate(front):
-        idx_in_sorted1 = sorted1.index(ind)
-        if idx_in_sorted1 == 0 or idx_in_sorted1 == len(front) - 1:
-            distance[i] = float('inf')
-        # * 如果和上一个点重合，就是0
-        elif values1[sorted1[idx_in_sorted1]] == values1[sorted1[idx_in_sorted1 - 1]]:
-            distance[i] += 0
-        else:
-            distance[i] += (values1[sorted1[idx_in_sorted1 + 1]] -
-                            values1[sorted1[idx_in_sorted1 - 1]]) / (max1 - min1)
-
-        idx_in_sorted2 = sorted2.index(ind)
-        if idx_in_sorted2 == 0 or idx_in_sorted2 == len(front) - 1:
-            distance[i] = float('inf')
-        # * 如果和**下**一个点重合，就是0
-        elif values2[sorted2[idx_in_sorted2]] == values2[sorted2[idx_in_sorted2 + 1]]:
-            distance[i] += 0
-        else:
-            distance[i] += (values2[sorted2[idx_in_sorted2 + 1]] -
-                            values2[sorted2[idx_in_sorted2 - 1]]) / (max2 - min2)
-
-    return distance
+    # Convert inputs to numpy arrays
+    values = np.column_stack((np.array(values1)[front], np.array(values2)[front]))
+    
+    # Initialize distances
+    distances = np.zeros(len(front))
+    
+    # Handle case where all values are identical
+    if np.all(values[0] == values):
+        return distances
+        
+    # Calculate normalized crowding distance for each objective
+    for i in range(2):
+        # Sort values and get indices
+        idx = values[:, i].argsort()
+        sorted_values = values[idx, i]
+        
+        # Set boundary points to infinity
+        distances[idx[0]] = distances[idx[-1]] = np.inf
+        
+        # Normalize and accumulate distances
+        norm = sorted_values[-1] - sorted_values[0]
+        if norm > 0:
+            distances[idx[1:-1]] += (sorted_values[2:] - sorted_values[:-2]) / norm
+            
+    return distances

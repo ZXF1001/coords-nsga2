@@ -1,6 +1,7 @@
 # 自己开发的针对风力机坐标点位布局用的NSGA-II算法
 import numpy as np
 from tqdm import trange
+from joblib import Parallel, delayed
 from .spatial import create_point_in_polygon
 from .operators.selection import coords_selection
 from .operators.crossover import coords_crossover
@@ -8,7 +9,7 @@ from .operators.mutation import coords_mutation
 from .utils import fast_non_dominated_sort, crowding_distance
 
 class coords_nsga2():
-    def __init__(self, func1, func2, pop_size, n_points, prob_crs, prob_mut, polygons, constraints=[], random_seed=0, is_int=True):
+    def __init__(self, func1, func2, pop_size, n_points, prob_crs, prob_mut, polygons, constraints=[], random_seed=0, is_int=False):
         self.func1 = func1
         self.func2 = func2
         self.pop_size = pop_size
@@ -32,28 +33,21 @@ class coords_nsga2():
         self.selection = coords_selection  # 使用外部定义的selection函数
 
     def init_population(self):
-        # 坐标的初始化
-        xy = []
-        for _ in range(self.pop_size*self.n_points):
-            x, y = create_point_in_polygon(self.polygons, self.is_int)
-            xy.append([x, y])
-        init_pop = np.array(xy).reshape(self.pop_size, self.n_points, 2)
+        # 批量生成坐标
+        coords = np.array([create_point_in_polygon(self.polygons, self.is_int) for _ in range(self.pop_size * self.n_points)])
+        # 重塑为目标形状
+        init_pop = coords.reshape(self.pop_size, self.n_points, 2)
+        # 返回整型或浮点型结果
         return init_pop.astype(int) if self.is_int else init_pop
 
     def evaluation(self, population):
         # todo: 这里可以采用并行+缓存的方式加速（已经实现，但是是在具体应用时重写这个函数通过joblib库来实现的，后续可以改写成装饰器的形式）
-        # 另外，这里为了减小计算量避免在做布局优化的过程中把风场在两个目标函数中计算两遍，在具体应用中重写了这个self.evalution()函数
-        # 评估目标函数值
-        # 并行测试
-        # results = Parallel(n_jobs=4)(
-        #     delayed(self.func1)(x) for x in population
-        # )
 
         func1_values = np.array([self.func1(x) for x in population])
         func2_values = np.array([self.func2(x) for x in population])
         # 评估约束惩罚函数
         if len(self.constraints) > 0:
-            # 这个1e6要自适应
+            #todo: 这个1e6要自适应
             constraints_penalty = 1e6 * \
                 np.array([np.sum([con(x) for con in self.constraints])
                          for x in population])
@@ -74,28 +68,28 @@ class coords_nsga2():
         """
         new_idx = []
         for i, front in enumerate(population_sorted_in_fronts):
+            remaining_size = self.pop_size - len(new_idx)
             # 先尽可能吧每个靠前的前沿加进来
-            if len(new_idx) + len(front) < self.pop_size:
+            if len(front) < remaining_size:
                 new_idx.extend(front)
-            elif len(new_idx) + len(front) == self.pop_size:
+            elif len(front) == remaining_size:
                 new_idx.extend(front)
                 break
             else:
                 # 如果加上这个前沿后超过pop_size，则按照拥挤度排序，选择拥挤度大的解
                 # 先按照拥挤度从大到小，对索引进行排序
-                sorted_combined = sorted(
-                    zip(crowding_distances[i], front), reverse=True)
-                sorted_front = [item for _, item in sorted_combined]
-                # 选择前pop_size-len(new_idx)个解
-                new_idx.extend(sorted_front[:self.pop_size - len(new_idx)])
+                crowding_dist = np.array(crowding_distances[i])
+                sorted_front_idx = np.argsort(crowding_dist)[::-1]  # 从大到小排序
+                sorted_front = np.array(front)[sorted_front_idx]
+                new_idx.extend(sorted_front[:remaining_size])
                 break
         return new_idx
 
     def run(self, gen=1000):
         for _ in trange(gen):
-            Q = self.selection(self.P, self.values1_P, self.values2_P, self.pop_size)  # 选择
-            Q = self.crossover(Q, self.prob_crs, self.n_points)  # 交叉
-            Q = self.mutation(Q, self.prob_crs, self.n_points, self.polygons, self.is_int)  # 变异
+            Q = self.selection(self.P, self.values1_P, self.values2_P)  # 选择
+            Q = self.crossover(Q, self.prob_crs)  # 交叉
+            Q = self.mutation(Q, self.prob_crs, self.polygons, self.is_int)  # 变异
 
             values1_Q, values2_Q = self.evaluation(Q)  # 评估
             R = np.concatenate([self.P, Q])  # 合并为R=(P,Q)
@@ -107,7 +101,6 @@ class coords_nsga2():
                 values1_R, values2_R)
             crowding_distances = [crowding_distance(
                 values1_R, values2_R, front) for front in population_sorted_in_fronts]
-            # * 这里的拥挤度距离计算是正常的（只有两个inf，其他重合点都是0），但是因为找到既能在第一前沿上又能和其他解不一样的点太难了，所以最后选择下一代的时候大多数还是和前面的重合了
 
             # 选择下一代种群
             R_idx = self.get_next_population(
@@ -119,7 +112,7 @@ class coords_nsga2():
             self.P_history.append(self.P) # 这里后面改成全流程使用np数组
             self.values1_history.append(self.values1_P)
             self.values2_history.append(self.values2_P)
-
+            #todo: 排序后再输出
         return self.P
 
     def save(self, path):

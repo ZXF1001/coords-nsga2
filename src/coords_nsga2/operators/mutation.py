@@ -1,11 +1,30 @@
 import numpy as np
 from ..spatial import create_point_in_polygon
 
-def coords_mutation(population, prob_mut, n_points, polygons, is_int=False):
-    # 坐标的变异算子，这里做小修改没有把整个个体变异，而是对每个坐标进行变异，因为这样才可以逐渐产生满足约束的解，如果对整个个体变异大概率会违反约束
-    for i in range(len(population)):
-        for j in range(n_points):
-            if np.random.rand() < prob_mut:
-                x, y = create_point_in_polygon(polygons, is_int)
-                population[i][j] = np.array([x, y])
+def coords_mutation(population, prob_mut, polygons, is_int=False):
+    """Coordinate mutation operator that mutates individual coordinates within polygons.
+    
+    Args:
+        population: numpy array of shape (n_individuals, n_points, 2)
+        prob_mut: mutation probability for each coordinate
+        polygons: list of polygons defining valid regions
+        is_int: whether to generate integer coordinates
+    
+    Returns:
+        Mutated population array
+    """
+    # Generate mutation mask
+    mutation_mask = np.random.random(population.shape[:-1]) < prob_mut
+    
+    # Count mutations needed
+    n_mutations = np.sum(mutation_mask)
+    
+    if n_mutations > 0:
+        # Generate all new points at once
+        new_points = np.array([create_point_in_polygon(polygons, is_int) 
+                             for _ in range(n_mutations)])
+        
+        # Apply mutations using mask
+        population[mutation_mask] = new_points
+
     return population
