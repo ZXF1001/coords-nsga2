@@ -10,8 +10,8 @@ authors = [
     {name = "Xiaofeng Zhang", email = "xiaofeng1001@outlook.com"}
 ]
 dependencies = [
-    "numpy>=1.23.0"
-    "tqdm>=4.0.0"
+    "numpy>=1.23.0",
+    "tqdm>=4.0.0",
     "shapely>=2.0.0"
 ]
 requires-python = ">= 3.9"
@@ -24,3 +24,37 @@ Homepage = "https://github.com/ZXF1001/coords-nsga2"
 [tool.hatch.version]
 source = "vcs"
 tag-pattern = "v(?P<version>.*)"
+
+[project.optional-dependencies]
+test = [
+  "pytest>=8.2",
+  "pytest-cov>=5",
+  "coverage[toml]>=7.5",
+  "scipy"
+]
+
+# -------------------------------------------------------------------
+# pytest 相关（保持之前的覆盖率参数不变，可按需调整）
+[tool.pytest.ini_options]
+addopts = "--cov=coords_nsga2 --cov-report=term-missing"
+testpaths = ["tests"]
+
+# -------------------------------------------------------------------
+# coverage 相关
+[tool.coverage.run]
+branch  = true
+source  = ["coords_nsga2"]
+
+[tool.coverage.report]
+show_missing = true
+fail_under   = 80             # 覆盖率阈值，自行决定要不要
+
+# -------------------------------------------------------------------
+# （可选）hatch 虚拟环境，仅做最小脚本示例
+[tool.hatch.envs.dev]
+dependencies = ["coords-nsga2[test]"]
+python = "3.12"
+
+[tool.hatch.envs.dev.scripts]
+test = "pytest -q"
+cov  = "pytest"

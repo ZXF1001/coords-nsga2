@@ -1,10 +1,6 @@
 import numpy as np
-import matplotlib.pyplot as plt
 from shapely.geometry import MultiPolygon
 from scipy.spatial import distance
-import sys
-import pathlib
-sys.path.append(str(pathlib.Path(__file__).resolve().parents[1] / "src"))
 from coords_nsga2.spatial import region_from_points
 from coords_nsga2 import coords_nsga2
 # 创建边界
@@ -41,18 +37,6 @@ optimizer = coords_nsga2(func1=objective_1,
                          constraints=[constraint_1],
                          random_seed=10,
                          is_int=False)
-result = optimizer.run(1000)
-
-v1_max_index = optimizer.values1_P.argmax()
-v1_min_index = optimizer.values1_P.argmin()
-# 绘制结果
-plt.figure(figsize=(10, 6))
-# for i in range(result.shape[0]):
-#     plt.scatter(result[i, :, 0], result[i, :, 1], label=f'Generation {i+1}')
-plt.scatter(result[v1_max_index, :, 0], result[v1_max_index, :, 1], color='red', label='Best Solution')
-plt.scatter(result[v1_min_index, :, 0], result[v1_min_index, :, 1], color='blue', label='Worst Solution')
-
-# 绘制多边形边界
-x, y = polygon.exterior.xy
-plt.fill(x, y, alpha=0.2, fc='gray', ec='black')
-plt.show()
+result = optimizer.run(100)
+# 断言result存在
+assert len(result) == 20

@@ -1,7 +1,6 @@
 # 自己开发的针对风力机坐标点位布局用的NSGA-II算法
 import numpy as np
 from tqdm import trange
-from joblib import Parallel, delayed
 from .spatial import create_point_in_polygon
 from .operators.selection import coords_selection
 from .operators.crossover import coords_crossover
