@@ -14,6 +14,7 @@ A Python library implementing a coordinate-based NSGA-II for multi-objective opt
 - [coords-nsga2](#coords-nsga2)
   - [Table of Contents](#table-of-contents)
   - [Features](#features)
+  - [Installation](#installation)
   - [Quick Start](#quick-start)
   - [Usage](#usage)
   - [Examples](#examples)
@@ -29,8 +30,8 @@ A Python library implementing a coordinate-based NSGA-II for multi-objective opt
 - Lightweight, extensible design for customizing operators
 
 --------------------------------------------------------------------------------
-<!-- 
 ## Installation
+<!-- 
 To install from PyPI (after you've published to PyPI):
 ```bash
 pip install coord-nsga2
@@ -46,7 +47,7 @@ pip install -e .
 -------------------------------------------------------------------------------- -->
 
 ## Quick Start
-Below is a minimal example demonstrating how to run a coordinate-based NSGA-II optimization using this library:
+<!-- Below is a minimal example demonstrating how to run a coordinate-based NSGA-II optimization using this library:
 
 ```python
 import numpy as np
@@ -82,30 +83,30 @@ result = optimizer.run()
 # Inspect results
 for i, individual in enumerate(result.best_solutions):
     print(f"Solution {i}, Objectives = {individual.objectives}, Coordinates = {individual.coords}")
-```
+``` -->
 
 --------------------------------------------------------------------------------
 
 ## Usage
-1. Define your own objective functions to compute the performance metrics of the coordinate array.  
+<!-- 1. Define your own objective functions to compute the performance metrics of the coordinate array.  
 2. Optionally define constraints, e.g., boundary limits or distance between coordinate points.  
 3. Create a Problem object, including objectives, constraints, etc.  
 4. Use the NSGA2 object to configure population size, number of generations, or any other evolutionary parameters.  
 5. Call optimizer.run() to execute the search.  
 
-Check the [Examples](#examples) and [Documentation](#documentation) sections below for more detailed usage scenarios.
+Check the [Examples](#examples) and [Documentation](#documentation) sections below for more detailed usage scenarios. -->
 
 --------------------------------------------------------------------------------
 
 ## Examples
-- [Basic Example](examples/basic_example.py)  
+<!-- - [Basic Example](examples/basic_example.py)  
 - [Multiple Constraints Example](examples/advanced_constraints.py)  
-- [Integration with Other Libraries](examples/integration_example.py)  
+- [Integration with Other Libraries](examples/integration_example.py)   -->
 
 --------------------------------------------------------------------------------
 
 ## Documentation
-Complete documentation is available in the [docs/](docs) folder.  
+<!-- Complete documentation is available in the [docs/](docs) folder.  
 - Getting Started  
 - Detailed API Reference  
 - Operator Customization  
@@ -115,18 +116,18 @@ To build the documentation locally (assuming you use Sphinx):
 cd docs
 make html
 ```
-Then open `docs/_build/html/index.html` in a web browser.
+Then open `docs/_build/html/index.html` in a web browser. -->
 
 --------------------------------------------------------------------------------
 
 ## Contributing
-Contributions of all kinds are welcome! To get started:  
+<!-- Contributions of all kinds are welcome! To get started:  
 1. Fork the repository and clone it locally.  
 2. Create a new git branch for your feature or bugfix.  
 3. Make changes with clear and concise commit messages.  
 4. Submit a pull request describing your changes in detail.  
 
-Before contributing, please review the [Contributing Guide](CONTRIBUTING.md) and the [Code of Conduct](CODE_OF_CONDUCT.md).
+Before contributing, please review the [Contributing Guide](CONTRIBUTING.md) and the [Code of Conduct](CODE_OF_CONDUCT.md). -->
 
 --------------------------------------------------------------------------------
 
