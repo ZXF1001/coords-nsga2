@@ -22,7 +22,7 @@ def objective_1(coords):
 
 # 定义目标函数2
 def objective_2(coords):
-    return np.mean(coords[:, 1])
+    return -np.mean(coords[:, 1])
 
 spacing = 0.1  # 间距限制
 def constraint_1(coords):
@@ -31,17 +31,14 @@ def constraint_1(coords):
     penalty_sum = np.sum(penalty_list)
     return penalty_sum
 
-def constraint_2(coords): # x平均值不超过1
-    return np.mean(coords[:, 0]) - 1
-
 optimizer = coords_nsga2(func1=objective_1,
                          func2=objective_2,
                          pop_size=20,
                          n_points=5,
                          prob_crs=0.9,
                          prob_mut=0.1,
-                         polygons=multi_polygon,
-                         constraints=[constraint_1, constraint_2],
+                         polygons=multi_polygon, #todo: 这里自动判定是单个多边形还是多个多边形
+                         constraints=[constraint_1],
                          random_seed=10,
                          is_int=False)
 result = optimizer.run(1000)
