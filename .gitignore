@@ -1,3 +1,5 @@
 __pycache__/
 .vscode/
 .coverage
+dist/
+*.egg-info/
