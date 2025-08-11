@@ -55,7 +55,6 @@ fail_under   = 80
 # -------------------------------------------------------------------
 [tool.hatch.envs.dev]
 dependencies = ["coords-nsga2[test]"]
-python = "3.12"
 
 [tool.hatch.envs.dev.scripts]
 test = "pytest -q"
