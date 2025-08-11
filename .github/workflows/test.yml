@@ -1,17 +1,13 @@
-name: CI
+name: test
 
-on:
-  # 1) 直接 push 到 master
-  push:
-    branches: [ master ]
-  # 2) 针对 master 的 Pull Request
-  pull_request:
-    branches: [ master ]
+on: [push, pull_request]
 
 jobs:
-  test:
+  build:
     runs-on: ubuntu-latest
-
+    strategy:
+      matrix:
+        python-version: ["3.9", "3.10", "3.11", "3.12", "3.13"]
     steps:
       # 1. 拉取代码
       - uses: actions/checkout@v4
@@ -19,7 +15,7 @@ jobs:
       # 2. 安装符合 pyproject.toml 中声明版本的 Python
       - uses: actions/setup-python@v5
         with:
-          python-version: '3.x'
+          python-version: ${{ matrix.python-version }}
           cache: pip
 
       # 3. 安装 Hatch（只需要几秒）
