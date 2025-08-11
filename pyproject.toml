@@ -30,6 +30,9 @@ test = [
   "pytest>=8.2",
   "pytest-cov>=5",
   "coverage[toml]>=7.5",
+  "hypothesis>=6.100",
+  "ruff>=0.4",
+  "pre-commit>=3.7",
   "scipy"
 ]
 
@@ -47,10 +50,9 @@ source  = ["coords_nsga2"]
 
 [tool.coverage.report]
 show_missing = true
-fail_under   = 80             # 覆盖率阈值，自行决定要不要
+fail_under   = 80
 
 # -------------------------------------------------------------------
-# （可选）hatch 虚拟环境，仅做最小脚本示例
 [tool.hatch.envs.dev]
 dependencies = ["coords-nsga2[test]"]
 python = "3.12"
@@ -58,3 +60,4 @@ python = "3.12"
 [tool.hatch.envs.dev.scripts]
 test = "pytest -q"
 cov  = "pytest"
+fmt  = "ruff check --fix coords_nsga2 tests"
