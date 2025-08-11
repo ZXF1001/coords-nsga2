@@ -5,6 +5,10 @@ on: [push, pull_request]
 jobs:
   test:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.9", "3.10", "3.11", "3.12", "3.13"]
+
     steps:
       # 1. 拉取代码
       - uses: actions/checkout@v4
@@ -12,15 +16,15 @@ jobs:
       # 2. 安装符合 pyproject.toml 中声明版本的 Python
       - uses: actions/setup-python@v5
         with:
-          python-version: '3.9'
+          python-version: ${{ matrix.python-version }}
           cache: pip
 
-      # 3. 安装 Hatch（只需要几秒）
-      - name: Install Hatch
-        run: python -m pip install --upgrade hatch
-
-      # 4. 创建并更新 dev 环境，再运行测试脚本
-      - name: Run tests via Hatch
+      # 3. 安装
+      - name: Install package + test extras
         run: |
-          hatch env create dev          # 第一次会安装依赖，后续命中 pip 缓存会很快
-          hatch run dev:test            # 你的脚本；若你把 env 改名为 default 就写 hatch run test
+          python -m pip install --upgrade pip
+          pip install '.[test]'
+
+      # 4. 测试
+      - name: Run tests
+        run: pytest
