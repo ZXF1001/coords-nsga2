@@ -1,5 +1,5 @@
 import numpy as np
-from shapely.geometry import Point, Polygon, MultiPolygon
+from shapely.geometry import Point, Polygon
 
 
 def region_from_points(points):

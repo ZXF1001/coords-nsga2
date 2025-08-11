@@ -17,7 +17,7 @@ jobs:
       - name: Install pre-commit & hooks
         run: |
           pip install pre-commit
-          pre-commit install-hooks  # 把 hooks 下到 ~/.cache/pre-commit
+          pre-commit install-hooks
 
       # 跑全部 hook（等价于本地 `pre-commit run --all-files`）
       - name: Run pre-commit
