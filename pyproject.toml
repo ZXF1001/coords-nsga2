@@ -10,13 +10,13 @@ authors = [
     {name = "Xiaofeng Zhang", email = "xiaofeng1001@outlook.com"}
 ]
 dependencies = [
-    "numpy>=1.23.0",
-    "tqdm>=4.0.0",
-    "shapely>=2.0.0"
+    "numpy>=1.23",
+    "tqdm>=4",
+    "shapely>=2"
 ]
 requires-python = ">= 3.9"
-readme = "README.md"
-license = {text = "MIT"}
+readme = { file = "README.md", content-type = "text/markdown" }
+license = "MIT"
 
 [project.urls]
 Homepage = "https://github.com/ZXF1001/coords-nsga2"
@@ -36,13 +36,11 @@ test = [
   "scipy"
 ]
 
-# -------------------------------------------------------------------
-# pytest 相关（保持之前的覆盖率参数不变，可按需调整）
+# pytest 相关
 [tool.pytest.ini_options]
 addopts = "--cov=coords_nsga2 --cov-report=term-missing"
 testpaths = ["tests"]
 
-# -------------------------------------------------------------------
 # coverage 相关
 [tool.coverage.run]
 branch  = true
@@ -52,7 +50,6 @@ source  = ["coords_nsga2"]
 show_missing = true
 fail_under   = 80
 
-# -------------------------------------------------------------------
 [tool.hatch.envs.dev]
 dependencies = ["coords-nsga2[test]"]
 
