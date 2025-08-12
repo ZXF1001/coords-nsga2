@@ -6,6 +6,10 @@ on:
       - 'v*'  # 只在有版本标签时触发
   # 可加上 push 分支触发条件
 
+permissions:
+  contents: write
+  pages: write
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
