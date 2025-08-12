@@ -37,3 +37,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./site
           publish_branch: gh-pages
+          cname: coords-nsga2.cc
+
+      - name: Add CNAME file
+        run: echo 'coords-nsga2.cc' > site/CNAME
