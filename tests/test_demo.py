@@ -2,7 +2,7 @@ import numpy as np
 from scipy.spatial import distance
 from shapely.geometry import MultiPolygon
 
-from coords_nsga2 import CoordsNSGA2
+from coords_nsga2 import CoordsNSGA2, Problem
 from coords_nsga2.spatial import region_from_points
 
 
@@ -33,15 +33,17 @@ def test_main():
         penalty_sum = np.sum(penalty_list)
         return penalty_sum
 
-    optimizer = CoordsNSGA2(func1=objective_1,
-                             func2=objective_2,
-                             pop_size=20,
-                             n_points=10,
-                             prob_crs=0.5,
-                             prob_mut=0.1,
-                             polygons=multi_polygon,  # todo: 这里自动判定是单个多边形还是多个多边形
-                             constraints=[constraint_1],
-                             random_seed=10)
+    problem = Problem(func1=objective_1,
+                      func2=objective_2,
+                      n_points=10,
+                      polygons=multi_polygon,
+                      constraints=[constraint_1])
+
+    optimizer = CoordsNSGA2(problem=problem,
+                            pop_size=20,
+                            prob_crs=0.5,
+                            prob_mut=0.1)
+
     result = optimizer.run(100)
     # 断言result存在
     assert len(result) == 20

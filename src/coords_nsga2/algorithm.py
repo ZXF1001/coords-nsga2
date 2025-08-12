@@ -9,21 +9,45 @@ from .spatial import create_point_in_polygon
 from .utils import crowding_distance, fast_non_dominated_sort
 
 
-class CoordsNSGA2:
-    def __init__(self, func1, func2, pop_size, n_points, prob_crs, prob_mut, polygons, constraints=[], random_seed=0):
+class Problem:
+    def __init__(self, func1, func2, n_points, polygons, constraints=[], penalty_weight=1e6):
         self.func1 = func1
         self.func2 = func2
+        self.n_points = n_points
+        self.polygons = polygons
+        self.constraints = constraints
+        self.penalty_weight = penalty_weight  # 可改为自适应
+
+    def sample_points(self, n):
+        return np.array([create_point_in_polygon(self.polygons) for _ in range(n)])
+
+    def sample_population(self, pop_size):
+        coords = self.sample_points(pop_size * self.n_points)
+        return coords.reshape(pop_size, self.n_points, 2)
+
+    def evaluate(self, population):
+        v1 = np.array([self.func1(x) for x in population])
+        v2 = np.array([self.func2(x) for x in population])
+        if self.constraints:
+            penalty = self.penalty_weight * \
+                np.array([np.sum([c(x) for c in self.constraints])
+                         for x in population])
+            v1 -= penalty
+            v2 -= penalty
+        return v1, v2
+
+
+class CoordsNSGA2:
+    def __init__(self, problem, pop_size, prob_crs, prob_mut, random_seed=42):
+        self.problem = problem
         self.pop_size = pop_size
-        self.n_points = n_points  # 风力机的台数
         self.prob_crs = prob_crs
         self.prob_mut = prob_mut
-        self.polygons = polygons  # 布点区域list，每个元素为一个多边形的坐标list
-        self.constraints = constraints  # 约束条件list，每个元素为一个约束函数，返回值为0表示满足约束，否则返回惩罚值
 
         np.random.seed(random_seed)
         assert pop_size % 2 == 0, "种群数量必须为偶数"
-        self.P = self.init_population()  # 解种群
-        self.values1_P, self.values2_P = self.evaluation(self.P)  # 评估
+        self.P = self.problem.sample_population(pop_size)
+        self.values1_P, self.values2_P = self.problem.evaluate(self.P)  # 评估
         self.P_history = [self.P]  # 记录每一代的解
         self.values1_history = [self.values1_P]  # 记录每一代的最前沿解的第一个目标函数值
         self.values2_history = [self.values2_P]  # 记录每一代的最前沿解的第一个目标函数值
@@ -32,28 +56,6 @@ class CoordsNSGA2:
         self.mutation = coords_mutation  # 使用外部定义的mutation函数
         self.selection = coords_selection  # 使用外部定义的selection函数
 
-    def init_population(self):
-        # 批量生成坐标
-        coords = np.array([create_point_in_polygon(self.polygons) for _ in range(self.pop_size * self.n_points)])
-        # 重塑为目标形状
-        init_pop = coords.reshape(self.pop_size, self.n_points, 2)
-        # 返回整型或浮点型结果
-        return init_pop
-
-    def evaluation(self, population):
-        # todo: 这里可以采用并行+缓存的方式加速（已经实现，但是是在具体应用时重写这个函数通过joblib库来实现的，后续可以改写成装饰器的形式）
-
-        func1_values = np.array([self.func1(x) for x in population])
-        func2_values = np.array([self.func2(x) for x in population])
-        # 评估约束惩罚函数
-        if len(self.constraints) > 0:
-            #todo: 这个1e6要自适应
-            constraints_penalty = 1e6 * \
-                np.array([np.sum([con(x) for con in self.constraints])
-                         for x in population])
-            func1_values -= constraints_penalty
-            func2_values -= constraints_penalty
-        return func1_values, func2_values
 
     def get_next_population(self,
                             population_sorted_in_fronts,
@@ -89,9 +91,9 @@ class CoordsNSGA2:
         for _ in trange(gen):
             Q = self.selection(self.P, self.values1_P, self.values2_P)  # 选择
             Q = self.crossover(Q, self.prob_crs)  # 交叉
-            Q = self.mutation(Q, self.prob_mut, self.polygons)  # 变异
+            Q = self.mutation(Q, self.prob_mut, self.problem.polygons)  # 变异
 
-            values1_Q, values2_Q = self.evaluation(Q)  # 评估
+            values1_Q, values2_Q = self.problem.evaluate(Q)  # 评估
             R = np.concatenate([self.P, Q])  # 合并为R=(P,Q)
             values1_R = np.concatenate([self.values1_P, values1_Q])
             values2_R = np.concatenate([self.values2_P, values2_Q])
@@ -107,12 +109,13 @@ class CoordsNSGA2:
                 population_sorted_in_fronts, crowding_distances)
             self.P = R[R_idx]
 
-            self.values1_P, self.values2_P = self.evaluation(self.P)  # 评估
+            self.values1_P, self.values2_P = self.problem.evaluate(
+                self.P)  # 评估
 
-            self.P_history.append(self.P) # 这里后面改成全流程使用np数组
+            self.P_history.append(self.P)  # 这里后面改成全流程使用np数组
             self.values1_history.append(self.values1_P)
             self.values2_history.append(self.values2_P)
-            #todo: 排序后再输出
+            # todo: 排序后再输出
         return self.P
 
     def save(self, path):
