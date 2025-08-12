@@ -52,10 +52,10 @@ class CoordsNSGA2:
         self.values1_history = [self.values1_P]  # 记录每一代的最前沿解的第一个目标函数值
         self.values2_history = [self.values2_P]  # 记录每一代的最前沿解的第一个目标函数值
 
+        #todo: 这部分未来要放在optimizer的定义的参数中
         self.crossover = coords_crossover  # 使用外部定义的crossover函数
         self.mutation = coords_mutation  # 使用外部定义的mutation函数
         self.selection = coords_selection  # 使用外部定义的selection函数
-
 
     def get_next_population(self,
                             population_sorted_in_fronts,
@@ -85,7 +85,7 @@ class CoordsNSGA2:
                 sorted_front = np.array(front)[sorted_front_idx]
                 new_idx.extend(sorted_front[:remaining_size])
                 break
-        return new_idx
+        return np.array(new_idx)
 
     def run(self, gen=1000):
         for _ in trange(gen):

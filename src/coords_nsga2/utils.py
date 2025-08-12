@@ -9,8 +9,8 @@ def fast_non_dominated_sort(values1, values2):
     # 初始化数据结构
     num_population = len(values1)
     dominated_solutions = [[] for _ in range(num_population)]
-    domination_count = [0] * num_population
-    ranks = [0] * num_population
+    domination_count = np.zeros(num_population)
+    ranks = np.zeros(num_population)
     fronts = [[]]
 
     # 确定支配关系

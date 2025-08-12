@@ -1,5 +1,6 @@
 import numpy as np
-from ..utils import fast_non_dominated_sort, crowding_distance
+
+from ..utils import crowding_distance, fast_non_dominated_sort
 
 
 def coords_selection(P, values1_P, values2_P, tourn_size=3):
