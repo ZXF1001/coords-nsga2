@@ -41,8 +41,7 @@ def test_main():
                              prob_mut=0.1,
                              polygons=multi_polygon,  # todo: 这里自动判定是单个多边形还是多个多边形
                              constraints=[constraint_1],
-                             random_seed=10,
-                             is_int=False)
+                             random_seed=10)
     result = optimizer.run(100)
     # 断言result存在
     assert len(result) == 20

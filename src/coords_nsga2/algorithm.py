@@ -10,7 +10,7 @@ from .utils import crowding_distance, fast_non_dominated_sort
 
 
 class CoordsNSGA2:
-    def __init__(self, func1, func2, pop_size, n_points, prob_crs, prob_mut, polygons, constraints=[], random_seed=0, is_int=False):
+    def __init__(self, func1, func2, pop_size, n_points, prob_crs, prob_mut, polygons, constraints=[], random_seed=0):
         self.func1 = func1
         self.func2 = func2
         self.pop_size = pop_size
@@ -19,7 +19,6 @@ class CoordsNSGA2:
         self.prob_mut = prob_mut
         self.polygons = polygons  # 布点区域list，每个元素为一个多边形的坐标list
         self.constraints = constraints  # 约束条件list，每个元素为一个约束函数，返回值为0表示满足约束，否则返回惩罚值
-        self.is_int = is_int
 
         np.random.seed(random_seed)
         assert pop_size % 2 == 0, "种群数量必须为偶数"
@@ -35,11 +34,11 @@ class CoordsNSGA2:
 
     def init_population(self):
         # 批量生成坐标
-        coords = np.array([create_point_in_polygon(self.polygons, self.is_int) for _ in range(self.pop_size * self.n_points)])
+        coords = np.array([create_point_in_polygon(self.polygons) for _ in range(self.pop_size * self.n_points)])
         # 重塑为目标形状
         init_pop = coords.reshape(self.pop_size, self.n_points, 2)
         # 返回整型或浮点型结果
-        return init_pop.astype(int) if self.is_int else init_pop
+        return init_pop
 
     def evaluation(self, population):
         # todo: 这里可以采用并行+缓存的方式加速（已经实现，但是是在具体应用时重写这个函数通过joblib库来实现的，后续可以改写成装饰器的形式）
@@ -90,7 +89,7 @@ class CoordsNSGA2:
         for _ in trange(gen):
             Q = self.selection(self.P, self.values1_P, self.values2_P)  # 选择
             Q = self.crossover(Q, self.prob_crs)  # 交叉
-            Q = self.mutation(Q, self.prob_mut, self.polygons, self.is_int)  # 变异
+            Q = self.mutation(Q, self.prob_mut, self.polygons)  # 变异
 
             values1_Q, values2_Q = self.evaluation(Q)  # 评估
             R = np.concatenate([self.P, Q])  # 合并为R=(P,Q)

@@ -10,9 +10,9 @@ from coords_nsga2 import CoordsNSGA2
 # 创建边界
 polygon = region_from_points([
     [0, 0],
-    [1, 0],
-    [2, 1],
-    [1, 1],
+    [100, 0],
+    [200, 100],
+    [100, 100],
 ])
 multi_polygon = MultiPolygon([polygon])
 
@@ -39,8 +39,7 @@ optimizer = CoordsNSGA2(func1=objective_1,
                          prob_mut=0.1,
                          polygons=multi_polygon, #todo: 这里自动判定是单个多边形还是多个多边形
                          constraints=[constraint_1],
-                         random_seed=10,
-                         is_int=False)
+                         random_seed=10)
 result = optimizer.run(1000)
 
 v1_max_index = optimizer.values1_P.argmax()

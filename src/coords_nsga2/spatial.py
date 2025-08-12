@@ -12,12 +12,11 @@ def region_from_range(x_min, x_max, y_min, y_max):
     return Polygon([(x_min, y_min), (x_max, y_min), (x_max, y_max), (x_min, y_max)])
 
 
-def create_point_in_polygon(polygons, is_int=False):
+def create_point_in_polygon(polygons):
     minx, miny, maxx, maxy = polygons.bounds
     # 选择合适的随机数生成函数
-    rand_func = np.random.randint if is_int else np.random.uniform
     while True:
-        x = rand_func(minx, maxx)
-        y = rand_func(miny, maxy)
+        x = np.random.uniform(minx, maxx)
+        y = np.random.uniform(miny, maxy)
         if polygons.contains(Point(x, y)):
             return x, y
