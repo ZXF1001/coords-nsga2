@@ -1,0 +1,22 @@
+site_name: coords-nsga2 文档
+site_description: coords-nsga2坐标组合多目标优化框架的介绍和使用指南
+site_url: https://coords-nsga2.cc
+repo_url: https://github.com/ZXF1001/coords-nsga2
+theme:
+  name: material
+  language: zh
+  palette:
+    - scheme: default
+      accent: light blue
+      toggle:
+        icon: material/weather-night
+        name: 切换到深色模式
+    - scheme: slate
+      accent: light blue
+      toggle:
+        icon: material/weather-sunny
+        name: 切换到浅色模式
+nav:
+  - 首页: index.md
+  - 安装: install.md
+  - 使用指南: usage.md
