@@ -9,7 +9,4 @@
     "."
   ],
   "python.testing.unittestEnabled": false,
-  "cursorpyright.analysis.extraPaths": [
-    "${workspaceFolder}/src"
-  ]
 }

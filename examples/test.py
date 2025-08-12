@@ -7,9 +7,9 @@ from coords_nsga2.spatial import region_from_points
 # 创建边界
 polygon = region_from_points([
     [0, 0],
-    [100, 0],
-    [200, 100],
-    [100, 100],
+    [1, 0],
+    [2, 1],
+    [1, 1],
 ])
 multi_polygon = MultiPolygon([polygon])
 
