@@ -16,7 +16,8 @@ dependencies = [
 ]
 requires-python = ">= 3.9"
 readme = { file = "README.md", content-type = "text/markdown" }
-license = "MIT"
+license = {text = "MIT"}
+keywords = ['optimization',"nsga2","coordinates","genetic-algorithm"]
 
 [project.urls]
 Homepage = "https://github.com/ZXF1001/coords-nsga2"

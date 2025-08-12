@@ -2,7 +2,7 @@ import numpy as np
 from scipy.spatial import distance
 from shapely.geometry import MultiPolygon
 
-from coords_nsga2 import coords_nsga2
+from coords_nsga2 import CoordsNSGA2
 from coords_nsga2.spatial import region_from_points
 
 
@@ -33,7 +33,7 @@ def test_main():
         penalty_sum = np.sum(penalty_list)
         return penalty_sum
 
-    optimizer = coords_nsga2(func1=objective_1,
+    optimizer = CoordsNSGA2(func1=objective_1,
                              func2=objective_2,
                              pop_size=20,
                              n_points=10,

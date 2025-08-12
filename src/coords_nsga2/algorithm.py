@@ -1,13 +1,15 @@
 # 自己开发的针对风力机坐标点位布局用的NSGA-II算法
 import numpy as np
 from tqdm import trange
-from .spatial import create_point_in_polygon
-from .operators.selection import coords_selection
+
 from .operators.crossover import coords_crossover
 from .operators.mutation import coords_mutation
-from .utils import fast_non_dominated_sort, crowding_distance
+from .operators.selection import coords_selection
+from .spatial import create_point_in_polygon
+from .utils import crowding_distance, fast_non_dominated_sort
 
-class coords_nsga2():
+
+class CoordsNSGA2:
     def __init__(self, func1, func2, pop_size, n_points, prob_crs, prob_mut, polygons, constraints=[], random_seed=0, is_int=False):
         self.func1 = func1
         self.func2 = func2
@@ -88,7 +90,7 @@ class coords_nsga2():
         for _ in trange(gen):
             Q = self.selection(self.P, self.values1_P, self.values2_P)  # 选择
             Q = self.crossover(Q, self.prob_crs)  # 交叉
-            Q = self.mutation(Q, self.prob_crs, self.polygons, self.is_int)  # 变异
+            Q = self.mutation(Q, self.prob_mut, self.polygons, self.is_int)  # 变异
 
             values1_Q, values2_Q = self.evaluation(Q)  # 评估
             R = np.concatenate([self.P, Q])  # 合并为R=(P,Q)

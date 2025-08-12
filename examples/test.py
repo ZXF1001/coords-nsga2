@@ -6,7 +6,7 @@ import sys
 import pathlib
 sys.path.append(str(pathlib.Path(__file__).resolve().parents[1] / "src"))
 from coords_nsga2.spatial import region_from_points
-from coords_nsga2 import coords_nsga2
+from coords_nsga2 import CoordsNSGA2
 # 创建边界
 polygon = region_from_points([
     [0, 0],
@@ -31,7 +31,7 @@ def constraint_1(coords):
     penalty_sum = np.sum(penalty_list)
     return penalty_sum
 
-optimizer = coords_nsga2(func1=objective_1,
+optimizer = CoordsNSGA2(func1=objective_1,
                          func2=objective_2,
                          pop_size=20,
                          n_points=10,
