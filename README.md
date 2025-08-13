@@ -16,7 +16,6 @@ A Python library implementing a coordinate-based NSGA-II for multi-objective opt
   - [Features](#features)
   - [Installation](#installation)
   - [Quick Start](#quick-start)
-  - [Usage](#usage)
   - [Examples](#examples)
   - [Documentation](#documentation)
   - [Contributing](#contributing)
@@ -31,8 +30,8 @@ A Python library implementing a coordinate-based NSGA-II for multi-objective opt
 
 --------------------------------------------------------------------------------
 ## Installation
-<!-- 
-To install from PyPI (after you've published to PyPI):
+
+To install from PyPI:
 ```bash
 pip install coord-nsga2
 ```
@@ -44,61 +43,70 @@ cd coord-nsga2
 pip install -e .
 ```
 
--------------------------------------------------------------------------------- -->
+--------------------------------------------------------------------------------
 
 ## Quick Start
-<!-- Below is a minimal example demonstrating how to run a coordinate-based NSGA-II optimization using this library:
+Below is a minimal example demonstrating how to run a coordinate-based NSGA-II optimization using this library:
 
 ```python
 import numpy as np
-from coords_nsga2 import NSGA2, Problem
+from scipy.spatial import distance
+from shapely.geometry import MultiPolygon
+
+from coords_nsga2 import CoordsNSGA2, Problem
+from coords_nsga2.spatial import region_from_points
+
+# Define the optimization regions
+polygon = region_from_points([
+    [0, 0],
+    [1, 0],
+    [2, 1],
+    [1, 1],
+])
+multi_polygon = MultiPolygon([polygon])
 
 # Define your objective functions
 def objective_1(coords):
-    # coords is a list/array of (x, y) points
-    # Compute your objective value, e.g. the total area or distance
-    return ...
+    # coords is a array of (x, y) points
+    return np.sum(coords[:, 0]) + np.sum(coords[:, 1])
 
 def objective_2(coords):
-    return ...
+    return np.std(coords[:, 0]) + np.std(coords[:, 1])
 
 # Define constraints if needed
-def coordinate_constraints(coords):
-    # Return True if valid, False otherwise
-    return ...
+spacing = 0.05  # spacing constraint
+def constraint_1(coords):
+    # Return total penalty
+    dist_list = distance.pdist(coords)
+    penalty_list = spacing-dist_list[dist_list < spacing]
+    penalty_sum = np.sum(penalty_list)
+    return penalty_sum
 
 # Setup the problem
-problem = Problem(
-    objectives=[objective_1, objective_2],
-    constraint=coordinate_constraints,
-    # Any additional parameters
-)
+problem = Problem(func1=objective_1,
+                  func2=objective_2,              n_points=10,
+                  polygons=multi_polygon,
+                  constraints=[constraint_1])
 
 # Initialize the optimizer
-optimizer = NSGA2(problem, population_size=50, max_generations=100)
+optimizer = CoordsNSGA2(problem=problem,
+                        pop_size=20,
+                        prob_crs=0.5,
+                        prob_mut=0.1)
 
 # Run optimization
-result = optimizer.run()
+result = optimizer.run(1000)
 
-# Inspect results
-for i, individual in enumerate(result.best_solutions):
-    print(f"Solution {i}, Objectives = {individual.objectives}, Coordinates = {individual.coords}")
-``` -->
+# Optimization results
+print(result)
+```
 
---------------------------------------------------------------------------------
-
-## Usage
-<!-- 1. Define your own objective functions to compute the performance metrics of the coordinate array.  
-2. Optionally define constraints, e.g., boundary limits or distance between coordinate points.  
-3. Create a Problem object, including objectives, constraints, etc.  
-4. Use the NSGA2 object to configure population size, number of generations, or any other evolutionary parameters.  
-5. Call optimizer.run() to execute the search.  
-
-Check the [Examples](#examples) and [Documentation](#documentation) sections below for more detailed usage scenarios. -->
+Check the [Examples](#examples) and [Documentation](#documentation) sections below for more detailed usage scenarios.
 
 --------------------------------------------------------------------------------
 
 ## Examples
+building
 <!-- - [Basic Example](examples/basic_example.py)  
 - [Multiple Constraints Example](examples/advanced_constraints.py)  
 - [Integration with Other Libraries](examples/integration_example.py)   -->
@@ -106,6 +114,7 @@ Check the [Examples](#examples) and [Documentation](#documentation) sections bel
 --------------------------------------------------------------------------------
 
 ## Documentation
+building
 <!-- Complete documentation is available in the [docs/](docs) folder.  
 - Getting Started  
 - Detailed API Reference  
@@ -121,13 +130,11 @@ Then open `docs/_build/html/index.html` in a web browser. -->
 --------------------------------------------------------------------------------
 
 ## Contributing
-<!-- Contributions of all kinds are welcome! To get started:  
+Contributions of all kinds are welcome! To get started:  
 1. Fork the repository and clone it locally.  
 2. Create a new git branch for your feature or bugfix.  
 3. Make changes with clear and concise commit messages.  
 4. Submit a pull request describing your changes in detail.  
-
-Before contributing, please review the [Contributing Guide](CONTRIBUTING.md) and the [Code of Conduct](CODE_OF_CONDUCT.md). -->
 
 --------------------------------------------------------------------------------
 
