@@ -10,16 +10,16 @@ from .utils import crowding_distance, fast_non_dominated_sort
 
 
 class Problem:
-    def __init__(self, func1, func2, n_points, polygons, constraints=[], penalty_weight=1e6):
+    def __init__(self, func1, func2, n_points, region, constraints=[], penalty_weight=1e6):
         self.func1 = func1
         self.func2 = func2
         self.n_points = n_points
-        self.polygons = polygons
+        self.region = region
         self.constraints = constraints
         self.penalty_weight = penalty_weight  # 可改为自适应
 
     def sample_points(self, n):
-        return np.array([create_point_in_polygon(self.polygons) for _ in range(n)])
+        return np.array([create_point_in_polygon(self.region) for _ in range(n)])
 
     def sample_population(self, pop_size):
         coords = self.sample_points(pop_size * self.n_points)
@@ -59,8 +59,7 @@ class CoordsNSGA2:
 
     def get_next_population(self,
                             population_sorted_in_fronts,
-                            crowding_distances,
-                            pop_size):
+                            crowding_distances):
         """
         通过前沿等级、拥挤度，选取前pop_size个解，作为下一代种群
         输入：
@@ -71,7 +70,7 @@ class CoordsNSGA2:
         """
         new_idx = []
         for i, front in enumerate(population_sorted_in_fronts):
-            remaining_size = pop_size - len(new_idx)
+            remaining_size = self.pop_size - len(new_idx)
             # 先尽可能吧每个靠前的前沿加进来
             if len(front) < remaining_size:
                 new_idx.extend(front)
@@ -92,7 +91,7 @@ class CoordsNSGA2:
         for _ in trange(gen):
             Q = self.selection(self.P, self.values1_P, self.values2_P)  # 选择
             Q = self.crossover(Q, self.prob_crs)  # 交叉
-            Q = self.mutation(Q, self.prob_mut, self.problem.polygons)  # 变异
+            Q = self.mutation(Q, self.prob_mut, self.problem.region)  # 变异
 
             values1_Q, values2_Q = self.problem.evaluate(Q)  # 评估
             R = np.concatenate([self.P, Q])  # 合并为R=(P,Q)
@@ -107,7 +106,7 @@ class CoordsNSGA2:
 
             # 选择下一代种群
             R_idx = self.get_next_population(
-                population_sorted_in_fronts, crowding_distances, self.pop_size)
+                population_sorted_in_fronts, crowding_distances)
             self.P = R[R_idx]
 
             self.values1_P, self.values2_P = self.problem.evaluate(

@@ -1,17 +1,15 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from shapely.geometry import MultiPolygon
 from scipy.spatial import distance
 from coords_nsga2 import CoordsNSGA2, Problem
 from coords_nsga2.spatial import region_from_points
 # 创建边界
-polygon = region_from_points([
+region = region_from_points([
     [0, 0],
     [1, 0],
     [2, 1],
     [1, 1],
 ])
-multi_polygon = MultiPolygon([polygon])
 
 # 定义目标函数1：更靠近右上方
 
@@ -39,7 +37,7 @@ def constraint_1(coords):
 problem = Problem(func1=objective_1,
                   func2=objective_2,
                   n_points=10,
-                  polygons=multi_polygon,
+                  region=region,
                   constraints=[constraint_1])
 
 optimizer = CoordsNSGA2(problem=problem,

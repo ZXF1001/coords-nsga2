@@ -51,19 +51,17 @@ Below is a minimal example demonstrating how to run a coordinate-based NSGA-II o
 ```python
 import numpy as np
 from scipy.spatial import distance
-from shapely.geometry import MultiPolygon
 
 from coords_nsga2 import CoordsNSGA2, Problem
 from coords_nsga2.spatial import region_from_points
 
 # Define the optimization regions
-polygon = region_from_points([
+region = region_from_points([
     [0, 0],
     [1, 0],
     [2, 1],
     [1, 1],
 ])
-multi_polygon = MultiPolygon([polygon])
 
 # Define your objective functions
 def objective_1(coords):
@@ -84,8 +82,9 @@ def constraint_1(coords):
 
 # Setup the problem
 problem = Problem(func1=objective_1,
-                  func2=objective_2,              n_points=10,
-                  polygons=multi_polygon,
+                  func2=objective_2,
+                  n_points=10,
+                  region=region,
                   constraints=[constraint_1])
 
 # Initialize the optimizer
