@@ -114,17 +114,17 @@ building
 
 ## Documentation
 building
-<!-- Complete documentation is available in the [docs/](docs) folder.  
-- Getting Started  
-- Detailed API Reference  
-- Operator Customization  
+Complete documentation is available in the [docs/](docs) folder.
 
-To build the documentation locally (assuming you use Sphinx):
+To start the documentation on local server:
 ```bash
-cd docs
-make html
+mkdocs serve
 ```
-Then open `docs/_build/html/index.html` in a web browser. -->
+
+To build the documentation locally:
+```bash
+mkdocs build
+```
 
 --------------------------------------------------------------------------------
 

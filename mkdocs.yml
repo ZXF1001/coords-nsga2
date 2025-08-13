@@ -20,3 +20,9 @@ nav:
   - 首页: index.md
   - 安装: install.md
   - 使用指南: usage.md
+
+markdown_extensions:
+  - pymdownx.highlight:
+      linenums: true
+      anchor_linenums: true
+  - pymdownx.superfences
