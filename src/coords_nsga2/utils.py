@@ -6,6 +6,7 @@ def fast_non_dominated_sort(values1, values2):
     输入：values1, values2 为两个目标函数的值列表；
     输出：返回一个列表，列表中的每个元素是一个列表，表示一个前沿
     """
+    assert len(values1) == len(values2)
     # 初始化数据结构
     num_population = len(values1)
     dominated_solutions = [[] for _ in range(num_population)]
@@ -46,51 +47,51 @@ def fast_non_dominated_sort(values1, values2):
     return fronts
 
 
-def sort_by_values(idx_lst, values_lst):
-    # 根据values对list进行排序
-    idx_arr = np.array(idx_lst)
-    values_arr = np.array(values_lst)[idx_arr]
-
-    # 根据values进行排序
-    sorted_idx_arr = idx_arr[np.argsort(values_arr)]
-    return sorted_idx_arr
-
-def crowding_distance(values1, values2, front):
+def crowding_distance(value1, value2):
     """
-    Calculate crowding distance for solutions in a Pareto front.
+    计算 NSGA-II 中的拥挤度距离
     
-    Args:
-        values1, values2: Lists/arrays of objective function values
-        front: List of indices representing solutions in the current front
-        
-    Returns:
-        ndarray: Crowding distances for solutions in the front
+    参数:
+    value1 (numpy.ndarray): 第一个目标函数值的数组
+    value2 (numpy.ndarray): 第二个目标函数值的数组
+    
+    返回:
+    numpy.ndarray: 拥挤度距离数组
     """
-    if len(front) <= 2:
-        return np.full(len(front), np.inf)
-
-    # Convert inputs to numpy arrays
-    values = np.column_stack((np.array(values1)[front], np.array(values2)[front]))
+    n = len(value1)
+    value1 = np.array(value1)
+    value2 = np.array(value2)
     
-    # Initialize distances
-    distances = np.zeros(len(front))
+    # 对 value1 进行排序，并记录原始索引
+    sorted_idx = np.argsort(value1)
+    sorted_value1 = value1[sorted_idx]
+    sorted_value2 = value2[sorted_idx]
     
-    # Handle case where all values are identical
-    if np.all(values[0] == values):
-        return distances
-        
-    # Calculate normalized crowding distance for each objective
-    for i in range(2):
-        # Sort values and get indices
-        idx = values[:, i].argsort()
-        sorted_values = values[idx, i]
-        
-        # Set boundary points to infinity
-        distances[idx[0]] = distances[idx[-1]] = np.inf
-        
-        # Normalize and accumulate distances
-        norm = sorted_values[-1] - sorted_values[0]
-        if norm > 0:
-            distances[idx[1:-1]] += (sorted_values[2:] - sorted_values[:-2]) / norm
-            
-    return distances
+    # 初始化拥挤度距离数组
+    crowding_dist = np.zeros(n)
+    
+    # 边界点的拥挤度距离为无穷大
+    crowding_dist[0] = float('inf')
+    crowding_dist[-1] = float('inf')
+    
+    # 计算归一化因子
+    norm_factor1 = sorted_value1.max() - sorted_value1.min()
+    norm_factor2 = sorted_value2.max() - sorted_value2.min()
+    
+    # 避免除零错误
+    if norm_factor1 == 0:
+        norm_factor1 = 1
+    if norm_factor2 == 0:
+        norm_factor2 = 1
+    
+    # 矢量化计算中间点的拥挤度距离
+    if n > 2:
+        value1_diff = (sorted_value1[2:] - sorted_value1[:-2]) / norm_factor1
+        value2_diff = np.abs(sorted_value2[2:] - sorted_value2[:-2]) / norm_factor2
+        crowding_dist[1:-1] = value1_diff + value2_diff
+    
+    # 将拥挤度距离按照原始索引还原
+    result = np.zeros(n)
+    result[sorted_idx] = crowding_dist
+    
+    return result

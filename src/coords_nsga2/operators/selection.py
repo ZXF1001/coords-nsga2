@@ -10,7 +10,7 @@ def coords_selection(P, values1_P, values2_P, tourn_size=3):
     population_sorted_in_fronts = fast_non_dominated_sort(
         values1_P, values2_P)
     crowding_distances = [crowding_distance(
-        values1_P, values2_P, front) for front in population_sorted_in_fronts]
+        values1_P[front], values2_P[front]) for front in population_sorted_in_fronts]
     # 将这两个结果组成一个列表，方便后续比较：第一列为index，第二列为前沿等级，第三列为拥挤度
     compare_table = []
     for i, front in enumerate(population_sorted_in_fronts):

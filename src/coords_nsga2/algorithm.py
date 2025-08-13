@@ -52,14 +52,15 @@ class CoordsNSGA2:
         self.values1_history = [self.values1_P]  # 记录每一代的最前沿解的第一个目标函数值
         self.values2_history = [self.values2_P]  # 记录每一代的最前沿解的第一个目标函数值
 
-        #todo: 这部分未来要放在optimizer的定义的参数中
+        # todo: 这部分未来要放在optimizer的定义的参数中
         self.crossover = coords_crossover  # 使用外部定义的crossover函数
         self.mutation = coords_mutation  # 使用外部定义的mutation函数
         self.selection = coords_selection  # 使用外部定义的selection函数
 
     def get_next_population(self,
                             population_sorted_in_fronts,
-                            crowding_distances):
+                            crowding_distances,
+                            pop_size):
         """
         通过前沿等级、拥挤度，选取前pop_size个解，作为下一代种群
         输入：
@@ -70,7 +71,7 @@ class CoordsNSGA2:
         """
         new_idx = []
         for i, front in enumerate(population_sorted_in_fronts):
-            remaining_size = self.pop_size - len(new_idx)
+            remaining_size = pop_size - len(new_idx)
             # 先尽可能吧每个靠前的前沿加进来
             if len(front) < remaining_size:
                 new_idx.extend(front)
@@ -102,11 +103,11 @@ class CoordsNSGA2:
             population_sorted_in_fronts = fast_non_dominated_sort(
                 values1_R, values2_R)
             crowding_distances = [crowding_distance(
-                values1_R, values2_R, front) for front in population_sorted_in_fronts]
+                values1_R[front], values2_R[front]) for front in population_sorted_in_fronts]
 
             # 选择下一代种群
             R_idx = self.get_next_population(
-                population_sorted_in_fronts, crowding_distances)
+                population_sorted_in_fronts, crowding_distances, self.pop_size)
             self.P = R[R_idx]
 
             self.values1_P, self.values2_P = self.problem.evaluate(
