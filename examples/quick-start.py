@@ -1,8 +1,10 @@
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 from scipy.spatial import distance
+
 from coords_nsga2 import CoordsNSGA2, Problem
 from coords_nsga2.spatial import region_from_points
+
 # 创建边界
 region = region_from_points([
     [0, 0],
@@ -58,6 +60,6 @@ plt.scatter(result[v1_min_index, :, 0], result[v1_min_index,
             :, 1], color='blue', label='Worst Solution')
 
 # 绘制多边形边界
-x, y = polygon.exterior.xy
+x, y = region.exterior.xy
 plt.fill(x, y, alpha=0.2, fc='gray', ec='black')
 plt.show()

@@ -58,6 +58,3 @@ dependencies = ["coords-nsga2[test]"]
 test = "pytest -q"
 cov  = "pytest"
 fmt  = "ruff check --fix coords_nsga2 tests"
-
-[tool.ruff]
-extend-exclude = ["examples"]
