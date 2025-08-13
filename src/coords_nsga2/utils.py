@@ -86,10 +86,9 @@ def crowding_distance(value1, value2):
     
     # 矢量化计算中间点的拥挤度距离
     if n > 2:
-        value1_diff = (sorted_value1[2:] - sorted_value1[:-2]) / norm_factor1
+        value1_diff = np.abs(sorted_value1[2:] - sorted_value1[:-2]) / norm_factor1
         value2_diff = np.abs(sorted_value2[2:] - sorted_value2[:-2]) / norm_factor2
         crowding_dist[1:-1] = value1_diff + value2_diff
-    
     # 将拥挤度距离按照原始索引还原
     result = np.zeros(n)
     result[sorted_idx] = crowding_dist
