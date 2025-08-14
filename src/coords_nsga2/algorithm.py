@@ -5,7 +5,7 @@ from tqdm import trange
 from .operators.crossover import coords_crossover
 from .operators.mutation import coords_mutation
 from .operators.selection import coords_selection
-from .spatial import create_point_in_polygon
+from .spatial import create_points_in_polygon
 from .utils import crowding_distance, fast_non_dominated_sort
 
 
@@ -18,11 +18,9 @@ class Problem:
         self.constraints = constraints
         self.penalty_weight = penalty_weight  # 可改为自适应
 
-    def sample_points(self, n):
-        return np.array([create_point_in_polygon(self.region) for _ in range(n)])
-
     def sample_population(self, pop_size):
-        coords = self.sample_points(pop_size * self.n_points)
+        coords = create_points_in_polygon(
+            self.region, pop_size * self.n_points)
         return coords.reshape(pop_size, self.n_points, 2)
 
     def evaluate(self, population):
@@ -45,7 +43,7 @@ class CoordsNSGA2:
         self.prob_mut = prob_mut
 
         np.random.seed(random_seed)
-        assert pop_size % 2 == 0, "种群数量必须为偶数"
+        assert pop_size % 2 == 0, "pop_size must be even number"
         self.P = self.problem.sample_population(pop_size)
         self.values1_P, self.values2_P = self.problem.evaluate(self.P)  # 评估
         self.P_history = [self.P]  # 记录每一代的解
@@ -57,7 +55,7 @@ class CoordsNSGA2:
         self.mutation = coords_mutation  # 使用外部定义的mutation函数
         self.selection = coords_selection  # 使用外部定义的selection函数
 
-    def get_next_population(self,
+    def get_next_population(self, R,
                             population_sorted_in_fronts,
                             crowding_distances):
         """
@@ -85,7 +83,7 @@ class CoordsNSGA2:
                 sorted_front = np.array(front)[sorted_front_idx]
                 new_idx.extend(sorted_front[:remaining_size])
                 break
-        return np.array(new_idx)
+        return R[new_idx]
 
     def run(self, gen=1000):
         for _ in trange(gen):
@@ -94,7 +92,9 @@ class CoordsNSGA2:
             Q = self.mutation(Q, self.prob_mut, self.problem.region)  # 变异
 
             values1_Q, values2_Q = self.problem.evaluate(Q)  # 评估
-            R = np.concatenate([self.P, Q])  # 合并为R=(P,Q)
+
+            # 合并为R=(P,Q)
+            R = np.concatenate([self.P, Q])
             values1_R = np.concatenate([self.values1_P, values1_Q])
             values2_R = np.concatenate([self.values2_P, values2_Q])
 
@@ -105,9 +105,8 @@ class CoordsNSGA2:
                 values1_R[front], values2_R[front]) for front in population_sorted_in_fronts]
 
             # 选择下一代种群
-            R_idx = self.get_next_population(
-                population_sorted_in_fronts, crowding_distances)
-            self.P = R[R_idx]
+            self.P = self.get_next_population(R,
+                                              population_sorted_in_fronts, crowding_distances)
 
             self.values1_P, self.values2_P = self.problem.evaluate(
                 self.P)  # 评估
