@@ -2,14 +2,26 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://coords-nsga2.cc/</loc>
-         <lastmod>2025-08-13</lastmod>
+         <lastmod>2025-08-14</lastmod>
+    </url>
+    <url>
+         <loc>https://coords-nsga2.cc/api/</loc>
+         <lastmod>2025-08-14</lastmod>
+    </url>
+    <url>
+         <loc>https://coords-nsga2.cc/examples/</loc>
+         <lastmod>2025-08-14</lastmod>
+    </url>
+    <url>
+         <loc>https://coords-nsga2.cc/index_en/</loc>
+         <lastmod>2025-08-14</lastmod>
     </url>
     <url>
          <loc>https://coords-nsga2.cc/install/</loc>
-         <lastmod>2025-08-13</lastmod>
+         <lastmod>2025-08-14</lastmod>
     </url>
     <url>
          <loc>https://coords-nsga2.cc/usage/</loc>
-         <lastmod>2025-08-13</lastmod>
+         <lastmod>2025-08-14</lastmod>
     </url>
 </urlset>

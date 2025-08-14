@@ -16,6 +16,8 @@
         <link rel="prev" href="../install/">
       
       
+        <link rel="next" href="../api/">
+      
       
       <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.16">
@@ -74,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#_1" class="md-skip">
+        <a href="#usage-guide" class="md-skip">
           跳转至
         </a>
       
@@ -88,7 +90,7 @@
 
   
 
-<header class="md-header md-header--shadow" data-md-component="header">
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="页眉">
     <a href=".." title="coords-nsga2 文档" class="md-header__button md-logo" aria-label="coords-nsga2 文档" data-md-component="logo">
       
@@ -203,13 +205,119 @@
     
   </nav>
   
+    
+      
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../install/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  安装指南
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  使用指南
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../api/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  API参考
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../examples/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  示例代码
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
 </header>
     
     <div class="md-container" data-md-component="container">
       
       
-        
-          
         
       
       <main class="md-main" data-md-component="main">
@@ -223,8 +331,10 @@
                     
 
 
+  
 
-<nav class="md-nav md-nav--primary" aria-label="导航栏" data-md-level="0">
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href=".." title="coords-nsga2 文档" class="md-nav__button md-logo" aria-label="coords-nsga2 文档" data-md-component="logo">
       
@@ -283,7 +393,7 @@
   
   
   <span class="md-ellipsis">
-    安装
+    安装指南
     
   </span>
   
@@ -309,6 +419,19 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    使用指南
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -321,6 +444,339 @@
 
       </a>
       
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      中文使用指南
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="中文使用指南">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      基本概念
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      快速开始示例
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      区域定义
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="区域定义">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      从点列表创建多边形区域
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      从坐标范围创建矩形区域
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      目标函数定义
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      约束条件定义
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      优化器参数
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="优化器参数">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#coordsnsga2" class="md-nav__link">
+    <span class="md-ellipsis">
+      CoordsNSGA2 参数说明
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      参数调优建议
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      结果分析
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      保存和加载
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#english-usage-guide" class="md-nav__link">
+    <span class="md-ellipsis">
+      English Usage Guide
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="English Usage Guide">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-concepts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Basic Concepts
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quick-start-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quick Start Example
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#region-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      Region Definition
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Region Definition">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-polygon-region-from-point-list" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create polygon region from point list
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-rectangular-region-from-coordinate-bounds" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create rectangular region from coordinate bounds
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#objective-function-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objective Function Definition
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#constraint-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      Constraint Definition
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optimizer-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Optimizer Parameters
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Optimizer Parameters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#coordsnsga2-parameter-description" class="md-nav__link">
+    <span class="md-ellipsis">
+      CoordsNSGA2 Parameter Description
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parameter-tuning-suggestions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameter Tuning Suggestions
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#result-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      Result Analysis
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#save-and-load" class="md-nav__link">
+    <span class="md-ellipsis">
+      Save and Load
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    API参考
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    示例代码
+    
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -345,6 +801,284 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      中文使用指南
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="中文使用指南">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      基本概念
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      快速开始示例
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      区域定义
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="区域定义">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      从点列表创建多边形区域
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      从坐标范围创建矩形区域
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      目标函数定义
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      约束条件定义
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      优化器参数
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="优化器参数">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#coordsnsga2" class="md-nav__link">
+    <span class="md-ellipsis">
+      CoordsNSGA2 参数说明
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      参数调优建议
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      结果分析
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      保存和加载
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#english-usage-guide" class="md-nav__link">
+    <span class="md-ellipsis">
+      English Usage Guide
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="English Usage Guide">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-concepts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Basic Concepts
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quick-start-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quick Start Example
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#region-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      Region Definition
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Region Definition">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-polygon-region-from-point-list" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create polygon region from point list
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-rectangular-region-from-coordinate-bounds" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create rectangular region from coordinate bounds
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#objective-function-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objective Function Definition
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#constraint-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      Constraint Definition
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optimizer-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Optimizer Parameters
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Optimizer Parameters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#coordsnsga2-parameter-description" class="md-nav__link">
+    <span class="md-ellipsis">
+      CoordsNSGA2 Parameter Description
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parameter-tuning-suggestions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameter Tuning Suggestions
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#result-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      Result Analysis
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#save-and-load" class="md-nav__link">
+    <span class="md-ellipsis">
+      Save and Load
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -362,8 +1096,21 @@
   
 
 
-<h1 id="_1">使用</h1>
-<p>Below is a minimal example demonstrating how to run a coordinate-based NSGA-II optimization using this library:</p>
+<h1 id="usage-guide">使用指南 / Usage Guide<a class="headerlink" href="#usage-guide" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p><strong>⚠️ 重要提示</strong>: 本文档是基于源码分析由AI生成的。虽然我们努力确保准确性，但仍可能存在不一致或问题。我们正在积极改进和验证所有内容。如遇到任何问题，请及时报告。</p>
+</blockquote>
+<h2 id="_1">中文使用指南<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<h3 id="_2">基本概念<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<p>coords-nsga2 库的核心概念包括：</p>
+<ol>
+<li><strong>Problem（问题）</strong>：定义优化问题的目标函数、约束条件和搜索区域</li>
+<li><strong>CoordsNSGA2（优化器）</strong>：执行NSGA-II算法的优化器</li>
+<li><strong>Region（区域）</strong>：定义坐标点的有效搜索空间</li>
+<li><strong>Constraints（约束）</strong>：限制解的可行性的条件</li>
+</ol>
+<h3 id="_3">快速开始示例<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p>以下是一个完整的使用示例，演示如何优化10个坐标点的布局：</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-0-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-0-3"> 3</a></span>
@@ -412,55 +1159,470 @@
 <span class="normal"><a href="#__codelineno-0-46">46</a></span>
 <span class="normal"><a href="#__codelineno-0-47">47</a></span>
 <span class="normal"><a href="#__codelineno-0-48">48</a></span>
-<span class="normal"><a href="#__codelineno-0-49">49</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="normal"><a href="#__codelineno-0-49">49</a></span>
+<span class="normal"><a href="#__codelineno-0-50">50</a></span>
+<span class="normal"><a href="#__codelineno-0-51">51</a></span>
+<span class="normal"><a href="#__codelineno-0-52">52</a></span>
+<span class="normal"><a href="#__codelineno-0-53">53</a></span>
+<span class="normal"><a href="#__codelineno-0-54">54</a></span>
+<span class="normal"><a href="#__codelineno-0-55">55</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">scipy.spatial</span><span class="w"> </span><span class="kn">import</span> <span class="n">distance</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3"></a>
-<a id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="kn">from</span><span class="w"> </span><span class="nn">coords_nsga2</span><span class="w"> </span><span class="kn">import</span> <span class="n">CoordsNSGA2</span><span class="p">,</span> <span class="n">Problem</span>
-<a id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="kn">from</span><span class="w"> </span><span class="nn">coords_nsga2.spatial</span><span class="w"> </span><span class="kn">import</span> <span class="n">region_from_points</span>
-<a id="__codelineno-0-6" name="__codelineno-0-6"></a>
-<a id="__codelineno-0-7" name="__codelineno-0-7"></a><span class="c1"># Define the optimization regions</span>
-<a id="__codelineno-0-8" name="__codelineno-0-8"></a><span class="n">region</span> <span class="o">=</span> <span class="n">region_from_points</span><span class="p">([</span>
-<a id="__codelineno-0-9" name="__codelineno-0-9"></a>    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
-<a id="__codelineno-0-10" name="__codelineno-0-10"></a>    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
-<a id="__codelineno-0-11" name="__codelineno-0-11"></a>    <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
-<a id="__codelineno-0-12" name="__codelineno-0-12"></a>    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
-<a id="__codelineno-0-13" name="__codelineno-0-13"></a><span class="p">])</span>
-<a id="__codelineno-0-14" name="__codelineno-0-14"></a>
-<a id="__codelineno-0-15" name="__codelineno-0-15"></a><span class="c1"># Define your objective functions</span>
-<a id="__codelineno-0-16" name="__codelineno-0-16"></a><span class="k">def</span><span class="w"> </span><span class="nf">objective_1</span><span class="p">(</span><span class="n">coords</span><span class="p">):</span>
-<a id="__codelineno-0-17" name="__codelineno-0-17"></a>    <span class="c1"># coords is a array of (x, y) points</span>
-<a id="__codelineno-0-18" name="__codelineno-0-18"></a>    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">coords</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">coords</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span>
-<a id="__codelineno-0-19" name="__codelineno-0-19"></a>
-<a id="__codelineno-0-20" name="__codelineno-0-20"></a><span class="k">def</span><span class="w"> </span><span class="nf">objective_2</span><span class="p">(</span><span class="n">coords</span><span class="p">):</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">coords_nsga2</span><span class="w"> </span><span class="kn">import</span> <span class="n">CoordsNSGA2</span><span class="p">,</span> <span class="n">Problem</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="kn">from</span><span class="w"> </span><span class="nn">coords_nsga2.spatial</span><span class="w"> </span><span class="kn">import</span> <span class="n">region_from_points</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5"></a>
+<a id="__codelineno-0-6" name="__codelineno-0-6"></a><span class="c1"># 1. 定义优化区域（多边形）</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7"></a><span class="n">region</span> <span class="o">=</span> <span class="n">region_from_points</span><span class="p">([</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8"></a>    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9"></a>    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10"></a>    <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11"></a>    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12"></a><span class="p">])</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13"></a>
+<a id="__codelineno-0-14" name="__codelineno-0-14"></a><span class="c1"># 2. 定义目标函数</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15"></a><span class="k">def</span><span class="w"> </span><span class="nf">objective_1</span><span class="p">(</span><span class="n">coords</span><span class="p">):</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;第一个目标：最大化坐标和&quot;&quot;&quot;</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17"></a>    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">coords</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">coords</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18"></a>
+<a id="__codelineno-0-19" name="__codelineno-0-19"></a><span class="k">def</span><span class="w"> </span><span class="nf">objective_2</span><span class="p">(</span><span class="n">coords</span><span class="p">):</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;第二个目标：最大化点的分布&quot;&quot;&quot;</span>
 <a id="__codelineno-0-21" name="__codelineno-0-21"></a>    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">coords</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">coords</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span>
 <a id="__codelineno-0-22" name="__codelineno-0-22"></a>
-<a id="__codelineno-0-23" name="__codelineno-0-23"></a><span class="c1"># Define constraints if needed</span>
-<a id="__codelineno-0-24" name="__codelineno-0-24"></a><span class="n">spacing</span> <span class="o">=</span> <span class="mf">0.05</span>  <span class="c1"># spacing constraint</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23"></a><span class="c1"># 3. 定义约束条件</span>
+<a id="__codelineno-0-24" name="__codelineno-0-24"></a><span class="n">spacing</span> <span class="o">=</span> <span class="mf">0.05</span>  <span class="c1"># 最小间距</span>
 <a id="__codelineno-0-25" name="__codelineno-0-25"></a><span class="k">def</span><span class="w"> </span><span class="nf">constraint_1</span><span class="p">(</span><span class="n">coords</span><span class="p">):</span>
-<a id="__codelineno-0-26" name="__codelineno-0-26"></a>    <span class="c1"># Return total penalty</span>
+<a id="__codelineno-0-26" name="__codelineno-0-26"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;约束：点之间的最小间距&quot;&quot;&quot;</span>
 <a id="__codelineno-0-27" name="__codelineno-0-27"></a>    <span class="n">dist_list</span> <span class="o">=</span> <span class="n">distance</span><span class="o">.</span><span class="n">pdist</span><span class="p">(</span><span class="n">coords</span><span class="p">)</span>
-<a id="__codelineno-0-28" name="__codelineno-0-28"></a>    <span class="n">penalty_list</span> <span class="o">=</span> <span class="n">spacing</span><span class="o">-</span><span class="n">dist_list</span><span class="p">[</span><span class="n">dist_list</span> <span class="o">&lt;</span> <span class="n">spacing</span><span class="p">]</span>
-<a id="__codelineno-0-29" name="__codelineno-0-29"></a>    <span class="n">penalty_sum</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">penalty_list</span><span class="p">)</span>
-<a id="__codelineno-0-30" name="__codelineno-0-30"></a>    <span class="k">return</span> <span class="n">penalty_sum</span>
-<a id="__codelineno-0-31" name="__codelineno-0-31"></a>
-<a id="__codelineno-0-32" name="__codelineno-0-32"></a><span class="c1"># Setup the problem</span>
-<a id="__codelineno-0-33" name="__codelineno-0-33"></a><span class="n">problem</span> <span class="o">=</span> <span class="n">Problem</span><span class="p">(</span><span class="n">func1</span><span class="o">=</span><span class="n">objective_1</span><span class="p">,</span>
-<a id="__codelineno-0-34" name="__codelineno-0-34"></a>                  <span class="n">func2</span><span class="o">=</span><span class="n">objective_2</span><span class="p">,</span>
-<a id="__codelineno-0-35" name="__codelineno-0-35"></a>                  <span class="n">n_points</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
-<a id="__codelineno-0-36" name="__codelineno-0-36"></a>                  <span class="n">region</span><span class="o">=</span><span class="n">region</span><span class="p">,</span>
-<a id="__codelineno-0-37" name="__codelineno-0-37"></a>                  <span class="n">constraints</span><span class="o">=</span><span class="p">[</span><span class="n">constraint_1</span><span class="p">])</span>
-<a id="__codelineno-0-38" name="__codelineno-0-38"></a>
-<a id="__codelineno-0-39" name="__codelineno-0-39"></a><span class="c1"># Initialize the optimizer</span>
-<a id="__codelineno-0-40" name="__codelineno-0-40"></a><span class="n">optimizer</span> <span class="o">=</span> <span class="n">CoordsNSGA2</span><span class="p">(</span><span class="n">problem</span><span class="o">=</span><span class="n">problem</span><span class="p">,</span>
-<a id="__codelineno-0-41" name="__codelineno-0-41"></a>                        <span class="n">pop_size</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
-<a id="__codelineno-0-42" name="__codelineno-0-42"></a>                        <span class="n">prob_crs</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
-<a id="__codelineno-0-43" name="__codelineno-0-43"></a>                        <span class="n">prob_mut</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
-<a id="__codelineno-0-44" name="__codelineno-0-44"></a>
-<a id="__codelineno-0-45" name="__codelineno-0-45"></a><span class="c1"># Run optimization</span>
-<a id="__codelineno-0-46" name="__codelineno-0-46"></a><span class="n">result</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
-<a id="__codelineno-0-47" name="__codelineno-0-47"></a>
-<a id="__codelineno-0-48" name="__codelineno-0-48"></a><span class="c1"># Optimization results</span>
-<a id="__codelineno-0-49" name="__codelineno-0-49"></a><span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+<a id="__codelineno-0-28" name="__codelineno-0-28"></a>    <span class="n">penalty_list</span> <span class="o">=</span> <span class="n">spacing</span> <span class="o">-</span> <span class="n">dist_list</span><span class="p">[</span><span class="n">dist_list</span> <span class="o">&lt;</span> <span class="n">spacing</span><span class="p">]</span>
+<a id="__codelineno-0-29" name="__codelineno-0-29"></a>    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">penalty_list</span><span class="p">)</span>
+<a id="__codelineno-0-30" name="__codelineno-0-30"></a>
+<a id="__codelineno-0-31" name="__codelineno-0-31"></a><span class="c1"># 4. 创建问题实例</span>
+<a id="__codelineno-0-32" name="__codelineno-0-32"></a><span class="n">problem</span> <span class="o">=</span> <span class="n">Problem</span><span class="p">(</span>
+<a id="__codelineno-0-33" name="__codelineno-0-33"></a>    <span class="n">func1</span><span class="o">=</span><span class="n">objective_1</span><span class="p">,</span>
+<a id="__codelineno-0-34" name="__codelineno-0-34"></a>    <span class="n">func2</span><span class="o">=</span><span class="n">objective_2</span><span class="p">,</span>
+<a id="__codelineno-0-35" name="__codelineno-0-35"></a>    <span class="n">n_points</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+<a id="__codelineno-0-36" name="__codelineno-0-36"></a>    <span class="n">region</span><span class="o">=</span><span class="n">region</span><span class="p">,</span>
+<a id="__codelineno-0-37" name="__codelineno-0-37"></a>    <span class="n">constraints</span><span class="o">=</span><span class="p">[</span><span class="n">constraint_1</span><span class="p">]</span>
+<a id="__codelineno-0-38" name="__codelineno-0-38"></a><span class="p">)</span>
+<a id="__codelineno-0-39" name="__codelineno-0-39"></a>
+<a id="__codelineno-0-40" name="__codelineno-0-40"></a><span class="c1"># 5. 创建优化器</span>
+<a id="__codelineno-0-41" name="__codelineno-0-41"></a><span class="n">optimizer</span> <span class="o">=</span> <span class="n">CoordsNSGA2</span><span class="p">(</span>
+<a id="__codelineno-0-42" name="__codelineno-0-42"></a>    <span class="n">problem</span><span class="o">=</span><span class="n">problem</span><span class="p">,</span>
+<a id="__codelineno-0-43" name="__codelineno-0-43"></a>    <span class="n">pop_size</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+<a id="__codelineno-0-44" name="__codelineno-0-44"></a>    <span class="n">prob_crs</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+<a id="__codelineno-0-45" name="__codelineno-0-45"></a>    <span class="n">prob_mut</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+<a id="__codelineno-0-46" name="__codelineno-0-46"></a>    <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span>
+<a id="__codelineno-0-47" name="__codelineno-0-47"></a><span class="p">)</span>
+<a id="__codelineno-0-48" name="__codelineno-0-48"></a>
+<a id="__codelineno-0-49" name="__codelineno-0-49"></a><span class="c1"># 6. 运行优化</span>
+<a id="__codelineno-0-50" name="__codelineno-0-50"></a><span class="n">result</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+<a id="__codelineno-0-51" name="__codelineno-0-51"></a>
+<a id="__codelineno-0-52" name="__codelineno-0-52"></a><span class="c1"># 7. 查看结果</span>
+<a id="__codelineno-0-53" name="__codelineno-0-53"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;优化完成！结果形状: </span><span class="si">{</span><span class="n">result</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-54" name="__codelineno-0-54"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;种群大小: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">result</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-55" name="__codelineno-0-55"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;每个解的坐标点数: </span><span class="si">{</span><span class="n">result</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="_4">区域定义<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<h4 id="_5">从点列表创建多边形区域<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h4>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-1-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-1-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-1-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-1-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-1-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-1-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-1-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-1-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-1-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">coords_nsga2.spatial</span><span class="w"> </span><span class="kn">import</span> <span class="n">region_from_points</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2"></a>
+<a id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="c1"># 定义多边形的顶点</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="n">points</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5"></a>    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6"></a>    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7"></a>    <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8"></a>    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9"></a><span class="p">]</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10"></a><span class="n">region</span> <span class="o">=</span> <span class="n">region_from_points</span><span class="p">(</span><span class="n">points</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<h4 id="_6">从坐标范围创建矩形区域<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h4>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
+<span class="normal"><a href="#__codelineno-2-2">2</a></span>
+<span class="normal"><a href="#__codelineno-2-3">3</a></span>
+<span class="normal"><a href="#__codelineno-2-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">coords_nsga2.spatial</span><span class="w"> </span><span class="kn">import</span> <span class="n">region_from_range</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2"></a>
+<a id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="c1"># 定义矩形的边界</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="n">region</span> <span class="o">=</span> <span class="n">region_from_range</span><span class="p">(</span><span class="n">x_min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">x_max</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">y_min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">y_max</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="_7">目标函数定义<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<p>目标函数应该接受一个形状为 <code>(n_points, 2)</code> 的numpy数组作为输入，返回一个标量值：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-3-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-3-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-3-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-3-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-3-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-3-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-3-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-3-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-3-10">10</a></span>
+<span class="normal"><a href="#__codelineno-3-11">11</a></span>
+<span class="normal"><a href="#__codelineno-3-12">12</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">my_objective</span><span class="p">(</span><span class="n">coords</span><span class="p">):</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="sd">    参数:</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4"></a><span class="sd">        coords: numpy数组，形状为(n_points, 2)</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5"></a><span class="sd">                每行是一个坐标点 [x, y]</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6"></a>
+<a id="__codelineno-3-7" name="__codelineno-3-7"></a><span class="sd">    返回:</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8"></a><span class="sd">        float: 目标函数值</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10"></a>    <span class="c1"># 示例：计算所有点到原点的平均距离</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11"></a>    <span class="n">distances</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">coords</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">coords</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12"></a>    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">distances</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="_8">约束条件定义<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<p>约束函数应该返回违反约束的惩罚值。返回0表示没有违反约束：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-4-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-4-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-4-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-4-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-4-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-4-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-4-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-4-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-4-10">10</a></span>
+<span class="normal"><a href="#__codelineno-4-11">11</a></span>
+<span class="normal"><a href="#__codelineno-4-12">12</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">my_constraint</span><span class="p">(</span><span class="n">coords</span><span class="p">):</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="sd">    参数:</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4"></a><span class="sd">        coords: numpy数组，形状为(n_points, 2)</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5"></a>
+<a id="__codelineno-4-6" name="__codelineno-4-6"></a><span class="sd">    返回:</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7"></a><span class="sd">        float: 约束违反的惩罚值（0表示无违反）</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9"></a>    <span class="c1"># 示例：确保所有点都在单位圆内</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10"></a>    <span class="n">distances</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">coords</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">coords</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11"></a>    <span class="n">violations</span> <span class="o">=</span> <span class="n">distances</span><span class="p">[</span><span class="n">distances</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12"></a>    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">violations</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="_9">优化器参数<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<h4 id="coordsnsga2">CoordsNSGA2 参数说明<a class="headerlink" href="#coordsnsga2" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>problem</code>: Problem实例</li>
+<li><code>pop_size</code>: 种群大小（必须为偶数）</li>
+<li><code>prob_crs</code>: 交叉概率（0-1之间）</li>
+<li><code>prob_mut</code>: 变异概率（0-1之间）</li>
+<li><code>random_seed</code>: 随机种子（用于可重现性）</li>
+<li><code>verbose</code>: 是否显示进度条</li>
+</ul>
+<h4 id="_10">参数调优建议<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>种群大小</strong>: 通常设置为20-100，问题复杂时使用更大的种群</li>
+<li><strong>交叉概率</strong>: 通常设置为0.5-0.9</li>
+<li><strong>变异概率</strong>: 通常设置为0.01-0.1</li>
+<li><strong>代数</strong>: 根据问题复杂度设置，通常100-1000代</li>
+</ul>
+<h3 id="_11">结果分析<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
+<p>优化完成后，您可以访问以下属性：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-5-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-5-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-5-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-5-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-5-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-5-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-5-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-5-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-5-10">10</a></span>
+<span class="normal"><a href="#__codelineno-5-11">11</a></span>
+<span class="normal"><a href="#__codelineno-5-12">12</a></span>
+<span class="normal"><a href="#__codelineno-5-13">13</a></span>
+<span class="normal"><a href="#__codelineno-5-14">14</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="c1"># 最终种群</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2"></a><span class="n">final_population</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">P</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3"></a>
+<a id="__codelineno-5-4" name="__codelineno-5-4"></a><span class="c1"># 目标函数值</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5"></a><span class="n">values1</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">values1_P</span>  <span class="c1"># 第一个目标函数值</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6"></a><span class="n">values2</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">values2_P</span>  <span class="c1"># 第二个目标函数值</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7"></a>
+<a id="__codelineno-5-8" name="__codelineno-5-8"></a><span class="c1"># 优化历史</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9"></a><span class="n">population_history</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">P_history</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10"></a><span class="n">values1_history</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">values1_history</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11"></a><span class="n">values2_history</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">values2_history</span>
+<a id="__codelineno-5-12" name="__codelineno-5-12"></a>
+<a id="__codelineno-5-13" name="__codelineno-5-13"></a><span class="c1"># 找到帕累托最优解</span>
+<a id="__codelineno-5-14" name="__codelineno-5-14"></a><span class="n">pareto_front</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">P</span>  <span class="c1"># 最终种群就是帕累托前沿</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="_12">保存和加载<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span>
+<span class="normal"><a href="#__codelineno-6-2">2</a></span>
+<span class="normal"><a href="#__codelineno-6-3">3</a></span>
+<span class="normal"><a href="#__codelineno-6-4">4</a></span>
+<span class="normal"><a href="#__codelineno-6-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="c1"># 保存优化状态</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2"></a><span class="n">optimizer</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;optimization_result.npz&quot;</span><span class="p">)</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3"></a>
+<a id="__codelineno-6-4" name="__codelineno-6-4"></a><span class="c1"># 加载优化状态</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5"></a><span class="n">optimizer</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;optimization_result.npz&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="english-usage-guide">English Usage Guide<a class="headerlink" href="#english-usage-guide" title="Permanent link">&para;</a></h2>
+<h3 id="basic-concepts">Basic Concepts<a class="headerlink" href="#basic-concepts" title="Permanent link">&para;</a></h3>
+<p>The core concepts of coords-nsga2 library include:</p>
+<ol>
+<li><strong>Problem</strong>: Defines the optimization problem's objective functions, constraints, and search region</li>
+<li><strong>CoordsNSGA2</strong>: The optimizer that executes the NSGA-II algorithm</li>
+<li><strong>Region</strong>: Defines the valid search space for coordinate points</li>
+<li><strong>Constraints</strong>: Conditions that limit the feasibility of solutions</li>
+</ol>
+<h3 id="quick-start-example">Quick Start Example<a class="headerlink" href="#quick-start-example" title="Permanent link">&para;</a></h3>
+<p>Here's a complete usage example demonstrating how to optimize the layout of 10 coordinate points:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-7-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-7-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-7-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-7-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-7-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-7-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-7-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-7-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-7-10">10</a></span>
+<span class="normal"><a href="#__codelineno-7-11">11</a></span>
+<span class="normal"><a href="#__codelineno-7-12">12</a></span>
+<span class="normal"><a href="#__codelineno-7-13">13</a></span>
+<span class="normal"><a href="#__codelineno-7-14">14</a></span>
+<span class="normal"><a href="#__codelineno-7-15">15</a></span>
+<span class="normal"><a href="#__codelineno-7-16">16</a></span>
+<span class="normal"><a href="#__codelineno-7-17">17</a></span>
+<span class="normal"><a href="#__codelineno-7-18">18</a></span>
+<span class="normal"><a href="#__codelineno-7-19">19</a></span>
+<span class="normal"><a href="#__codelineno-7-20">20</a></span>
+<span class="normal"><a href="#__codelineno-7-21">21</a></span>
+<span class="normal"><a href="#__codelineno-7-22">22</a></span>
+<span class="normal"><a href="#__codelineno-7-23">23</a></span>
+<span class="normal"><a href="#__codelineno-7-24">24</a></span>
+<span class="normal"><a href="#__codelineno-7-25">25</a></span>
+<span class="normal"><a href="#__codelineno-7-26">26</a></span>
+<span class="normal"><a href="#__codelineno-7-27">27</a></span>
+<span class="normal"><a href="#__codelineno-7-28">28</a></span>
+<span class="normal"><a href="#__codelineno-7-29">29</a></span>
+<span class="normal"><a href="#__codelineno-7-30">30</a></span>
+<span class="normal"><a href="#__codelineno-7-31">31</a></span>
+<span class="normal"><a href="#__codelineno-7-32">32</a></span>
+<span class="normal"><a href="#__codelineno-7-33">33</a></span>
+<span class="normal"><a href="#__codelineno-7-34">34</a></span>
+<span class="normal"><a href="#__codelineno-7-35">35</a></span>
+<span class="normal"><a href="#__codelineno-7-36">36</a></span>
+<span class="normal"><a href="#__codelineno-7-37">37</a></span>
+<span class="normal"><a href="#__codelineno-7-38">38</a></span>
+<span class="normal"><a href="#__codelineno-7-39">39</a></span>
+<span class="normal"><a href="#__codelineno-7-40">40</a></span>
+<span class="normal"><a href="#__codelineno-7-41">41</a></span>
+<span class="normal"><a href="#__codelineno-7-42">42</a></span>
+<span class="normal"><a href="#__codelineno-7-43">43</a></span>
+<span class="normal"><a href="#__codelineno-7-44">44</a></span>
+<span class="normal"><a href="#__codelineno-7-45">45</a></span>
+<span class="normal"><a href="#__codelineno-7-46">46</a></span>
+<span class="normal"><a href="#__codelineno-7-47">47</a></span>
+<span class="normal"><a href="#__codelineno-7-48">48</a></span>
+<span class="normal"><a href="#__codelineno-7-49">49</a></span>
+<span class="normal"><a href="#__codelineno-7-50">50</a></span>
+<span class="normal"><a href="#__codelineno-7-51">51</a></span>
+<span class="normal"><a href="#__codelineno-7-52">52</a></span>
+<span class="normal"><a href="#__codelineno-7-53">53</a></span>
+<span class="normal"><a href="#__codelineno-7-54">54</a></span>
+<span class="normal"><a href="#__codelineno-7-55">55</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">scipy.spatial</span><span class="w"> </span><span class="kn">import</span> <span class="n">distance</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">coords_nsga2</span><span class="w"> </span><span class="kn">import</span> <span class="n">CoordsNSGA2</span><span class="p">,</span> <span class="n">Problem</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4"></a><span class="kn">from</span><span class="w"> </span><span class="nn">coords_nsga2.spatial</span><span class="w"> </span><span class="kn">import</span> <span class="n">region_from_points</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5"></a>
+<a id="__codelineno-7-6" name="__codelineno-7-6"></a><span class="c1"># 1. Define optimization region (polygon)</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7"></a><span class="n">region</span> <span class="o">=</span> <span class="n">region_from_points</span><span class="p">([</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8"></a>    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+<a id="__codelineno-7-9" name="__codelineno-7-9"></a>    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+<a id="__codelineno-7-10" name="__codelineno-7-10"></a>    <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+<a id="__codelineno-7-11" name="__codelineno-7-11"></a>    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+<a id="__codelineno-7-12" name="__codelineno-7-12"></a><span class="p">])</span>
+<a id="__codelineno-7-13" name="__codelineno-7-13"></a>
+<a id="__codelineno-7-14" name="__codelineno-7-14"></a><span class="c1"># 2. Define objective functions</span>
+<a id="__codelineno-7-15" name="__codelineno-7-15"></a><span class="k">def</span><span class="w"> </span><span class="nf">objective_1</span><span class="p">(</span><span class="n">coords</span><span class="p">):</span>
+<a id="__codelineno-7-16" name="__codelineno-7-16"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;First objective: maximize coordinate sum&quot;&quot;&quot;</span>
+<a id="__codelineno-7-17" name="__codelineno-7-17"></a>    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">coords</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">coords</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span>
+<a id="__codelineno-7-18" name="__codelineno-7-18"></a>
+<a id="__codelineno-7-19" name="__codelineno-7-19"></a><span class="k">def</span><span class="w"> </span><span class="nf">objective_2</span><span class="p">(</span><span class="n">coords</span><span class="p">):</span>
+<a id="__codelineno-7-20" name="__codelineno-7-20"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Second objective: maximize point spread&quot;&quot;&quot;</span>
+<a id="__codelineno-7-21" name="__codelineno-7-21"></a>    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">coords</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">coords</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span>
+<a id="__codelineno-7-22" name="__codelineno-7-22"></a>
+<a id="__codelineno-7-23" name="__codelineno-7-23"></a><span class="c1"># 3. Define constraints</span>
+<a id="__codelineno-7-24" name="__codelineno-7-24"></a><span class="n">spacing</span> <span class="o">=</span> <span class="mf">0.05</span>  <span class="c1"># minimum spacing</span>
+<a id="__codelineno-7-25" name="__codelineno-7-25"></a><span class="k">def</span><span class="w"> </span><span class="nf">constraint_1</span><span class="p">(</span><span class="n">coords</span><span class="p">):</span>
+<a id="__codelineno-7-26" name="__codelineno-7-26"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Constraint: minimum spacing between points&quot;&quot;&quot;</span>
+<a id="__codelineno-7-27" name="__codelineno-7-27"></a>    <span class="n">dist_list</span> <span class="o">=</span> <span class="n">distance</span><span class="o">.</span><span class="n">pdist</span><span class="p">(</span><span class="n">coords</span><span class="p">)</span>
+<a id="__codelineno-7-28" name="__codelineno-7-28"></a>    <span class="n">penalty_list</span> <span class="o">=</span> <span class="n">spacing</span> <span class="o">-</span> <span class="n">dist_list</span><span class="p">[</span><span class="n">dist_list</span> <span class="o">&lt;</span> <span class="n">spacing</span><span class="p">]</span>
+<a id="__codelineno-7-29" name="__codelineno-7-29"></a>    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">penalty_list</span><span class="p">)</span>
+<a id="__codelineno-7-30" name="__codelineno-7-30"></a>
+<a id="__codelineno-7-31" name="__codelineno-7-31"></a><span class="c1"># 4. Create problem instance</span>
+<a id="__codelineno-7-32" name="__codelineno-7-32"></a><span class="n">problem</span> <span class="o">=</span> <span class="n">Problem</span><span class="p">(</span>
+<a id="__codelineno-7-33" name="__codelineno-7-33"></a>    <span class="n">func1</span><span class="o">=</span><span class="n">objective_1</span><span class="p">,</span>
+<a id="__codelineno-7-34" name="__codelineno-7-34"></a>    <span class="n">func2</span><span class="o">=</span><span class="n">objective_2</span><span class="p">,</span>
+<a id="__codelineno-7-35" name="__codelineno-7-35"></a>    <span class="n">n_points</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+<a id="__codelineno-7-36" name="__codelineno-7-36"></a>    <span class="n">region</span><span class="o">=</span><span class="n">region</span><span class="p">,</span>
+<a id="__codelineno-7-37" name="__codelineno-7-37"></a>    <span class="n">constraints</span><span class="o">=</span><span class="p">[</span><span class="n">constraint_1</span><span class="p">]</span>
+<a id="__codelineno-7-38" name="__codelineno-7-38"></a><span class="p">)</span>
+<a id="__codelineno-7-39" name="__codelineno-7-39"></a>
+<a id="__codelineno-7-40" name="__codelineno-7-40"></a><span class="c1"># 5. Create optimizer</span>
+<a id="__codelineno-7-41" name="__codelineno-7-41"></a><span class="n">optimizer</span> <span class="o">=</span> <span class="n">CoordsNSGA2</span><span class="p">(</span>
+<a id="__codelineno-7-42" name="__codelineno-7-42"></a>    <span class="n">problem</span><span class="o">=</span><span class="n">problem</span><span class="p">,</span>
+<a id="__codelineno-7-43" name="__codelineno-7-43"></a>    <span class="n">pop_size</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+<a id="__codelineno-7-44" name="__codelineno-7-44"></a>    <span class="n">prob_crs</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+<a id="__codelineno-7-45" name="__codelineno-7-45"></a>    <span class="n">prob_mut</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+<a id="__codelineno-7-46" name="__codelineno-7-46"></a>    <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span>
+<a id="__codelineno-7-47" name="__codelineno-7-47"></a><span class="p">)</span>
+<a id="__codelineno-7-48" name="__codelineno-7-48"></a>
+<a id="__codelineno-7-49" name="__codelineno-7-49"></a><span class="c1"># 6. Run optimization</span>
+<a id="__codelineno-7-50" name="__codelineno-7-50"></a><span class="n">result</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+<a id="__codelineno-7-51" name="__codelineno-7-51"></a>
+<a id="__codelineno-7-52" name="__codelineno-7-52"></a><span class="c1"># 7. View results</span>
+<a id="__codelineno-7-53" name="__codelineno-7-53"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Optimization complete! Result shape: </span><span class="si">{</span><span class="n">result</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-7-54" name="__codelineno-7-54"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Population size: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">result</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-7-55" name="__codelineno-7-55"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Points per solution: </span><span class="si">{</span><span class="n">result</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="region-definition">Region Definition<a class="headerlink" href="#region-definition" title="Permanent link">&para;</a></h3>
+<h4 id="create-polygon-region-from-point-list">Create polygon region from point list<a class="headerlink" href="#create-polygon-region-from-point-list" title="Permanent link">&para;</a></h4>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-8-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-8-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-8-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-8-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-8-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-8-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-8-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-8-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-8-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">coords_nsga2.spatial</span><span class="w"> </span><span class="kn">import</span> <span class="n">region_from_points</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2"></a>
+<a id="__codelineno-8-3" name="__codelineno-8-3"></a><span class="c1"># Define polygon vertices</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4"></a><span class="n">points</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5"></a>    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6"></a>    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7"></a>    <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8"></a>    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+<a id="__codelineno-8-9" name="__codelineno-8-9"></a><span class="p">]</span>
+<a id="__codelineno-8-10" name="__codelineno-8-10"></a><span class="n">region</span> <span class="o">=</span> <span class="n">region_from_points</span><span class="p">(</span><span class="n">points</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<h4 id="create-rectangular-region-from-coordinate-bounds">Create rectangular region from coordinate bounds<a class="headerlink" href="#create-rectangular-region-from-coordinate-bounds" title="Permanent link">&para;</a></h4>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1">1</a></span>
+<span class="normal"><a href="#__codelineno-9-2">2</a></span>
+<span class="normal"><a href="#__codelineno-9-3">3</a></span>
+<span class="normal"><a href="#__codelineno-9-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">coords_nsga2.spatial</span><span class="w"> </span><span class="kn">import</span> <span class="n">region_from_range</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2"></a>
+<a id="__codelineno-9-3" name="__codelineno-9-3"></a><span class="c1"># Define rectangle bounds</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4"></a><span class="n">region</span> <span class="o">=</span> <span class="n">region_from_range</span><span class="p">(</span><span class="n">x_min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">x_max</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">y_min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">y_max</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="objective-function-definition">Objective Function Definition<a class="headerlink" href="#objective-function-definition" title="Permanent link">&para;</a></h3>
+<p>Objective functions should accept a numpy array of shape <code>(n_points, 2)</code> as input and return a scalar value:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-10-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-10-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-10-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-10-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-10-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-10-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-10-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-10-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-10-10">10</a></span>
+<span class="normal"><a href="#__codelineno-10-11">11</a></span>
+<span class="normal"><a href="#__codelineno-10-12">12</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">my_objective</span><span class="p">(</span><span class="n">coords</span><span class="p">):</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3"></a><span class="sd">    Parameters:</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4"></a><span class="sd">        coords: numpy array of shape (n_points, 2)</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5"></a><span class="sd">                each row is a coordinate point [x, y]</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6"></a>
+<a id="__codelineno-10-7" name="__codelineno-10-7"></a><span class="sd">    Returns:</span>
+<a id="__codelineno-10-8" name="__codelineno-10-8"></a><span class="sd">        float: objective function value</span>
+<a id="__codelineno-10-9" name="__codelineno-10-9"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-10-10" name="__codelineno-10-10"></a>    <span class="c1"># Example: calculate average distance to origin</span>
+<a id="__codelineno-10-11" name="__codelineno-10-11"></a>    <span class="n">distances</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">coords</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">coords</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<a id="__codelineno-10-12" name="__codelineno-10-12"></a>    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">distances</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="constraint-definition">Constraint Definition<a class="headerlink" href="#constraint-definition" title="Permanent link">&para;</a></h3>
+<p>Constraint functions should return penalty values for constraint violations. Return 0 if no constraints are violated:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-11-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-11-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-11-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-11-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-11-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-11-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-11-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-11-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-11-10">10</a></span>
+<span class="normal"><a href="#__codelineno-11-11">11</a></span>
+<span class="normal"><a href="#__codelineno-11-12">12</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">my_constraint</span><span class="p">(</span><span class="n">coords</span><span class="p">):</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3"></a><span class="sd">    Parameters:</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4"></a><span class="sd">        coords: numpy array of shape (n_points, 2)</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5"></a>
+<a id="__codelineno-11-6" name="__codelineno-11-6"></a><span class="sd">    Returns:</span>
+<a id="__codelineno-11-7" name="__codelineno-11-7"></a><span class="sd">        float: penalty value for constraint violation (0 means no violation)</span>
+<a id="__codelineno-11-8" name="__codelineno-11-8"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-11-9" name="__codelineno-11-9"></a>    <span class="c1"># Example: ensure all points are within unit circle</span>
+<a id="__codelineno-11-10" name="__codelineno-11-10"></a>    <span class="n">distances</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">coords</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">coords</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<a id="__codelineno-11-11" name="__codelineno-11-11"></a>    <span class="n">violations</span> <span class="o">=</span> <span class="n">distances</span><span class="p">[</span><span class="n">distances</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span>
+<a id="__codelineno-11-12" name="__codelineno-11-12"></a>    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">violations</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="optimizer-parameters">Optimizer Parameters<a class="headerlink" href="#optimizer-parameters" title="Permanent link">&para;</a></h3>
+<h4 id="coordsnsga2-parameter-description">CoordsNSGA2 Parameter Description<a class="headerlink" href="#coordsnsga2-parameter-description" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>problem</code>: Problem instance</li>
+<li><code>pop_size</code>: Population size (must be even)</li>
+<li><code>prob_crs</code>: Crossover probability (between 0-1)</li>
+<li><code>prob_mut</code>: Mutation probability (between 0-1)</li>
+<li><code>random_seed</code>: Random seed (for reproducibility)</li>
+<li><code>verbose</code>: Whether to show progress bar</li>
+</ul>
+<h4 id="parameter-tuning-suggestions">Parameter Tuning Suggestions<a class="headerlink" href="#parameter-tuning-suggestions" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Population size</strong>: Usually set to 20-100, use larger populations for complex problems</li>
+<li><strong>Crossover probability</strong>: Usually set to 0.5-0.9</li>
+<li><strong>Mutation probability</strong>: Usually set to 0.01-0.1</li>
+<li><strong>Generations</strong>: Set based on problem complexity, usually 100-1000 generations</li>
+</ul>
+<h3 id="result-analysis">Result Analysis<a class="headerlink" href="#result-analysis" title="Permanent link">&para;</a></h3>
+<p>After optimization is complete, you can access the following attributes:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-12-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-12-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-12-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-12-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-12-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-12-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-12-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-12-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-12-10">10</a></span>
+<span class="normal"><a href="#__codelineno-12-11">11</a></span>
+<span class="normal"><a href="#__codelineno-12-12">12</a></span>
+<span class="normal"><a href="#__codelineno-12-13">13</a></span>
+<span class="normal"><a href="#__codelineno-12-14">14</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1"></a><span class="c1"># Final population</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2"></a><span class="n">final_population</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">P</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3"></a>
+<a id="__codelineno-12-4" name="__codelineno-12-4"></a><span class="c1"># Objective function values</span>
+<a id="__codelineno-12-5" name="__codelineno-12-5"></a><span class="n">values1</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">values1_P</span>  <span class="c1"># First objective function values</span>
+<a id="__codelineno-12-6" name="__codelineno-12-6"></a><span class="n">values2</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">values2_P</span>  <span class="c1"># Second objective function values</span>
+<a id="__codelineno-12-7" name="__codelineno-12-7"></a>
+<a id="__codelineno-12-8" name="__codelineno-12-8"></a><span class="c1"># Optimization history</span>
+<a id="__codelineno-12-9" name="__codelineno-12-9"></a><span class="n">population_history</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">P_history</span>
+<a id="__codelineno-12-10" name="__codelineno-12-10"></a><span class="n">values1_history</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">values1_history</span>
+<a id="__codelineno-12-11" name="__codelineno-12-11"></a><span class="n">values2_history</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">values2_history</span>
+<a id="__codelineno-12-12" name="__codelineno-12-12"></a>
+<a id="__codelineno-12-13" name="__codelineno-12-13"></a><span class="c1"># Find Pareto optimal solutions</span>
+<a id="__codelineno-12-14" name="__codelineno-12-14"></a><span class="n">pareto_front</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">P</span>  <span class="c1"># Final population is the Pareto front</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="save-and-load">Save and Load<a class="headerlink" href="#save-and-load" title="Permanent link">&para;</a></h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-13-1">1</a></span>
+<span class="normal"><a href="#__codelineno-13-2">2</a></span>
+<span class="normal"><a href="#__codelineno-13-3">3</a></span>
+<span class="normal"><a href="#__codelineno-13-4">4</a></span>
+<span class="normal"><a href="#__codelineno-13-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1"></a><span class="c1"># Save optimization state</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2"></a><span class="n">optimizer</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;optimization_result.npz&quot;</span><span class="p">)</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3"></a>
+<a id="__codelineno-13-4" name="__codelineno-13-4"></a><span class="c1"># Load optimization state</span>
+<a id="__codelineno-13-5" name="__codelineno-13-5"></a><span class="n">optimizer</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;optimization_result.npz&quot;</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
 
 
@@ -481,6 +1643,12 @@
           
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
         
       </main>
       
@@ -510,7 +1678,7 @@
     
     
       
-      <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "search.highlight", "content.code.copy"], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
     
     
       <script src="../assets/javascripts/bundle.50899def.min.js"></script>
