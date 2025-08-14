@@ -36,11 +36,12 @@ class Problem:
 
 
 class CoordsNSGA2:
-    def __init__(self, problem, pop_size, prob_crs, prob_mut, random_seed=42):
+    def __init__(self, problem, pop_size, prob_crs, prob_mut, random_seed=42, verbose=True):
         self.problem = problem
         self.pop_size = pop_size
         self.prob_crs = prob_crs
         self.prob_mut = prob_mut
+        self.verbose = verbose
 
         np.random.seed(random_seed)
         assert pop_size % 2 == 0, "pop_size must be even number"
@@ -86,7 +87,12 @@ class CoordsNSGA2:
         return R[new_idx]
 
     def run(self, gen=1000):
-        for _ in trange(gen):
+        if self.verbose:
+            iterator = trange(gen)
+        else:
+            iterator = range(gen)
+            
+        for _ in iterator:
             Q = self.selection(self.P, self.values1_P, self.values2_P)  # 选择
             Q = self.crossover(Q, self.prob_crs)  # 交叉
             Q = self.mutation(Q, self.prob_mut, self.problem.region)  # 变异

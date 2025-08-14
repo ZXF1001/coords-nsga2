@@ -45,7 +45,8 @@ problem = Problem(func1=objective_1,
 optimizer = CoordsNSGA2(problem=problem,
                         pop_size=20,
                         prob_crs=0.5,
-                        prob_mut=0.1)
+                        prob_mut=0.1,
+                        verbose=True)  # Set to False to disable progress bar
 
 # Run optimization
 result = optimizer.run(1000)

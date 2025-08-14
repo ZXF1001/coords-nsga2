@@ -45,7 +45,8 @@ problem = Problem(func1=objective_1,
 optimizer = CoordsNSGA2(problem=problem,
                         pop_size=20,
                         prob_crs=0.5,
-                        prob_mut=0.1)
+                        prob_mut=0.1,
+                        verbose=True)  # 设置为True显示进度条，False则不显示
 result = optimizer.run(1000)
 
 v1_max_index = optimizer.values1_P.argmax()
