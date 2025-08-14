@@ -16,13 +16,34 @@ theme:
       toggle:
         icon: material/weather-sunny
         name: 切换到浅色模式
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    # - navigation.sections
+    # - navigation.expand
+    - navigation.top
+    - search.highlight
+    - content.code.copy
 nav:
   - 首页: index.md
-  - 安装: install.md
+  - 安装指南: install.md
   - 使用指南: usage.md
+  - API参考: api.md
+  - 示例代码: examples.md
 
 markdown_extensions:
   - pymdownx.highlight:
       linenums: true
       anchor_linenums: true
   - pymdownx.superfences
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.smartsymbols
+  - admonition
+  - codehilite
+  - meta
+  - toc:
+      permalink: true
