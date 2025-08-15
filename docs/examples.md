@@ -24,10 +24,9 @@ def objective_2(coords):
     """最大化y坐标和"""
     return np.sum(coords[:, 1])
 
-# 创建问题
+# 创建问题（支持多个目标函数，以下为2目标示例）
 problem = Problem(
-    func1=objective_1,
-    func2=objective_2,
+    objectives=[objective_1, objective_2],
     n_points=8,
     region=region
 )
@@ -58,7 +57,7 @@ plt.grid(True)
 
 # 绘制目标函数值
 plt.subplot(1, 2, 2)
-plt.scatter(optimizer.values1_P, optimizer.values2_P)
+plt.scatter(optimizer.values_P[0], optimizer.values_P[1])
 plt.title('Objective Function Values')
 plt.xlabel('Objective 1')
 plt.ylabel('Objective 2')
@@ -114,8 +113,7 @@ def constraint_max_spacing(coords):
 
 # 创建问题
 problem = Problem(
-    func1=objective_1,
-    func2=objective_2,
+    objectives=[objective_1, objective_2],
     n_points=6,
     region=region,
     constraints=[constraint_min_spacing, constraint_max_spacing]
@@ -151,7 +149,7 @@ plt.grid(True)
 
 # 绘制目标函数值
 plt.subplot(1, 3, 2)
-plt.scatter(optimizer.values1_P, optimizer.values2_P)
+plt.scatter(optimizer.values_P[0], optimizer.values_P[1])
 plt.title('Objective Function Values')
 plt.xlabel('Objective 1 (Mean Distance)')
 plt.ylabel('Objective 2 (Spread)')
@@ -159,8 +157,8 @@ plt.grid(True)
 
 # 绘制优化历史
 plt.subplot(1, 3, 3)
-best_obj1 = [np.max(vals) for vals in optimizer.values1_history]
-best_obj2 = [np.max(vals) for vals in optimizer.values2_history]
+best_obj1 = [np.max(vals[0]) for vals in optimizer.values_history]
+best_obj2 = [np.max(vals[1]) for vals in optimizer.values_history]
 plt.plot(best_obj1, label='Best Objective 1')
 plt.plot(best_obj2, label='Best Objective 2')
 plt.title('Optimization History')
@@ -236,8 +234,7 @@ def constraint_boundary_distance(coords):
 
 # 创建问题
 problem = Problem(
-    func1=objective_power_production,
-    func2=objective_cost,
+    objectives=[objective_power_production, objective_cost],
     n_points=12,  # 12台风力发电机
     region=region,
     constraints=[constraint_turbine_spacing, constraint_boundary_distance]
@@ -265,7 +262,7 @@ plt.fill(x, y, alpha=0.2, fc='lightblue', ec='blue', label='Wind Farm Area')
 
 # 找到帕累托最优解
 from coords_nsga2.utils import fast_non_dominated_sort
-fronts = fast_non_dominated_sort(optimizer.values1_P, optimizer.values2_P)
+fronts = fast_non_dominated_sort(optimizer.values_P)
 pareto_solutions = result[fronts[0]]
 
 # 绘制帕累托最优解
@@ -282,8 +279,8 @@ plt.grid(True)
 
 # 绘制目标函数值
 plt.subplot(2, 2, 2)
-plt.scatter(optimizer.values1_P, optimizer.values2_P, alpha=0.6, label='All Solutions')
-plt.scatter(optimizer.values1_P[fronts[0]], optimizer.values2_P[fronts[0]], 
+plt.scatter(optimizer.values_P[0], optimizer.values_P[1], alpha=0.6, label='All Solutions')
+plt.scatter(optimizer.values_P[0][fronts[0]], optimizer.values_P[1][fronts[0]], 
            c='red', s=100, label='Pareto Front')
 plt.title('Objective Function Space')
 plt.xlabel('Power Production')
@@ -293,8 +290,8 @@ plt.grid(True)
 
 # 绘制优化历史
 plt.subplot(2, 2, 3)
-best_power = [np.max(vals) for vals in optimizer.values1_history]
-best_cost = [np.max(vals) for vals in optimizer.values2_history]
+best_power = [np.max(vals[0]) for vals in optimizer.values_history]
+best_cost = [np.max(vals[1]) for vals in optimizer.values_history]
 plt.plot(best_power, label='Best Power Production')
 plt.plot(best_cost, label='Best Cost')
 plt.title('Optimization History')
@@ -305,8 +302,8 @@ plt.grid(True)
 
 # 绘制收敛性分析
 plt.subplot(2, 2, 4)
-avg_power = [np.mean(vals) for vals in optimizer.values1_history]
-avg_cost = [np.mean(vals) for vals in optimizer.values2_history]
+avg_power = [np.mean(vals[0]) for vals in optimizer.values_history]
+avg_cost = [np.mean(vals[1]) for vals in optimizer.values_history]
 plt.plot(avg_power, label='Average Power Production')
 plt.plot(avg_cost, label='Average Cost')
 plt.title('Population Average History')
@@ -320,8 +317,8 @@ plt.show()
 
 # 输出最优解信息
 print(f"找到 {len(pareto_solutions)} 个帕累托最优解")
-print(f"最佳发电量: {np.max(optimizer.values1_P):.4f}")
-print(f"最佳成本: {np.max(optimizer.values2_P):.4f}")
+print(f"最佳发电量: {np.max(optimizer.values_P[0]):.4f}")
+print(f"最佳成本: {np.max(optimizer.values_P[1]):.4f}")
 ```
 
 ### 4. 传感器网络部署优化 / Sensor Network Deployment
@@ -380,8 +377,7 @@ def constraint_battery_life(coords):
 
 # 创建问题
 problem = Problem(
-    func1=objective_coverage,
-    func2=objective_energy_efficiency,
+    objectives=[objective_coverage, objective_energy_efficiency],
     n_points=8,  # 8个传感器
     region=region,
     constraints=[constraint_sensor_spacing, constraint_battery_life]
@@ -409,7 +405,7 @@ plt.fill(x, y, alpha=0.1, fc='lightgreen', ec='green', label='Monitoring Area')
 
 # 找到帕累托最优解
 from coords_nsga2.utils import fast_non_dominated_sort
-fronts = fast_non_dominated_sort(optimizer.values1_P, optimizer.values2_P)
+fronts = fast_non_dominated_sort(optimizer.values_P)
 pareto_solutions = result[fronts[0]]
 
 # 绘制最优解
@@ -434,8 +430,8 @@ plt.grid(True)
 
 # 绘制目标函数值
 plt.subplot(2, 3, 2)
-plt.scatter(optimizer.values1_P, optimizer.values2_P, alpha=0.6, label='All Solutions')
-plt.scatter(optimizer.values1_P[fronts[0]], optimizer.values2_P[fronts[0]], 
+plt.scatter(optimizer.values_P[0], optimizer.values_P[1], alpha=0.6, label='All Solutions')
+plt.scatter(optimizer.values_P[0][fronts[0]], optimizer.values_P[1][fronts[0]], 
            c='red', s=100, label='Pareto Front')
 plt.title('Objective Function Space')
 plt.xlabel('Coverage Rate')
@@ -445,8 +441,8 @@ plt.grid(True)
 
 # 绘制优化历史
 plt.subplot(2, 3, 3)
-best_coverage = [np.max(vals) for vals in optimizer.values1_history]
-best_energy = [np.max(vals) for vals in optimizer.values2_history]
+best_coverage = [np.max(vals[0]) for vals in optimizer.values_history]
+best_energy = [np.max(vals[1]) for vals in optimizer.values_history]
 plt.plot(best_coverage, label='Best Coverage')
 plt.plot(best_energy, label='Best Energy Efficiency')
 plt.title('Optimization History')
@@ -457,8 +453,8 @@ plt.grid(True)
 
 # 绘制种群多样性
 plt.subplot(2, 3, 4)
-diversity_coverage = [np.std(vals) for vals in optimizer.values1_history]
-diversity_energy = [np.std(vals) for vals in optimizer.values2_history]
+diversity_coverage = [np.std(vals[0]) for vals in optimizer.values_history]
+diversity_energy = [np.std(vals[1]) for vals in optimizer.values_history]
 plt.plot(diversity_coverage, label='Coverage Diversity')
 plt.plot(diversity_energy, label='Energy Diversity')
 plt.title('Population Diversity')
@@ -469,8 +465,8 @@ plt.grid(True)
 
 # 绘制收敛性分析
 plt.subplot(2, 3, 5)
-avg_coverage = [np.mean(vals) for vals in optimizer.values1_history]
-avg_energy = [np.mean(vals) for vals in optimizer.values2_history]
+avg_coverage = [np.mean(vals[0]) for vals in optimizer.values_history]
+avg_energy = [np.mean(vals[1]) for vals in optimizer.values_history]
 plt.plot(avg_coverage, label='Average Coverage')
 plt.plot(avg_energy, label='Average Energy Efficiency')
 plt.title('Population Average')
@@ -481,8 +477,8 @@ plt.grid(True)
 
 # 绘制帕累托前沿
 plt.subplot(2, 3, 6)
-pareto_coverage = optimizer.values1_P[fronts[0]]
-pareto_energy = optimizer.values2_P[fronts[0]]
+pareto_coverage = optimizer.values_P[0][fronts[0]]
+pareto_energy = optimizer.values_P[1][fronts[0]]
 plt.scatter(pareto_coverage, pareto_energy, c='red', s=100)
 plt.title('Pareto Front')
 plt.xlabel('Coverage Rate')
@@ -495,8 +491,8 @@ plt.show()
 # 输出结果统计
 print(f"传感器网络部署优化完成")
 print(f"找到 {len(pareto_solutions)} 个帕累托最优解")
-print(f"最佳覆盖率: {np.max(optimizer.values1_P):.4f}")
-print(f"最佳能量效率: {np.max(optimizer.values2_P):.4f}")
+print(f"最佳覆盖率: {np.max(optimizer.values_P[0]):.4f}")
+print(f"最佳能量效率: {np.max(optimizer.values_P[1]):.4f}")
 ```
 
 ## 自定义算子示例 / Custom Operators Example
@@ -602,7 +598,7 @@ plt.ylabel('Y')
 plt.grid(True)
 
 plt.subplot(1, 2, 2)
-plt.scatter(optimizer.values1_P, optimizer.values2_P)
+plt.scatter(optimizer.values_P[0], optimizer.values_P[1])
 plt.title('Custom Operators - Objective Values')
 plt.xlabel('Objective 1')
 plt.ylabel('Objective 2')

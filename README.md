@@ -13,9 +13,9 @@ A Python library implementing a coordinate-based NSGA-II (Non-dominated Sorting 
 ## Features
 
 - **Coordinate-focused optimization**: Designed specifically for optimizing layouts of coordinate points
+- **Multi-objective optimization**: Supports 2 or more objective functions using NSGA-II algorithm
 - **Specialized constraints**: Built-in support for point spacing, boundary limits, and custom constraints
 - **Tailored genetic operators**: Custom crossover and mutation operators that directly act on coordinate points
-- **Multi-objective optimization**: Based on the proven NSGA-II algorithm
 - **Flexible region definition**: Support for both polygon and rectangular regions
 - **Lightweight and extensible**: Easy to customize operators and constraints
 - **Progress tracking**: Built-in progress bars and optimization history
@@ -37,7 +37,7 @@ pip install -e .
 
 ## Quick Start
 
-Here's a minimal example demonstrating how to run a coordinate-based NSGA-II optimization:
+Here's a minimal example demonstrating how to run a coordinate-based NSGA-II optimization with multiple objectives:
 
 ```python
 import numpy as np
@@ -72,8 +72,7 @@ def constraint_1(coords):
 
 # Setup the problem
 problem = Problem(
-    func1=objective_1,
-    func2=objective_2,
+    objectives=[objective_1, objective_2],  # List of objective functions
     n_points=10,
     region=region,
     constraints=[constraint_1]
@@ -93,7 +92,45 @@ result = optimizer.run(1000)
 
 # Access results
 print(f"Best solution shape: {result.shape}")
+print(f"Number of objectives: {len(optimizer.values_P)}")
 print(f"Optimization history length: {len(optimizer.P_history)}")
+```
+
+## Multi-Objective Example
+
+Here's an example with 4 objective functions:
+
+```python
+# Define 4 objective functions
+def objective_1(coords):
+    """Maximize sum of coordinates"""
+    return np.sum(coords[:, 0]) + np.sum(coords[:, 1])
+
+def objective_2(coords):
+    """Maximize spread"""
+    return np.std(coords[:, 0]) + np.std(coords[:, 1])
+
+def objective_3(coords):
+    """Minimize distance to center"""
+    center = np.array([1.0, 0.5])
+    distances = np.linalg.norm(coords - center, axis=1)
+    return -np.mean(distances)
+
+def objective_4(coords):
+    """Minimize distance to boundary"""
+    boundary_distances = []
+    for point in coords:
+        min_dist = min(point[0], point[1], 2-point[0], 1-point[1])
+        boundary_distances.append(min_dist)
+    return -np.mean(boundary_distances)
+
+# Create problem with 4 objectives
+problem = Problem(
+    objectives=[objective_1, objective_2, objective_3, objective_4],
+    n_points=10,
+    region=region,
+    constraints=[constraint_1]
+)
 ```
 
 ## API Reference
@@ -104,12 +141,11 @@ print(f"Optimization history length: {len(optimizer.P_history)}")
 The main problem definition class for multi-objective optimization.
 
 ```python
-Problem(func1, func2, n_points, region, constraints=[], penalty_weight=1e6)
+Problem(objectives, n_points, region, constraints=[], penalty_weight=1e6)
 ```
 
 **Parameters:**
-- `func1`: First objective function (callable)
-- `func2`: Second objective function (callable)
+- `objectives`: List of objective functions (callable), each taking coords as input and returning a scalar value
 - `n_points`: Number of coordinate points to optimize
 - `region`: Shapely Polygon defining the valid region
 - `constraints`: List of constraint functions (optional)
@@ -135,6 +171,10 @@ CoordsNSGA2(problem, pop_size, prob_crs, prob_mut, random_seed=42, verbose=True)
 - `save(path)`: Save optimization state to file
 - `load(path)`: Load optimization state from file
 
+**Attributes:**
+- `values_P`: Tuple of objective function values for current population
+- `values_history`: List of objective function values for all generations
+
 ### Spatial Utilities
 
 #### region_from_points(points)
@@ -154,15 +194,15 @@ Coordinate-specific crossover operator that exchanges point subsets between pare
 #### coords_mutation(population, prob_mut, region)
 Coordinate-specific mutation operator that randomly repositions points within the region.
 
-#### coords_selection(population, values1, values2, tourn_size=3)
+#### coords_selection(population, values_P, tourn_size=3)
 Tournament selection based on non-dominated sorting and crowding distance.
 
 ## Examples
 
 See the `examples/` directory for more detailed usage examples:
 
-- [Quick Start Example](examples/quick-start.py) - Basic usage with visualization
-- More examples coming soon...
+- [Quick Start Example](examples/quick-start.py) - Basic usage with 2 objectives
+- [Multi-Objective Example](examples/multi-objective-example.py) - Advanced usage with 4 objectives and visualization
 
 ## Documentation
 

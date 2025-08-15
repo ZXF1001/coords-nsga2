@@ -10,9 +10,8 @@ from .utils import crowding_distance, fast_non_dominated_sort
 
 
 class Problem:
-    def __init__(self, func1, func2, n_points, region, constraints=[], penalty_weight=1e6):
-        self.func1 = func1
-        self.func2 = func2
+    def __init__(self, objectives, n_points, region, constraints=[], penalty_weight=1e6):
+        self.objectives = objectives
         self.n_points = n_points
         self.region = region
         self.constraints = constraints
@@ -24,15 +23,16 @@ class Problem:
         return coords.reshape(pop_size, self.n_points, 2)
 
     def evaluate(self, population):
-        v1 = np.array([self.func1(x) for x in population])
-        v2 = np.array([self.func2(x) for x in population])
+        values = []
+        for obj_func in self.objectives:
+            values.append([obj_func(x) for x in population])
+        values = np.array(values)
         if self.constraints:
             penalty = self.penalty_weight * \
                 np.array([np.sum([c(x) for c in self.constraints])
                          for x in population])
-            v1 -= penalty
-            v2 -= penalty
-        return v1, v2
+            values -= penalty
+        return values
 
 
 class CoordsNSGA2:
@@ -46,10 +46,9 @@ class CoordsNSGA2:
         np.random.seed(random_seed)
         assert pop_size % 2 == 0, "pop_size must be even number"
         self.P = self.problem.sample_population(pop_size)
-        self.values1_P, self.values2_P = self.problem.evaluate(self.P)  # 评估
+        self.values_P = self.problem.evaluate(self.P)  # 评估
         self.P_history = [self.P]  # 记录每一代的解
-        self.values1_history = [self.values1_P]  # 记录每一代的最前沿解的第一个目标函数值
-        self.values2_history = [self.values2_P]  # 记录每一代的最前沿解的第一个目标函数值
+        self.values_history = [self.values_P]  # 记录每一代的所有目标函数值
 
         # todo: 这部分未来要放在optimizer的定义的参数中
         self.crossover = coords_crossover  # 使用外部定义的crossover函数
@@ -91,50 +90,45 @@ class CoordsNSGA2:
             iterator = trange(gen)
         else:
             iterator = range(gen)
-            
+
         for _ in iterator:
-            Q = self.selection(self.P, self.values1_P, self.values2_P)  # 选择
+            Q = self.selection(self.P, self.values_P)  # 选择
             Q = self.crossover(Q, self.prob_crs)  # 交叉
             Q = self.mutation(Q, self.prob_mut, self.problem.region)  # 变异
 
-            values1_Q, values2_Q = self.problem.evaluate(Q)  # 评估
+            values_Q = self.problem.evaluate(Q)  # 评估
 
             # 合并为R=(P,Q)
             R = np.concatenate([self.P, Q])
-            values1_R = np.concatenate([self.values1_P, values1_Q])
-            values2_R = np.concatenate([self.values2_P, values2_Q])
+            values_R = np.concatenate([self.values_P, values_Q], axis=1)
 
             # 快速非支配排序
-            population_sorted_in_fronts = fast_non_dominated_sort(
-                values1_R, values2_R)
+            population_sorted_in_fronts = fast_non_dominated_sort(values_R)
             crowding_distances = [crowding_distance(
-                values1_R[front], values2_R[front]) for front in population_sorted_in_fronts]
+                values_R[:, front]) for front in population_sorted_in_fronts]
 
             # 选择下一代种群
             self.P = self.get_next_population(R,
                                               population_sorted_in_fronts, crowding_distances)
 
-            self.values1_P, self.values2_P = self.problem.evaluate(
+            self.values_P = self.problem.evaluate(
                 self.P)  # 评估
 
             self.P_history.append(self.P)  # 这里后面改成全流程使用np数组
-            self.values1_history.append(self.values1_P)
-            self.values2_history.append(self.values2_P)
+            self.values_history.append(self.values_P)
             # todo: 排序后再输出
         return self.P
 
     def save(self, path):
         # 将self.P, self.values1_P, self.values2_P, self.P_history, self.values1_history, self.values2_history保存到path
-        np.savez(path, P=self.P, values1_P=self.values1_P, values2_P=self.values2_P, P_history=self.P_history,
-                 values1_history=self.values1_history, values2_history=self.values2_history)
+        np.savez(path, P=self.P, values_P=self.values_P, P_history=self.P_history,
+                 values_history=self.values_history)
 
     def load(self, path):
         # 从path中加载self.P, self.values1_P, self.values2_P, self.P_history, self.values1_history, self.values2_history
         data = np.load(path)
         self.P = data['P']
-        self.values1_P = data['values1_P']
-        self.values2_P = data['values2_P']
+        self.values_P = data['values_P']
         self.P_history = data['P_history'].tolist()
-        self.values1_history = data['values1_history'].tolist()
-        self.values2_history = data['values2_history'].tolist()
+        self.values_history = data['values_history'].tolist()
         print(f'Loaded generation {len(self.P_history)} successfully!')

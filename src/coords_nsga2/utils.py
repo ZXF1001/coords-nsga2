@@ -1,14 +1,13 @@
 import numpy as np
 
 
-def fast_non_dominated_sort(values1, values2):
+def fast_non_dominated_sort(objectives):
     """
     输入：values1, values2 为两个目标函数的值列表；
     输出：返回一个列表，列表中的每个元素是一个列表，表示一个前沿
     """
-    assert len(values1) == len(values2)
     # 初始化数据结构
-    num_population = len(values1)
+    n_objectives, num_population = objectives.shape
     dominated_solutions = [[] for _ in range(num_population)]
     domination_count = np.zeros(num_population)
     ranks = np.zeros(num_population)
@@ -20,9 +19,22 @@ def fast_non_dominated_sort(values1, values2):
             if p == q:
                 continue
             # p 支配 q：p 在所有目标上都不差于 q，且至少在一个目标上优于 q
-            if (values1[p] > values1[q] and values2[p] >= values2[q]) or (values1[p] >= values1[q] and values2[p] > values2[q]):
+            p_dominates_q = True
+            q_dominates_p = True
+            p_better_in_at_least_one = False
+            q_better_in_at_least_one = False
+
+            for obj_func in objectives:
+                if obj_func[p] > obj_func[q]:
+                    q_dominates_p = False
+                    p_better_in_at_least_one = True
+                elif obj_func[p] < obj_func[q]:
+                    p_dominates_q = False
+                    q_better_in_at_least_one = True
+
+            if p_dominates_q and p_better_in_at_least_one:
                 dominated_solutions[p].append(q)
-            elif (values1[q] > values1[p] and values2[q] >= values2[p]) or (values1[q] >= values1[p] and values2[q] > values2[p]):
+            elif q_dominates_p and q_better_in_at_least_one:
                 domination_count[p] += 1
 
         # 如果没有解支配 p，则 p 属于第一个前沿
@@ -47,50 +59,53 @@ def fast_non_dominated_sort(values1, values2):
     return fronts
 
 
-def crowding_distance(value1, value2):
+def crowding_distance(objectives):
     """
     计算 NSGA-II 中的拥挤度距离
-    
+
     参数:
     value1 (numpy.ndarray): 第一个目标函数值的数组
     value2 (numpy.ndarray): 第二个目标函数值的数组
-    
+
     返回:
     numpy.ndarray: 拥挤度距离数组
     """
-    n = len(value1)
-    value1 = np.array(value1)
-    value2 = np.array(value2)
+    n_objectives, n_individuals = objectives.shape
     
-    # 对 value1 进行排序，并记录原始索引
-    sorted_idx = np.argsort(value1)
-    sorted_value1 = value1[sorted_idx]
-    sorted_value2 = value2[sorted_idx]
+    # 初始化拥挤度距离
+    crowding_distances = np.zeros(n_individuals)
     
-    # 初始化拥挤度距离数组
-    crowding_dist = np.zeros(n)
+    # 处理每个目标
+    for obj_values in objectives:
+        # 排序
+        sorted_indices = np.argsort(obj_values)
+        sorted_values = obj_values[sorted_indices]
+        
+        # 计算范围
+        obj_range = sorted_values[-1] - sorted_values[0]
+        
+        if obj_range == 0:
+            continue
+        
+        # 创建距离贡献数组
+        distances = np.zeros(n_individuals)
+        
+        # 设置边界为无穷大
+        distances[sorted_indices[0]] = np.inf
+        distances[sorted_indices[-1]] = np.inf
+        
+        # 向量化计算中间点的距离
+        if n_individuals > 2:
+            # 计算相邻点的差值
+            next_values = sorted_values[2:]
+            prev_values = sorted_values[:-2]
+            contributions = (next_values - prev_values) / obj_range
+            
+            # 将贡献值赋给对应的个体
+            middle_indices = sorted_indices[1:-1]
+            distances[middle_indices] = contributions
+        
+        # 累加到总拥挤度距离
+        crowding_distances += distances
     
-    # 边界点的拥挤度距离为无穷大
-    crowding_dist[0] = float('inf')
-    crowding_dist[-1] = float('inf')
-    
-    # 计算归一化因子
-    norm_factor1 = sorted_value1.max() - sorted_value1.min()
-    norm_factor2 = sorted_value2.max() - sorted_value2.min()
-    
-    # 避免除零错误
-    if norm_factor1 == 0:
-        norm_factor1 = 1
-    if norm_factor2 == 0:
-        norm_factor2 = 1
-    
-    # 矢量化计算中间点的拥挤度距离
-    if n > 2:
-        value1_diff = np.abs(sorted_value1[2:] - sorted_value1[:-2]) / norm_factor1
-        value2_diff = np.abs(sorted_value2[2:] - sorted_value2[:-2]) / norm_factor2
-        crowding_dist[1:-1] = value1_diff + value2_diff
-    # 将拥挤度距离按照原始索引还原
-    result = np.zeros(n)
-    result[sorted_idx] = crowding_dist
-    
-    return result
+    return crowding_distances

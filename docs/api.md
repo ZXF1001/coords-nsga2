@@ -10,12 +10,11 @@
 
 **构造函数：**
 ```python
-Problem(func1, func2, n_points, region, constraints=[], penalty_weight=1e6)
+Problem(objectives, n_points, region, constraints=[], penalty_weight=1e6)
 ```
 
 **参数：**
-- `func1` (callable): 第一个目标函数
-- `func2` (callable): 第二个目标函数  
+- `objectives` (list[callable]): 目标函数列表，每个函数接受 `coords (n_points, 2)` 并返回标量
 - `n_points` (int): 要优化的坐标点数量
 - `region` (shapely.geometry.Polygon): 定义有效区域的Shapely多边形
 - `constraints` (list, optional): 约束函数列表，默认为空列表
@@ -39,7 +38,7 @@ Problem(func1, func2, n_points, region, constraints=[], penalty_weight=1e6)
 - `population` (numpy.ndarray): 形状为(pop_size, n_points, 2)的种群
 
 **返回：**
-- `tuple`: (values1, values2) 两个目标函数值数组
+- `numpy.ndarray`: 形状为 `(n_objectives, pop_size)` 的目标函数值数组
 
 **示例：**
 ```python
@@ -55,16 +54,16 @@ def obj2(coords):
 
 # 创建问题
 region = region_from_points([[0,0], [1,0], [1,1], [0,1]])
-problem = Problem(func1=obj1, func2=obj2, n_points=5, region=region)
+problem = Problem(objectives=[obj1, obj2], n_points=5, region=region)
 
 # 生成初始种群
 population = problem.sample_population(10)
 print(f"种群形状: {population.shape}")  # (10, 5, 2)
 
 # 评估种群
-values1, values2 = problem.evaluate(population)
-print(f"目标函数1值: {values1}")
-print(f"目标函数2值: {values2}")
+values = problem.evaluate(population)  # shape: (n_objectives, pop_size)
+print(f"目标函数1值: {values[0]}")
+print(f"目标函数2值: {values[1]}")
 ```
 
 ### CoordsNSGA2
@@ -85,12 +84,10 @@ CoordsNSGA2(problem, pop_size, prob_crs, prob_mut, random_seed=42, verbose=True)
 - `verbose` (bool, optional): 是否显示进度条，默认为True
 
 **属性：**
-- `P`: 当前种群
-- `values1_P`: 当前种群第一个目标函数值
-- `values2_P`: 当前种群第二个目标函数值
+- `P`: 当前种群，形状 `(pop_size, n_points, 2)`
+- `values_P`: 当前种群的目标函数值，形状 `(n_objectives, pop_size)`
 - `P_history`: 种群历史记录
-- `values1_history`: 第一个目标函数值历史记录
-- `values2_history`: 第二个目标函数值历史记录
+- `values_history`: 历史目标函数值列表，每代一个 `(n_objectives, pop_size)` 数组
 
 **方法：**
 
@@ -256,14 +253,13 @@ from coords_nsga2.operators.mutation import coords_mutation
 new_population = coords_mutation(population, prob_mut=0.1, region=region)
 ```
 
-### coords_selection(population, values1, values2, tourn_size=3)
+### coords_selection(population, values_P, tourn_size=3)
 
 基于非支配排序和拥挤距离的锦标赛选择。
 
 **参数：**
-- `population` (numpy.ndarray): 形状为(pop_size, n_points, 2)的种群
-- `values1` (numpy.ndarray): 第一个目标函数值数组
-- `values2` (numpy.ndarray): 第二个目标函数值数组
+- `population` (numpy.ndarray): 形状为 `(pop_size, n_points, 2)` 的种群
+- `values_P` (numpy.ndarray): 形状为 `(n_objectives, pop_size)` 的目标函数值数组
 - `tourn_size` (int, optional): 锦标赛大小，默认为3
 
 **返回：**
@@ -280,18 +276,17 @@ new_population = coords_mutation(population, prob_mut=0.1, region=region)
 from coords_nsga2.operators.selection import coords_selection
 
 # 执行选择操作
-selected_population = coords_selection(population, values1, values2, tourn_size=3)
+selected_population = coords_selection(population, values_P, tourn_size=3)
 ```
 
 ## 工具函数 / Utility Functions
 
-### fast_non_dominated_sort(values1, values2)
+### fast_non_dominated_sort(objectives)
 
 快速非支配排序算法。
 
 **参数：**
-- `values1` (numpy.ndarray): 第一个目标函数值数组
-- `values2` (numpy.ndarray): 第二个目标函数值数组
+- `objectives` (numpy.ndarray): 形状为 `(n_objectives, pop_size)` 的目标函数值数组
 
 **返回：**
 - `list`: 前沿列表，每个前沿包含该前沿中个体的索引
@@ -307,19 +302,18 @@ selected_population = coords_selection(population, values1, values2, tourn_size=
 from coords_nsga2.utils import fast_non_dominated_sort
 
 # 执行非支配排序
-fronts = fast_non_dominated_sort(values1, values2)
+fronts = fast_non_dominated_sort(values)
 print(f"前沿数量: {len(fronts)}")
 for i, front in enumerate(fronts):
     print(f"前沿{i}: {front}")
 ```
 
-### crowding_distance(value1, value2)
+### crowding_distance(objectives)
 
 计算拥挤距离。
 
 **参数：**
-- `value1` (numpy.ndarray): 第一个目标函数值数组
-- `value2` (numpy.ndarray): 第二个目标函数值数组
+- `objectives` (numpy.ndarray): 形状为 `(n_objectives, pop_size)` 的目标函数值数组
 
 **返回：**
 - `numpy.ndarray`: 拥挤距离数组
@@ -334,8 +328,8 @@ for i, front in enumerate(fronts):
 ```python
 from coords_nsga2.utils import crowding_distance
 
-# 计算拥挤距离
-distances = crowding_distance(values1, values2)
+# 计算拥挤距离（对同一前沿子集计算时传入子集）
+distances = crowding_distance(values)
 print(f"拥挤距离: {distances}")
 ```
 
@@ -366,8 +360,7 @@ def constraint(coords):
 # 2. 创建区域和问题
 region = region_from_points([[0,0], [1,0], [1,1], [0,1]])
 problem = Problem(
-    func1=objective_1,
-    func2=objective_2,
+    objectives=[objective_1, objective_2],
     n_points=5,
     region=region,
     constraints=[constraint]
@@ -387,11 +380,11 @@ result = optimizer.run(100)
 
 # 5. 分析结果
 print(f"最终种群形状: {result.shape}")
-print(f"目标函数1值: {optimizer.values1_P}")
-print(f"目标函数2值: {optimizer.values2_P}")
+print(f"目标函数1值: {optimizer.values_P[0]}")
+print(f"目标函数2值: {optimizer.values_P[1]}")
 
 # 6. 找到帕累托前沿
-fronts = fast_non_dominated_sort(optimizer.values1_P, optimizer.values2_P)
+fronts = fast_non_dominated_sort(optimizer.values_P)
 pareto_front = result[fronts[0]]  # 第一个前沿就是帕累托前沿
 print(f"帕累托前沿解数量: {len(pareto_front)}")
 ```

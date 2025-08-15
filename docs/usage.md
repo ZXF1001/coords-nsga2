@@ -48,10 +48,9 @@ def constraint_1(coords):
     penalty_list = spacing - dist_list[dist_list < spacing]
     return np.sum(penalty_list)
 
-# 4. 创建问题实例
+# 4. 创建问题实例（支持任意多个目标）
 problem = Problem(
-    func1=objective_1,
-    func2=objective_2,
+    objectives=[objective_1, objective_2],
     n_points=10,
     region=region,
     constraints=[constraint_1]
@@ -165,17 +164,19 @@ def my_constraint(coords):
 # 最终种群
 final_population = optimizer.P
 
-# 目标函数值
-values1 = optimizer.values1_P  # 第一个目标函数值
-values2 = optimizer.values2_P  # 第二个目标函数值
+# 目标函数值（形状: n_objectives × pop_size）
+values = optimizer.values_P
+values1 = values[0]
+values2 = values[1]
 
 # 优化历史
 population_history = optimizer.P_history
-values1_history = optimizer.values1_history
-values2_history = optimizer.values2_history
+values_history = optimizer.values_history  # 列表，每代一个 (n_objectives, pop_size) 数组
 
-# 找到帕累托最优解
-pareto_front = optimizer.P  # 最终种群就是帕累托前沿
+# 找到帕累托前沿（基于最后一代目标值）
+from coords_nsga2.utils import fast_non_dominated_sort
+fronts = fast_non_dominated_sort(optimizer.values_P)
+pareto_front = optimizer.P[fronts[0]]
 ```
 
 ### 保存和加载
@@ -234,10 +235,9 @@ def constraint_1(coords):
     penalty_list = spacing - dist_list[dist_list < spacing]
     return np.sum(penalty_list)
 
-# 4. Create problem instance
+# 4. Create problem instance (supports arbitrary number of objectives)
 problem = Problem(
-    func1=objective_1,
-    func2=objective_2,
+    objectives=[objective_1, objective_2],
     n_points=10,
     region=region,
     constraints=[constraint_1]
@@ -351,17 +351,19 @@ After optimization is complete, you can access the following attributes:
 # Final population
 final_population = optimizer.P
 
-# Objective function values
-values1 = optimizer.values1_P  # First objective function values
-values2 = optimizer.values2_P  # Second objective function values
+# Objective function values (shape: n_objectives × pop_size)
+values = optimizer.values_P
+values1 = values[0]
+values2 = values[1]
 
 # Optimization history
 population_history = optimizer.P_history
-values1_history = optimizer.values1_history
-values2_history = optimizer.values2_history
+values_history = optimizer.values_history  # list of (n_objectives, pop_size) per generation
 
-# Find Pareto optimal solutions
-pareto_front = optimizer.P  # Final population is the Pareto front
+# Find Pareto optimal solutions (based on last generation objective values)
+from coords_nsga2.utils import fast_non_dominated_sort
+fronts = fast_non_dominated_sort(optimizer.values_P)
+pareto_front = optimizer.P[fronts[0]]
 ```
 
 ### Save and Load

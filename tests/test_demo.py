@@ -31,8 +31,7 @@ def test_main():
         penalty_sum = np.sum(penalty_list)
         return penalty_sum
 
-    problem = Problem(func1=objective_1,
-                      func2=objective_2,
+    problem = Problem(objectives=[objective_1, objective_2],
                       n_points=10,
                       region=region,
                       constraints=[constraint_1])

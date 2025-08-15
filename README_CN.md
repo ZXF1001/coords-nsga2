@@ -37,7 +37,7 @@ pip install -e .
 
 ## 快速开始
 
-以下是一个演示如何运行基于坐标的NSGA-II优化的最小示例：
+以下是一个演示如何运行基于坐标的NSGA-II优化的最小示例（支持任意多个目标）：
 
 ```python
 import numpy as np
@@ -70,10 +70,9 @@ def constraint_1(coords):
     penalty_list = spacing - dist_list[dist_list < spacing]
     return np.sum(penalty_list)
 
-# 设置问题
+# 设置问题（传入目标函数列表）
 problem = Problem(
-    func1=objective_1,
-    func2=objective_2,
+    objectives=[objective_1, objective_2],
     n_points=10,
     region=region,
     constraints=[constraint_1]
@@ -104,12 +103,11 @@ print(f"优化历史长度: {len(optimizer.P_history)}")
 多目标优化的主要问题定义类。
 
 ```python
-Problem(func1, func2, n_points, region, constraints=[], penalty_weight=1e6)
+Problem(objectives, n_points, region, constraints=[], penalty_weight=1e6)
 ```
 
 **参数：**
-- `func1`：第一个目标函数（可调用对象）
-- `func2`：第二个目标函数（可调用对象）
+- `objectives`：目标函数列表（可调用对象），每个函数接受 `coords` 并返回标量
 - `n_points`：要优化的坐标点数量
 - `region`：定义有效区域的Shapely多边形
 - `constraints`：约束函数列表（可选）
@@ -154,15 +152,15 @@ CoordsNSGA2(problem, pop_size, prob_crs, prob_mut, random_seed=42, verbose=True)
 #### coords_mutation(population, prob_mut, region)
 坐标特定的变异算子，在区域内随机重新定位点。
 
-#### coords_selection(population, values1, values2, tourn_size=3)
+#### coords_selection(population, values_P, tourn_size=3)
 基于非支配排序和拥挤距离的锦标赛选择。
 
 ## 示例
 
 查看 `examples/` 目录获取更详细的使用示例：
 
-- [快速开始示例](examples/quick-start.py) - 带可视化的基本用法
-- 更多示例即将推出...
+- [快速开始示例](examples/quick-start.py) - 2目标基本用法
+- [多目标示例](examples/multi-objective-example.py) - 4目标及可视化
 
 ## 文档
 
