@@ -1164,8 +1164,7 @@
 <span class="normal"><a href="#__codelineno-0-51">51</a></span>
 <span class="normal"><a href="#__codelineno-0-52">52</a></span>
 <span class="normal"><a href="#__codelineno-0-53">53</a></span>
-<span class="normal"><a href="#__codelineno-0-54">54</a></span>
-<span class="normal"><a href="#__codelineno-0-55">55</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="normal"><a href="#__codelineno-0-54">54</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">scipy.spatial</span><span class="w"> </span><span class="kn">import</span> <span class="n">distance</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">coords_nsga2</span><span class="w"> </span><span class="kn">import</span> <span class="n">CoordsNSGA2</span><span class="p">,</span> <span class="n">Problem</span>
 <a id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="kn">from</span><span class="w"> </span><span class="nn">coords_nsga2.spatial</span><span class="w"> </span><span class="kn">import</span> <span class="n">region_from_points</span>
@@ -1195,31 +1194,30 @@
 <a id="__codelineno-0-28" name="__codelineno-0-28"></a>    <span class="n">penalty_list</span> <span class="o">=</span> <span class="n">spacing</span> <span class="o">-</span> <span class="n">dist_list</span><span class="p">[</span><span class="n">dist_list</span> <span class="o">&lt;</span> <span class="n">spacing</span><span class="p">]</span>
 <a id="__codelineno-0-29" name="__codelineno-0-29"></a>    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">penalty_list</span><span class="p">)</span>
 <a id="__codelineno-0-30" name="__codelineno-0-30"></a>
-<a id="__codelineno-0-31" name="__codelineno-0-31"></a><span class="c1"># 4. 创建问题实例</span>
+<a id="__codelineno-0-31" name="__codelineno-0-31"></a><span class="c1"># 4. 创建问题实例（支持任意多个目标）</span>
 <a id="__codelineno-0-32" name="__codelineno-0-32"></a><span class="n">problem</span> <span class="o">=</span> <span class="n">Problem</span><span class="p">(</span>
-<a id="__codelineno-0-33" name="__codelineno-0-33"></a>    <span class="n">func1</span><span class="o">=</span><span class="n">objective_1</span><span class="p">,</span>
-<a id="__codelineno-0-34" name="__codelineno-0-34"></a>    <span class="n">func2</span><span class="o">=</span><span class="n">objective_2</span><span class="p">,</span>
-<a id="__codelineno-0-35" name="__codelineno-0-35"></a>    <span class="n">n_points</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
-<a id="__codelineno-0-36" name="__codelineno-0-36"></a>    <span class="n">region</span><span class="o">=</span><span class="n">region</span><span class="p">,</span>
-<a id="__codelineno-0-37" name="__codelineno-0-37"></a>    <span class="n">constraints</span><span class="o">=</span><span class="p">[</span><span class="n">constraint_1</span><span class="p">]</span>
-<a id="__codelineno-0-38" name="__codelineno-0-38"></a><span class="p">)</span>
-<a id="__codelineno-0-39" name="__codelineno-0-39"></a>
-<a id="__codelineno-0-40" name="__codelineno-0-40"></a><span class="c1"># 5. 创建优化器</span>
-<a id="__codelineno-0-41" name="__codelineno-0-41"></a><span class="n">optimizer</span> <span class="o">=</span> <span class="n">CoordsNSGA2</span><span class="p">(</span>
-<a id="__codelineno-0-42" name="__codelineno-0-42"></a>    <span class="n">problem</span><span class="o">=</span><span class="n">problem</span><span class="p">,</span>
-<a id="__codelineno-0-43" name="__codelineno-0-43"></a>    <span class="n">pop_size</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
-<a id="__codelineno-0-44" name="__codelineno-0-44"></a>    <span class="n">prob_crs</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
-<a id="__codelineno-0-45" name="__codelineno-0-45"></a>    <span class="n">prob_mut</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
-<a id="__codelineno-0-46" name="__codelineno-0-46"></a>    <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span>
-<a id="__codelineno-0-47" name="__codelineno-0-47"></a><span class="p">)</span>
-<a id="__codelineno-0-48" name="__codelineno-0-48"></a>
-<a id="__codelineno-0-49" name="__codelineno-0-49"></a><span class="c1"># 6. 运行优化</span>
-<a id="__codelineno-0-50" name="__codelineno-0-50"></a><span class="n">result</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
-<a id="__codelineno-0-51" name="__codelineno-0-51"></a>
-<a id="__codelineno-0-52" name="__codelineno-0-52"></a><span class="c1"># 7. 查看结果</span>
-<a id="__codelineno-0-53" name="__codelineno-0-53"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;优化完成！结果形状: </span><span class="si">{</span><span class="n">result</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<a id="__codelineno-0-54" name="__codelineno-0-54"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;种群大小: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">result</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<a id="__codelineno-0-55" name="__codelineno-0-55"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;每个解的坐标点数: </span><span class="si">{</span><span class="n">result</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-33" name="__codelineno-0-33"></a>    <span class="n">objectives</span><span class="o">=</span><span class="p">[</span><span class="n">objective_1</span><span class="p">,</span> <span class="n">objective_2</span><span class="p">],</span>
+<a id="__codelineno-0-34" name="__codelineno-0-34"></a>    <span class="n">n_points</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+<a id="__codelineno-0-35" name="__codelineno-0-35"></a>    <span class="n">region</span><span class="o">=</span><span class="n">region</span><span class="p">,</span>
+<a id="__codelineno-0-36" name="__codelineno-0-36"></a>    <span class="n">constraints</span><span class="o">=</span><span class="p">[</span><span class="n">constraint_1</span><span class="p">]</span>
+<a id="__codelineno-0-37" name="__codelineno-0-37"></a><span class="p">)</span>
+<a id="__codelineno-0-38" name="__codelineno-0-38"></a>
+<a id="__codelineno-0-39" name="__codelineno-0-39"></a><span class="c1"># 5. 创建优化器</span>
+<a id="__codelineno-0-40" name="__codelineno-0-40"></a><span class="n">optimizer</span> <span class="o">=</span> <span class="n">CoordsNSGA2</span><span class="p">(</span>
+<a id="__codelineno-0-41" name="__codelineno-0-41"></a>    <span class="n">problem</span><span class="o">=</span><span class="n">problem</span><span class="p">,</span>
+<a id="__codelineno-0-42" name="__codelineno-0-42"></a>    <span class="n">pop_size</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+<a id="__codelineno-0-43" name="__codelineno-0-43"></a>    <span class="n">prob_crs</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+<a id="__codelineno-0-44" name="__codelineno-0-44"></a>    <span class="n">prob_mut</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+<a id="__codelineno-0-45" name="__codelineno-0-45"></a>    <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span>
+<a id="__codelineno-0-46" name="__codelineno-0-46"></a><span class="p">)</span>
+<a id="__codelineno-0-47" name="__codelineno-0-47"></a>
+<a id="__codelineno-0-48" name="__codelineno-0-48"></a><span class="c1"># 6. 运行优化</span>
+<a id="__codelineno-0-49" name="__codelineno-0-49"></a><span class="n">result</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+<a id="__codelineno-0-50" name="__codelineno-0-50"></a>
+<a id="__codelineno-0-51" name="__codelineno-0-51"></a><span class="c1"># 7. 查看结果</span>
+<a id="__codelineno-0-52" name="__codelineno-0-52"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;优化完成！结果形状: </span><span class="si">{</span><span class="n">result</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-53" name="__codelineno-0-53"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;种群大小: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">result</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-54" name="__codelineno-0-54"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;每个解的坐标点数: </span><span class="si">{</span><span class="n">result</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
 <h3 id="_4">区域定义<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
 <h4 id="_5">从点列表创建多边形区域<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h4>
@@ -1336,20 +1334,24 @@
 <span class="normal"><a href="#__codelineno-5-11">11</a></span>
 <span class="normal"><a href="#__codelineno-5-12">12</a></span>
 <span class="normal"><a href="#__codelineno-5-13">13</a></span>
-<span class="normal"><a href="#__codelineno-5-14">14</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="c1"># 最终种群</span>
+<span class="normal"><a href="#__codelineno-5-14">14</a></span>
+<span class="normal"><a href="#__codelineno-5-15">15</a></span>
+<span class="normal"><a href="#__codelineno-5-16">16</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="c1"># 最终种群</span>
 <a id="__codelineno-5-2" name="__codelineno-5-2"></a><span class="n">final_population</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">P</span>
 <a id="__codelineno-5-3" name="__codelineno-5-3"></a>
-<a id="__codelineno-5-4" name="__codelineno-5-4"></a><span class="c1"># 目标函数值</span>
-<a id="__codelineno-5-5" name="__codelineno-5-5"></a><span class="n">values1</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">values1_P</span>  <span class="c1"># 第一个目标函数值</span>
-<a id="__codelineno-5-6" name="__codelineno-5-6"></a><span class="n">values2</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">values2_P</span>  <span class="c1"># 第二个目标函数值</span>
-<a id="__codelineno-5-7" name="__codelineno-5-7"></a>
-<a id="__codelineno-5-8" name="__codelineno-5-8"></a><span class="c1"># 优化历史</span>
-<a id="__codelineno-5-9" name="__codelineno-5-9"></a><span class="n">population_history</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">P_history</span>
-<a id="__codelineno-5-10" name="__codelineno-5-10"></a><span class="n">values1_history</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">values1_history</span>
-<a id="__codelineno-5-11" name="__codelineno-5-11"></a><span class="n">values2_history</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">values2_history</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4"></a><span class="c1"># 目标函数值（形状: n_objectives × pop_size）</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5"></a><span class="n">values</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">values_P</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6"></a><span class="n">values1</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7"></a><span class="n">values2</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8"></a>
+<a id="__codelineno-5-9" name="__codelineno-5-9"></a><span class="c1"># 优化历史</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10"></a><span class="n">population_history</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">P_history</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11"></a><span class="n">values_history</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">values_history</span>  <span class="c1"># 列表，每代一个 (n_objectives, pop_size) 数组</span>
 <a id="__codelineno-5-12" name="__codelineno-5-12"></a>
-<a id="__codelineno-5-13" name="__codelineno-5-13"></a><span class="c1"># 找到帕累托最优解</span>
-<a id="__codelineno-5-14" name="__codelineno-5-14"></a><span class="n">pareto_front</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">P</span>  <span class="c1"># 最终种群就是帕累托前沿</span>
+<a id="__codelineno-5-13" name="__codelineno-5-13"></a><span class="c1"># 找到帕累托前沿（基于最后一代目标值）</span>
+<a id="__codelineno-5-14" name="__codelineno-5-14"></a><span class="kn">from</span><span class="w"> </span><span class="nn">coords_nsga2.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">fast_non_dominated_sort</span>
+<a id="__codelineno-5-15" name="__codelineno-5-15"></a><span class="n">fronts</span> <span class="o">=</span> <span class="n">fast_non_dominated_sort</span><span class="p">(</span><span class="n">optimizer</span><span class="o">.</span><span class="n">values_P</span><span class="p">)</span>
+<a id="__codelineno-5-16" name="__codelineno-5-16"></a><span class="n">pareto_front</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">P</span><span class="p">[</span><span class="n">fronts</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
 </code></pre></div></td></tr></table></div>
 <h3 id="_12">保存和加载<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span>
@@ -1426,8 +1428,7 @@
 <span class="normal"><a href="#__codelineno-7-51">51</a></span>
 <span class="normal"><a href="#__codelineno-7-52">52</a></span>
 <span class="normal"><a href="#__codelineno-7-53">53</a></span>
-<span class="normal"><a href="#__codelineno-7-54">54</a></span>
-<span class="normal"><a href="#__codelineno-7-55">55</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="normal"><a href="#__codelineno-7-54">54</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <a id="__codelineno-7-2" name="__codelineno-7-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">scipy.spatial</span><span class="w"> </span><span class="kn">import</span> <span class="n">distance</span>
 <a id="__codelineno-7-3" name="__codelineno-7-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">coords_nsga2</span><span class="w"> </span><span class="kn">import</span> <span class="n">CoordsNSGA2</span><span class="p">,</span> <span class="n">Problem</span>
 <a id="__codelineno-7-4" name="__codelineno-7-4"></a><span class="kn">from</span><span class="w"> </span><span class="nn">coords_nsga2.spatial</span><span class="w"> </span><span class="kn">import</span> <span class="n">region_from_points</span>
@@ -1457,31 +1458,30 @@
 <a id="__codelineno-7-28" name="__codelineno-7-28"></a>    <span class="n">penalty_list</span> <span class="o">=</span> <span class="n">spacing</span> <span class="o">-</span> <span class="n">dist_list</span><span class="p">[</span><span class="n">dist_list</span> <span class="o">&lt;</span> <span class="n">spacing</span><span class="p">]</span>
 <a id="__codelineno-7-29" name="__codelineno-7-29"></a>    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">penalty_list</span><span class="p">)</span>
 <a id="__codelineno-7-30" name="__codelineno-7-30"></a>
-<a id="__codelineno-7-31" name="__codelineno-7-31"></a><span class="c1"># 4. Create problem instance</span>
+<a id="__codelineno-7-31" name="__codelineno-7-31"></a><span class="c1"># 4. Create problem instance (supports arbitrary number of objectives)</span>
 <a id="__codelineno-7-32" name="__codelineno-7-32"></a><span class="n">problem</span> <span class="o">=</span> <span class="n">Problem</span><span class="p">(</span>
-<a id="__codelineno-7-33" name="__codelineno-7-33"></a>    <span class="n">func1</span><span class="o">=</span><span class="n">objective_1</span><span class="p">,</span>
-<a id="__codelineno-7-34" name="__codelineno-7-34"></a>    <span class="n">func2</span><span class="o">=</span><span class="n">objective_2</span><span class="p">,</span>
-<a id="__codelineno-7-35" name="__codelineno-7-35"></a>    <span class="n">n_points</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
-<a id="__codelineno-7-36" name="__codelineno-7-36"></a>    <span class="n">region</span><span class="o">=</span><span class="n">region</span><span class="p">,</span>
-<a id="__codelineno-7-37" name="__codelineno-7-37"></a>    <span class="n">constraints</span><span class="o">=</span><span class="p">[</span><span class="n">constraint_1</span><span class="p">]</span>
-<a id="__codelineno-7-38" name="__codelineno-7-38"></a><span class="p">)</span>
-<a id="__codelineno-7-39" name="__codelineno-7-39"></a>
-<a id="__codelineno-7-40" name="__codelineno-7-40"></a><span class="c1"># 5. Create optimizer</span>
-<a id="__codelineno-7-41" name="__codelineno-7-41"></a><span class="n">optimizer</span> <span class="o">=</span> <span class="n">CoordsNSGA2</span><span class="p">(</span>
-<a id="__codelineno-7-42" name="__codelineno-7-42"></a>    <span class="n">problem</span><span class="o">=</span><span class="n">problem</span><span class="p">,</span>
-<a id="__codelineno-7-43" name="__codelineno-7-43"></a>    <span class="n">pop_size</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
-<a id="__codelineno-7-44" name="__codelineno-7-44"></a>    <span class="n">prob_crs</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
-<a id="__codelineno-7-45" name="__codelineno-7-45"></a>    <span class="n">prob_mut</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
-<a id="__codelineno-7-46" name="__codelineno-7-46"></a>    <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span>
-<a id="__codelineno-7-47" name="__codelineno-7-47"></a><span class="p">)</span>
-<a id="__codelineno-7-48" name="__codelineno-7-48"></a>
-<a id="__codelineno-7-49" name="__codelineno-7-49"></a><span class="c1"># 6. Run optimization</span>
-<a id="__codelineno-7-50" name="__codelineno-7-50"></a><span class="n">result</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
-<a id="__codelineno-7-51" name="__codelineno-7-51"></a>
-<a id="__codelineno-7-52" name="__codelineno-7-52"></a><span class="c1"># 7. View results</span>
-<a id="__codelineno-7-53" name="__codelineno-7-53"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Optimization complete! Result shape: </span><span class="si">{</span><span class="n">result</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<a id="__codelineno-7-54" name="__codelineno-7-54"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Population size: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">result</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<a id="__codelineno-7-55" name="__codelineno-7-55"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Points per solution: </span><span class="si">{</span><span class="n">result</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-7-33" name="__codelineno-7-33"></a>    <span class="n">objectives</span><span class="o">=</span><span class="p">[</span><span class="n">objective_1</span><span class="p">,</span> <span class="n">objective_2</span><span class="p">],</span>
+<a id="__codelineno-7-34" name="__codelineno-7-34"></a>    <span class="n">n_points</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+<a id="__codelineno-7-35" name="__codelineno-7-35"></a>    <span class="n">region</span><span class="o">=</span><span class="n">region</span><span class="p">,</span>
+<a id="__codelineno-7-36" name="__codelineno-7-36"></a>    <span class="n">constraints</span><span class="o">=</span><span class="p">[</span><span class="n">constraint_1</span><span class="p">]</span>
+<a id="__codelineno-7-37" name="__codelineno-7-37"></a><span class="p">)</span>
+<a id="__codelineno-7-38" name="__codelineno-7-38"></a>
+<a id="__codelineno-7-39" name="__codelineno-7-39"></a><span class="c1"># 5. Create optimizer</span>
+<a id="__codelineno-7-40" name="__codelineno-7-40"></a><span class="n">optimizer</span> <span class="o">=</span> <span class="n">CoordsNSGA2</span><span class="p">(</span>
+<a id="__codelineno-7-41" name="__codelineno-7-41"></a>    <span class="n">problem</span><span class="o">=</span><span class="n">problem</span><span class="p">,</span>
+<a id="__codelineno-7-42" name="__codelineno-7-42"></a>    <span class="n">pop_size</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+<a id="__codelineno-7-43" name="__codelineno-7-43"></a>    <span class="n">prob_crs</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+<a id="__codelineno-7-44" name="__codelineno-7-44"></a>    <span class="n">prob_mut</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+<a id="__codelineno-7-45" name="__codelineno-7-45"></a>    <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span>
+<a id="__codelineno-7-46" name="__codelineno-7-46"></a><span class="p">)</span>
+<a id="__codelineno-7-47" name="__codelineno-7-47"></a>
+<a id="__codelineno-7-48" name="__codelineno-7-48"></a><span class="c1"># 6. Run optimization</span>
+<a id="__codelineno-7-49" name="__codelineno-7-49"></a><span class="n">result</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+<a id="__codelineno-7-50" name="__codelineno-7-50"></a>
+<a id="__codelineno-7-51" name="__codelineno-7-51"></a><span class="c1"># 7. View results</span>
+<a id="__codelineno-7-52" name="__codelineno-7-52"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Optimization complete! Result shape: </span><span class="si">{</span><span class="n">result</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-7-53" name="__codelineno-7-53"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Population size: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">result</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-7-54" name="__codelineno-7-54"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Points per solution: </span><span class="si">{</span><span class="n">result</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
 <h3 id="region-definition">Region Definition<a class="headerlink" href="#region-definition" title="Permanent link">&para;</a></h3>
 <h4 id="create-polygon-region-from-point-list">Create polygon region from point list<a class="headerlink" href="#create-polygon-region-from-point-list" title="Permanent link">&para;</a></h4>
@@ -1598,20 +1598,24 @@
 <span class="normal"><a href="#__codelineno-12-11">11</a></span>
 <span class="normal"><a href="#__codelineno-12-12">12</a></span>
 <span class="normal"><a href="#__codelineno-12-13">13</a></span>
-<span class="normal"><a href="#__codelineno-12-14">14</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1"></a><span class="c1"># Final population</span>
+<span class="normal"><a href="#__codelineno-12-14">14</a></span>
+<span class="normal"><a href="#__codelineno-12-15">15</a></span>
+<span class="normal"><a href="#__codelineno-12-16">16</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1"></a><span class="c1"># Final population</span>
 <a id="__codelineno-12-2" name="__codelineno-12-2"></a><span class="n">final_population</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">P</span>
 <a id="__codelineno-12-3" name="__codelineno-12-3"></a>
-<a id="__codelineno-12-4" name="__codelineno-12-4"></a><span class="c1"># Objective function values</span>
-<a id="__codelineno-12-5" name="__codelineno-12-5"></a><span class="n">values1</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">values1_P</span>  <span class="c1"># First objective function values</span>
-<a id="__codelineno-12-6" name="__codelineno-12-6"></a><span class="n">values2</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">values2_P</span>  <span class="c1"># Second objective function values</span>
-<a id="__codelineno-12-7" name="__codelineno-12-7"></a>
-<a id="__codelineno-12-8" name="__codelineno-12-8"></a><span class="c1"># Optimization history</span>
-<a id="__codelineno-12-9" name="__codelineno-12-9"></a><span class="n">population_history</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">P_history</span>
-<a id="__codelineno-12-10" name="__codelineno-12-10"></a><span class="n">values1_history</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">values1_history</span>
-<a id="__codelineno-12-11" name="__codelineno-12-11"></a><span class="n">values2_history</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">values2_history</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4"></a><span class="c1"># Objective function values (shape: n_objectives × pop_size)</span>
+<a id="__codelineno-12-5" name="__codelineno-12-5"></a><span class="n">values</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">values_P</span>
+<a id="__codelineno-12-6" name="__codelineno-12-6"></a><span class="n">values1</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<a id="__codelineno-12-7" name="__codelineno-12-7"></a><span class="n">values2</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<a id="__codelineno-12-8" name="__codelineno-12-8"></a>
+<a id="__codelineno-12-9" name="__codelineno-12-9"></a><span class="c1"># Optimization history</span>
+<a id="__codelineno-12-10" name="__codelineno-12-10"></a><span class="n">population_history</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">P_history</span>
+<a id="__codelineno-12-11" name="__codelineno-12-11"></a><span class="n">values_history</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">values_history</span>  <span class="c1"># list of (n_objectives, pop_size) per generation</span>
 <a id="__codelineno-12-12" name="__codelineno-12-12"></a>
-<a id="__codelineno-12-13" name="__codelineno-12-13"></a><span class="c1"># Find Pareto optimal solutions</span>
-<a id="__codelineno-12-14" name="__codelineno-12-14"></a><span class="n">pareto_front</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">P</span>  <span class="c1"># Final population is the Pareto front</span>
+<a id="__codelineno-12-13" name="__codelineno-12-13"></a><span class="c1"># Find Pareto optimal solutions (based on last generation objective values)</span>
+<a id="__codelineno-12-14" name="__codelineno-12-14"></a><span class="kn">from</span><span class="w"> </span><span class="nn">coords_nsga2.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">fast_non_dominated_sort</span>
+<a id="__codelineno-12-15" name="__codelineno-12-15"></a><span class="n">fronts</span> <span class="o">=</span> <span class="n">fast_non_dominated_sort</span><span class="p">(</span><span class="n">optimizer</span><span class="o">.</span><span class="n">values_P</span><span class="p">)</span>
+<a id="__codelineno-12-16" name="__codelineno-12-16"></a><span class="n">pareto_front</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">P</span><span class="p">[</span><span class="n">fronts</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
 </code></pre></div></td></tr></table></div>
 <h3 id="save-and-load">Save and Load<a class="headerlink" href="#save-and-load" title="Permanent link">&para;</a></h3>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-13-1">1</a></span>
