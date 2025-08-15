@@ -40,10 +40,9 @@ optimizer = CoordsNSGA2(
     problem=problem,
     pop_size=20,
     prob_crs=0.5,
-    prob_mut=0.1,
-    verbose=True
-)  # 设置为True显示进度条，False则不显示
-result = optimizer.run(1000)
+    prob_mut=0.1
+)
+result = optimizer.run(1000, verbose=True) # 设置为True显示进度条，False则不显示
 
 # 获取最终的目标函数值
 final_values = optimizer.values_P

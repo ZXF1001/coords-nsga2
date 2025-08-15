@@ -36,12 +36,11 @@ class Problem:
 
 
 class CoordsNSGA2:
-    def __init__(self, problem, pop_size, prob_crs, prob_mut, random_seed=42, verbose=True):
+    def __init__(self, problem, pop_size, prob_crs, prob_mut, random_seed=42):
         self.problem = problem
         self.pop_size = pop_size
         self.prob_crs = prob_crs
         self.prob_mut = prob_mut
-        self.verbose = verbose
 
         np.random.seed(random_seed)
         assert pop_size % 2 == 0, "pop_size must be even number"
@@ -85,8 +84,8 @@ class CoordsNSGA2:
                 break
         return R[new_idx]
 
-    def run(self, gen=1000):
-        if self.verbose:
+    def run(self, gen=1000, verbose=True):
+        if verbose:
             iterator = trange(gen)
         else:
             iterator = range(gen)

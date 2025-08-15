@@ -64,8 +64,7 @@ optimizer = CoordsNSGA2(
     problem=problem,
     pop_size=50,  # 增加种群大小以更好地处理多目标
     prob_crs=0.5,
-    prob_mut=0.1,
-    verbose=True
+    prob_mut=0.1
 )
 
 # 运行优化

@@ -84,8 +84,7 @@ optimizer = CoordsNSGA2(
     problem=problem,
     pop_size=20,
     prob_crs=0.5,
-    prob_mut=0.1,
-    verbose=True
+    prob_mut=0.1
 )
 
 # Run optimization
@@ -156,7 +155,7 @@ Problem(objectives, n_points, region, constraints=[], penalty_weight=1e6)
 The main optimizer class implementing NSGA-II for coordinate optimization.
 
 ```python
-CoordsNSGA2(problem, pop_size, prob_crs, prob_mut, random_seed=42, verbose=True)
+CoordsNSGA2(problem, pop_size, prob_crs, prob_mut, random_seed=42)
 ```
 
 **Parameters:**
@@ -165,10 +164,9 @@ CoordsNSGA2(problem, pop_size, prob_crs, prob_mut, random_seed=42, verbose=True)
 - `prob_crs`: Crossover probability
 - `prob_mut`: Mutation probability
 - `random_seed`: Random seed for reproducibility
-- `verbose`: Show progress bar
 
 **Methods:**
-- `run(generations)`: Run optimization for specified number of generations
+- `run(generations, verbose=True)`: Run optimization for specified number and verbose type of generations
 - `save(path)`: Save optimization state to file
 - `load(path)`: Load optimization state from file
 

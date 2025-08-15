@@ -36,8 +36,7 @@ optimizer = CoordsNSGA2(
     problem=problem,
     pop_size=20,
     prob_crs=0.5,
-    prob_mut=0.1,
-    verbose=True
+    prob_mut=0.1
 )
 
 # 运行优化
@@ -124,8 +123,7 @@ optimizer = CoordsNSGA2(
     problem=problem,
     pop_size=30,
     prob_crs=0.7,
-    prob_mut=0.05,
-    verbose=True
+    prob_mut=0.05
 )
 
 # 运行优化
@@ -245,8 +243,7 @@ optimizer = CoordsNSGA2(
     problem=problem,
     pop_size=50,
     prob_crs=0.8,
-    prob_mut=0.02,
-    verbose=True
+    prob_mut=0.02
 )
 
 # 运行优化
@@ -388,8 +385,7 @@ optimizer = CoordsNSGA2(
     problem=problem,
     pop_size=40,
     prob_crs=0.6,
-    prob_mut=0.03,
-    verbose=True
+    prob_mut=0.03
 )
 
 # 运行优化
@@ -572,8 +568,7 @@ optimizer = CoordsNSGA2(
     problem=problem,
     pop_size=20,
     prob_crs=0.5,
-    prob_mut=0.1,
-    verbose=True
+    prob_mut=0.1
 )
 
 # 替换为自定义算子

@@ -8,12 +8,14 @@ def coords_mutation(population, prob_mut, region):
 
     Args:
         population: numpy array of shape (n_individuals, n_points, 2)
-        prob_mut: mutation probability for each coordinate
+        prob_mut: mutation probability for each coordinate (-1 is auto set as 1/N_points)
         region: region defining valid regions
 
     Returns:
         Mutated population array
     """
+    if prob_mut == -1:
+        prob_mut = 1/population.shape[1]
     # Generate mutation mask
     mutation_mask = np.random.random(population.shape[:-1]) < prob_mut
 

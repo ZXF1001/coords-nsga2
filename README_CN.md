@@ -84,8 +84,7 @@ optimizer = CoordsNSGA2(
     problem=problem,
     pop_size=20,
     prob_crs=0.5,
-    prob_mut=0.1,
-    verbose=True
+    prob_mut=0.1
 )
 
 # 运行优化
@@ -118,7 +117,7 @@ Problem(objectives, n_points, region, constraints=[], penalty_weight=1e6)
 实现NSGA-II坐标优化的主要优化器类。
 
 ```python
-CoordsNSGA2(problem, pop_size, prob_crs, prob_mut, random_seed=42, verbose=True)
+CoordsNSGA2(problem, pop_size, prob_crs, prob_mut, random_seed=42)
 ```
 
 **参数：**
@@ -127,10 +126,9 @@ CoordsNSGA2(problem, pop_size, prob_crs, prob_mut, random_seed=42, verbose=True)
 - `prob_crs`：交叉概率
 - `prob_mut`：变异概率
 - `random_seed`：随机种子，用于可重现性
-- `verbose`：显示进度条
 
 **方法：**
-- `run(generations)`：运行指定代数的优化
+- `run(generations, verbose=True)`：运行指定代数和进度显示方式的优化
 - `save(path)`：保存优化状态到文件
 - `load(path)`：从文件加载优化状态
 

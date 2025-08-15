@@ -72,7 +72,7 @@ NSGA-II坐标优化器类。
 
 **构造函数：**
 ```python
-CoordsNSGA2(problem, pop_size, prob_crs, prob_mut, random_seed=42, verbose=True)
+CoordsNSGA2(problem, pop_size, prob_crs, prob_mut, random_seed=42)
 ```
 
 **参数：**
@@ -81,7 +81,6 @@ CoordsNSGA2(problem, pop_size, prob_crs, prob_mut, random_seed=42, verbose=True)
 - `prob_crs` (float): 交叉概率（0-1之间）
 - `prob_mut` (float): 变异概率（0-1之间）
 - `random_seed` (int, optional): 随机种子，默认为42
-- `verbose` (bool, optional): 是否显示进度条，默认为True
 
 **属性：**
 - `P`: 当前种群，形状 `(pop_size, n_points, 2)`
@@ -91,11 +90,12 @@ CoordsNSGA2(problem, pop_size, prob_crs, prob_mut, random_seed=42, verbose=True)
 
 **方法：**
 
-#### run(generations)
+#### run(generations, verbose=True)
 运行优化算法。
 
 **参数：**
 - `generations` (int): 优化代数
+- `verbose` (bool, optional): 是否显示进度条，默认为True
 
 **返回：**
 - `numpy.ndarray`: 最终种群
@@ -121,8 +121,7 @@ optimizer = CoordsNSGA2(
     problem=problem,
     pop_size=20,
     prob_crs=0.5,
-    prob_mut=0.1,
-    verbose=True
+    prob_mut=0.1
 )
 
 # 运行优化
@@ -371,8 +370,7 @@ optimizer = CoordsNSGA2(
     problem=problem,
     pop_size=20,
     prob_crs=0.5,
-    prob_mut=0.1,
-    verbose=True
+    prob_mut=0.1
 )
 
 # 4. 运行优化

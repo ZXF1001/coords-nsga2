@@ -61,8 +61,7 @@ optimizer = CoordsNSGA2(
     problem=problem,
     pop_size=20,
     prob_crs=0.5,
-    prob_mut=0.1,
-    verbose=True
+    prob_mut=0.1
 )
 
 # 6. 运行优化
@@ -147,7 +146,6 @@ def my_constraint(coords):
 - `prob_crs`: 交叉概率（0-1之间）
 - `prob_mut`: 变异概率（0-1之间）
 - `random_seed`: 随机种子（用于可重现性）
-- `verbose`: 是否显示进度条
 
 #### 参数调优建议
 
@@ -248,8 +246,7 @@ optimizer = CoordsNSGA2(
     problem=problem,
     pop_size=20,
     prob_crs=0.5,
-    prob_mut=0.1,
-    verbose=True
+    prob_mut=0.1
 )
 
 # 6. Run optimization
@@ -334,7 +331,6 @@ def my_constraint(coords):
 - `prob_crs`: Crossover probability (between 0-1)
 - `prob_mut`: Mutation probability (between 0-1)
 - `random_seed`: Random seed (for reproducibility)
-- `verbose`: Whether to show progress bar
 
 #### Parameter Tuning Suggestions
 
