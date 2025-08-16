@@ -38,7 +38,7 @@ Coords-NSGA2 is a Python library specifically designed for optimizing the layout
 
 ## System Requirements
 
-- Python 3.9+
+- Python 3.8+
 - NumPy >= 1.23
 - tqdm >= 4
 - Shapely >= 2
