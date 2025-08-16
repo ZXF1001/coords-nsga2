@@ -9,11 +9,13 @@
 多目标优化问题定义类。
 
 **构造函数：**
+
 ```python
 Problem(objectives, n_points, region, constraints=[], penalty_weight=1e6)
 ```
 
 **参数：**
+
 - `objectives` (list[callable]): 目标函数列表，每个函数接受 `coords (n_points, 2)` 并返回标量
 - `n_points` (int): 要优化的坐标点数量
 - `region` (shapely.geometry.Polygon): 定义有效区域的Shapely多边形
@@ -26,21 +28,26 @@ Problem(objectives, n_points, region, constraints=[], penalty_weight=1e6)
 生成初始种群。
 
 **参数：**
+
 - `pop_size` (int): 种群大小
 
 **返回：**
+
 - `numpy.ndarray`: 形状为(pop_size, n_points, 2)的种群数组
 
 #### evaluate(population)
 评估种群中所有个体的目标函数值。
 
 **参数：**
+
 - `population` (numpy.ndarray): 形状为(pop_size, n_points, 2)的种群
 
 **返回：**
+
 - `numpy.ndarray`: 形状为 `(n_objectives, pop_size)` 的目标函数值数组
 
 **示例：**
+
 ```python
 from coords_nsga2 import Problem
 from coords_nsga2.spatial import region_from_points
@@ -71,11 +78,13 @@ print(f"目标函数2值: {values[1]}")
 NSGA-II坐标优化器类。
 
 **构造函数：**
+
 ```python
 CoordsNSGA2(problem, pop_size, prob_crs, prob_mut, random_seed=42)
 ```
 
 **参数：**
+
 - `problem` (Problem): 问题实例
 - `pop_size` (int): 种群大小（必须为偶数）
 - `prob_crs` (float): 交叉概率（0-1之间）
@@ -83,6 +92,7 @@ CoordsNSGA2(problem, pop_size, prob_crs, prob_mut, random_seed=42)
 - `random_seed` (int, optional): 随机种子，默认为42
 
 **属性：**
+
 - `P`: 当前种群，形状 `(pop_size, n_points, 2)`
 - `values_P`: 当前种群的目标函数值，形状 `(n_objectives, pop_size)`
 - `P_history`: 种群历史记录
@@ -94,25 +104,30 @@ CoordsNSGA2(problem, pop_size, prob_crs, prob_mut, random_seed=42)
 运行优化算法。
 
 **参数：**
+
 - `generations` (int): 优化代数
 - `verbose` (bool, optional): 是否显示进度条，默认为True
 
 **返回：**
+
 - `numpy.ndarray`: 最终种群
 
 #### save(path)
 保存优化状态到文件。
 
 **参数：**
+
 - `path` (str): 保存文件路径
 
 #### load(path)
 从文件加载优化状态。
 
 **参数：**
+
 - `path` (str): 加载文件路径
 
 **示例：**
+
 ```python
 from coords_nsga2 import CoordsNSGA2, Problem
 
@@ -141,12 +156,15 @@ optimizer.load("optimization_result.npz")
 从坐标点列表创建多边形区域。
 
 **参数：**
+
 - `points` (list): 坐标点列表，格式为[[x1,y1], [x2,y2], ...]
 
 **返回：**
+
 - `shapely.geometry.Polygon`: Shapely多边形对象
 
 **示例：**
+
 ```python
 from coords_nsga2.spatial import region_from_points
 
@@ -161,15 +179,18 @@ print(f"区域面积: {region.area}")
 从坐标边界创建矩形区域。
 
 **参数：**
+
 - `x_min` (float): x坐标最小值
 - `x_max` (float): x坐标最大值
 - `y_min` (float): y坐标最小值
 - `y_max` (float): y坐标最大值
 
 **返回：**
+
 - `shapely.geometry.Polygon`: Shapely矩形对象
 
 **示例：**
+
 ```python
 from coords_nsga2.spatial import region_from_range
 
@@ -183,13 +204,16 @@ print(f"区域边界: {region.bounds}")
 在多边形内生成n个随机点。
 
 **参数：**
+
 - `polygon` (shapely.geometry.Polygon): 目标多边形
 - `n` (int): 要生成的点数量
 
 **返回：**
+
 - `numpy.ndarray`: 形状为(n, 2)的坐标点数组
 
 **示例：**
+
 ```python
 from coords_nsga2.spatial import create_points_in_polygon, region_from_points
 
@@ -208,18 +232,22 @@ print(f"生成的点: {points}")
 坐标特定的交叉算子，在父代之间交换点子集。
 
 **参数：**
+
 - `population` (numpy.ndarray): 形状为(pop_size, n_points, 2)的种群
 - `prob_crs` (float): 交叉概率
 
 **返回：**
+
 - `numpy.ndarray`: 交叉后的种群
 
 **算法说明：**
+
 - 对每对父代个体，以概率prob_crs进行交叉
 - 随机选择1到n_points-1个点进行交换
 - 保持种群大小不变
 
 **示例：**
+
 ```python
 from coords_nsga2.operators.crossover import coords_crossover
 
@@ -232,19 +260,23 @@ new_population = coords_crossover(population, prob_crs=0.5)
 坐标特定的变异算子，在区域内随机重新定位点。
 
 **参数：**
+
 - `population` (numpy.ndarray): 形状为(pop_size, n_points, 2)的种群
 - `prob_mut` (float): 变异概率
 - `region` (shapely.geometry.Polygon): 有效区域
 
 **返回：**
+
 - `numpy.ndarray`: 变异后的种群
 
 **算法说明：**
+
 - 对每个坐标点，以概率prob_mut进行变异
 - 变异时在区域内重新生成随机位置
 - 确保变异后的点仍在有效区域内
 
 **示例：**
+
 ```python
 from coords_nsga2.operators.mutation import coords_mutation
 
@@ -257,20 +289,24 @@ new_population = coords_mutation(population, prob_mut=0.1, region=region)
 基于非支配排序和拥挤距离的锦标赛选择。
 
 **参数：**
+
 - `population` (numpy.ndarray): 形状为 `(pop_size, n_points, 2)` 的种群
 - `values_P` (numpy.ndarray): 形状为 `(n_objectives, pop_size)` 的目标函数值数组
 - `tourn_size` (int, optional): 锦标赛大小，默认为3
 
 **返回：**
+
 - `numpy.ndarray`: 选择后的种群
 
 **算法说明：**
+
 - 使用快速非支配排序确定前沿等级
 - 计算每个前沿内的拥挤距离
 - 使用锦标赛选择，优先选择前沿等级低的个体
 - 前沿等级相同时，选择拥挤距离大的个体
 
 **示例：**
+
 ```python
 from coords_nsga2.operators.selection import coords_selection
 
@@ -285,18 +321,22 @@ selected_population = coords_selection(population, values_P, tourn_size=3)
 快速非支配排序算法。
 
 **参数：**
+
 - `objectives` (numpy.ndarray): 形状为 `(n_objectives, pop_size)` 的目标函数值数组
 
 **返回：**
+
 - `list`: 前沿列表，每个前沿包含该前沿中个体的索引
 
 **算法说明：**
+
 - 计算每个个体被支配的次数
 - 记录每个个体支配的其他个体
 - 按前沿等级对个体进行排序
 - 返回按前沿分组的个体索引
 
 **示例：**
+
 ```python
 from coords_nsga2.utils import fast_non_dominated_sort
 
@@ -312,18 +352,22 @@ for i, front in enumerate(fronts):
 计算拥挤距离。
 
 **参数：**
+
 - `objectives` (numpy.ndarray): 形状为 `(n_objectives, pop_size)` 的目标函数值数组
 
 **返回：**
+
 - `numpy.ndarray`: 拥挤距离数组
 
 **算法说明：**
+
 - 对每个目标函数值进行排序
 - 边界点的拥挤距离设为无穷大
 - 中间点的拥挤距离为相邻点目标函数值差的归一化和
 - 返回按原始顺序排列的拥挤距离
 
 **示例：**
+
 ```python
 from coords_nsga2.utils import crowding_distance
 
