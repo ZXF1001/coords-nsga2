@@ -3,7 +3,7 @@ import numpy as np
 
 def fast_non_dominated_sort(objectives):
     """
-    输入：values1, values2 为两个目标函数的值列表；
+    输入：objectives 为形状为 (n_objectives, pop_size) 的目标函数值数组；
     输出：返回一个列表，列表中的每个元素是一个列表，表示一个前沿
     """
     # 初始化数据结构

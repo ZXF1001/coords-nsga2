@@ -119,12 +119,12 @@ class CoordsNSGA2:
         return self.P
 
     def save(self, path):
-        # 将self.P, self.values1_P, self.values2_P, self.P_history, self.values1_history, self.values2_history保存到path
+        # 将self.P, self.values_P, self.P_history, self.values_history保存到path
         np.savez(path, P=self.P, values_P=self.values_P, P_history=self.P_history,
                  values_history=self.values_history)
 
     def load(self, path):
-        # 从path中加载self.P, self.values1_P, self.values2_P, self.P_history, self.values1_history, self.values2_history
+        # 从path中加载self.P, self.values_P, self.P_history, self.values_history
         data = np.load(path)
         self.P = data['P']
         self.values_P = data['values_P']

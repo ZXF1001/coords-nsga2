@@ -1,4 +1,4 @@
-# 安装指南 / Installation Guide
+# 安装指南
 
 > **⚠️ 重要提示**: 本文档是基于源码分析由AI生成的。虽然我们努力确保准确性，但仍可能存在不一致或问题。我们正在积极改进和验证所有内容。如遇到任何问题，请及时报告。
 
@@ -44,62 +44,20 @@ import coords_nsga2
 print(coords_nsga2.__version__)
 ```
 
-## English Installation Guide
+## 依赖包
 
-### System Requirements
-
-- Python 3.9 or higher
-- pip package manager
-
-### Install from PyPI (Recommended)
-
-```bash
-pip install coords-nsga2
-```
-
-### Install from Source
-
-If you want to install the latest development version or modify the code:
-
-```bash
-git clone https://github.com/ZXF1001/coords-nsga2.git
-cd coords-nsga2
-pip install -e .
-```
-
-### Development Environment Setup
-
-If you want to contribute to development:
-
-```bash
-git clone https://github.com/ZXF1001/coords-nsga2.git
-cd coords-nsga2
-pip install -e ".[test]"
-```
-
-### Verify Installation
-
-After installation, you can verify it by running:
-
-```python
-import coords_nsga2
-print(coords_nsga2.__version__)
-```
-
-## 依赖包 / Dependencies
-
-### 必需依赖 / Required Dependencies
+### 必需依赖
 
 - **numpy >= 1.23**: 数值计算库
 - **tqdm >= 4**: 进度条显示
 - **shapely >= 2**: 几何计算库
 
-### 可选依赖 / Optional Dependencies
+### 可选依赖
 
 - **scipy**: 用于距离计算和其他科学计算
 - **matplotlib**: 用于结果可视化
 
-### 开发依赖 / Development Dependencies
+### 开发依赖
 
 - **pytest >= 8.2**: 测试框架
 - **pytest-cov >= 5**: 测试覆盖率

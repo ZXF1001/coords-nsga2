@@ -1,8 +1,8 @@
-# API 参考文档 / API Reference
+# API 参考文档
 
 > **⚠️ 重要提示**: 本文档是基于源码分析由AI生成的。虽然我们努力确保准确性，但仍可能存在不一致或问题。我们正在积极改进和验证所有内容。如遇到任何问题，请及时报告。
 
-## 核心类 / Core Classes
+## 核心类
 
 ### Problem
 
@@ -134,7 +134,7 @@ optimizer.save("optimization_result.npz")
 optimizer.load("optimization_result.npz")
 ```
 
-## 空间工具 / Spatial Utilities
+## 空间工具
 
 ### region_from_points(points)
 
@@ -201,7 +201,7 @@ points = create_points_in_polygon(region, 10)
 print(f"生成的点: {points}")
 ```
 
-## 遗传算子 / Genetic Operators
+## 遗传算子
 
 ### coords_crossover(population, prob_crs)
 
@@ -278,7 +278,7 @@ from coords_nsga2.operators.selection import coords_selection
 selected_population = coords_selection(population, values_P, tourn_size=3)
 ```
 
-## 工具函数 / Utility Functions
+## 工具函数
 
 ### fast_non_dominated_sort(objectives)
 
@@ -332,7 +332,7 @@ distances = crowding_distance(values)
 print(f"拥挤距离: {distances}")
 ```
 
-## 完整示例 / Complete Example
+## 完整示例
 
 ```python
 import numpy as np

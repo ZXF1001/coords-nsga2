@@ -1,4 +1,4 @@
-![coords-nsga2](logo.drawio.svg)
+![Coords-NSGA2](./docs/logo.drawio.svg)
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
@@ -95,72 +95,6 @@ print(f"最优解形状: {result.shape}")
 print(f"优化历史长度: {len(optimizer.P_history)}")
 ```
 
-## API参考
-
-### 核心类
-
-#### Problem
-多目标优化的主要问题定义类。
-
-```python
-Problem(objectives, n_points, region, constraints=[], penalty_weight=1e6)
-```
-
-**参数：**
-- `objectives`：目标函数列表（可调用对象），每个函数接受 `coords` 并返回标量
-- `n_points`：要优化的坐标点数量
-- `region`：定义有效区域的Shapely多边形
-- `constraints`：约束函数列表（可选）
-- `penalty_weight`：约束违反的权重（默认：1e6）
-
-#### CoordsNSGA2
-实现NSGA-II坐标优化的主要优化器类。
-
-```python
-CoordsNSGA2(problem, pop_size, prob_crs, prob_mut, random_seed=42)
-```
-
-**参数：**
-- `problem`：问题实例
-- `pop_size`：种群大小（必须为偶数）
-- `prob_crs`：交叉概率
-- `prob_mut`：变异概率
-- `random_seed`：随机种子，用于可重现性
-
-**方法：**
-- `run(generations, verbose=True)`：运行指定代数和进度显示方式的优化
-- `save(path)`：保存优化状态到文件
-- `load(path)`：从文件加载优化状态
-
-### 空间工具
-
-#### region_from_points(points)
-从坐标点列表创建多边形区域。
-
-#### region_from_range(x_min, x_max, y_min, y_max)
-从坐标边界创建矩形区域。
-
-#### create_points_in_polygon(polygon, n)
-在多边形内生成n个随机点。
-
-### 遗传算子
-
-#### coords_crossover(population, prob_crs)
-坐标特定的交叉算子，在父代之间交换点子集。
-
-#### coords_mutation(population, prob_mut, region)
-坐标特定的变异算子，在区域内随机重新定位点。
-
-#### coords_selection(population, values_P, tourn_size=3)
-基于非支配排序和拥挤距离的锦标赛选择。
-
-## 示例
-
-查看 `examples/` 目录获取更详细的使用示例：
-
-- [快速开始示例](examples/quick-start.py) - 2目标基本用法
-- [多目标示例](examples/multi-objective-example.py) - 4目标及可视化
-
 ## 文档
 
 完整文档可在 [docs/](docs) 文件夹中找到。
@@ -194,10 +128,10 @@ mkdocs build
 如果您在研究中使用了这个库，请引用：
 
 ```bibtex
-@software{coords_nsga2,
-  title={coords-nsga2: 基于坐标的多目标优化Python库},
+@software{Coords-NSGA2,
+  title={Coords-NSGA2: A Python library for coordinate-based multi-objective optimization},
   author={Zhang, Xiaofeng},
-  year={2024},
+  year={2025},
   url={https://github.com/ZXF1001/coords-nsga2}
 }
 ```

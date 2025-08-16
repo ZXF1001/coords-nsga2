@@ -1,21 +1,19 @@
-site_name: coords-nsga2 文档
-site_description: coords-nsga2坐标组合多目标优化框架的介绍和使用指南
+site_name: Coords-NSGA2 Docs
+site_description: Coords-NSGA2坐标组合多目标优化框架的介绍和使用指南
 site_url: https://coords-nsga2.cc
 repo_url: https://github.com/ZXF1001/coords-nsga2
 theme:
   name: material
-  language: zh
+  language: en
   palette:
     - scheme: default
       accent: light blue
       toggle:
         icon: material/weather-night
-        name: 切换到深色模式
     - scheme: slate
       accent: light blue
       toggle:
         icon: material/weather-sunny
-        name: 切换到浅色模式
   features:
     - navigation.tabs
     - navigation.tabs.sticky
@@ -24,12 +22,33 @@ theme:
     - navigation.top
     - search.highlight
     - content.code.copy
+
 nav:
-  - 首页: index.md
-  - 安装指南: install.md
-  - 使用指南: usage.md
-  - API参考: api.md
-  - 示例代码: examples.md
+  - Home: index.md
+  - Installation: install.md
+  - Usage: usage.md
+  - API: api.md
+  - Examples: examples.md
+
+plugins:
+  - search
+  - i18n:
+      docs_structure: suffix
+      languages:
+        - locale: en
+          name: English
+          default: true
+          build: true
+        - locale: zh
+          name: 简体中文
+          build: true
+          nav_translations:
+            Home: 首页
+            Installation: 安装指南
+            Usage: 使用说明
+            API: API参考
+            Examples: 示例代码
+            
 
 markdown_extensions:
   - pymdownx.highlight:
