@@ -27,7 +27,7 @@ nav:
   - Home: index.md
   - Installation: install.md
   - Usage: usage.md
-  - API: api.md
+  - API Reference: api.md
   - Examples: examples.md
 
 plugins:
@@ -46,7 +46,7 @@ plugins:
             Home: 首页
             Installation: 安装指南
             Usage: 使用说明
-            API: API参考
+            API Reference: API参考
             Examples: 示例代码
             
 
