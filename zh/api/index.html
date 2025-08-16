@@ -537,9 +537,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#evaluatepopulation" class="md-nav__link">
+  <a href="#evaluatepopulation-n_jobs1" class="md-nav__link">
     <span class="md-ellipsis">
-      evaluate(population)
+      evaluate(population, n_jobs=1)
     </span>
   </a>
   
@@ -809,9 +809,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#evaluatepopulation" class="md-nav__link">
+  <a href="#evaluatepopulation-n_jobs1" class="md-nav__link">
     <span class="md-ellipsis">
-      evaluate(population)
+      evaluate(population, n_jobs=1)
     </span>
   </a>
   
@@ -1043,16 +1043,36 @@
 <ul>
 <li><code>numpy.ndarray</code>: 形状为(pop_size, n_points, 2)的种群数组</li>
 </ul>
-<h4 id="evaluatepopulation">evaluate(population)<a class="headerlink" href="#evaluatepopulation" title="Permanent link">&para;</a></h4>
-<p>评估种群中所有个体的目标函数值。</p>
+<h4 id="evaluatepopulation-n_jobs1">evaluate(population, n_jobs=1)<a class="headerlink" href="#evaluatepopulation-n_jobs1" title="Permanent link">&para;</a></h4>
+<p>评估种群中所有个体的目标函数值。当n_jobs=1时使用串行计算，当n_jobs≠1时使用并行计算。</p>
 <p><strong>参数：</strong></p>
 <ul>
 <li><code>population</code> (numpy.ndarray): 形状为(pop_size, n_points, 2)的种群</li>
+<li><code>n_jobs</code> (int, optional): 并行计算的作业数，默认为1（串行计算）。设置为-1可使用所有可用的CPU核心，或设置为其他值以指定要使用的核心数量。</li>
 </ul>
 <p><strong>返回：</strong></p>
 <ul>
 <li><code>numpy.ndarray</code>: 形状为 <code>(n_objectives, pop_size)</code> 的目标函数值数组</li>
 </ul>
+<blockquote>
+<p><strong>并行计算说明：</strong></p>
+<ul>
+<li><strong>适合使用并行计算的情况</strong>：推荐在具有计算密集型目标函数或约束条件的问题中使用并行处理。它对大规模种群或每次评估需要较长时间的情况特别有效。</li>
+<li><strong>不适合使用并行计算的情况</strong>：对于具有快速目标函数的简单优化问题，并行处理的开销可能会降低性能。在这些情况下，建议使用串行计算（n_jobs=1）。</li>
+<li><strong>并行计算的示例用例</strong>：</li>
+<li>目标函数中包含复杂模拟</li>
+<li>大规模种群（&gt;100个体）</li>
+<li>涉及数值积分或微分方程的目标函数</li>
+<li>
+<p>包含大量坐标点的问题</p>
+</li>
+<li>
+<p><strong>适合使用并行计算的情况</strong>：并行处理对计算密集型的目标函数或约束条件最为有益，例如涉及复杂模拟、数值积分的函数，或评估大规模种群时。当每个个体评估需要较长时间（&gt;0.01秒）时，并行计算特别有效。</p>
+</li>
+<li><strong>不适合使用并行计算的情况</strong>：对于简单且快速的目标函数，并行处理的开销可能超过其带来的好处。如果单个评估非常快（&lt;0.001秒），串行计算可能更高效。</li>
+<li><strong>性能考虑</strong>：并行计算带来的加速取决于可用的CPU核心数量和目标函数的计算复杂度。随着目标函数复杂度的增加，并行化的开销变得可以忽略不计。</li>
+</ul>
+</blockquote>
 <p><strong>示例：</strong></p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-1-2"> 2</a></span>
@@ -1101,7 +1121,7 @@
 <h3 id="coordsnsga2">CoordsNSGA2<a class="headerlink" href="#coordsnsga2" title="Permanent link">&para;</a></h3>
 <p>NSGA-II坐标优化器类。</p>
 <p><strong>构造函数：</strong></p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="n">CoordsNSGA2</span><span class="p">(</span><span class="n">problem</span><span class="p">,</span> <span class="n">pop_size</span><span class="p">,</span> <span class="n">prob_crs</span><span class="p">,</span> <span class="n">prob_mut</span><span class="p">,</span> <span class="n">random_seed</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="n">CoordsNSGA2</span><span class="p">(</span><span class="n">problem</span><span class="p">,</span> <span class="n">pop_size</span><span class="p">,</span> <span class="n">prob_crs</span><span class="p">,</span> <span class="n">prob_mut</span><span class="p">,</span> <span class="n">random_seed</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
 <p><strong>参数：</strong></p>
 <ul>
@@ -1110,6 +1130,7 @@
 <li><code>prob_crs</code> (float): 交叉概率（0-1之间）</li>
 <li><code>prob_mut</code> (float): 变异概率（0-1之间）</li>
 <li><code>random_seed</code> (int, optional): 随机种子，默认为42</li>
+<li><code>n_jobs</code> (int, optional): 并行计算的作业数，默认为1（串行计算）。设置为-1可使用所有可用的CPU核心，或设置为其他值以指定要使用的核心数量。</li>
 </ul>
 <p><strong>属性：</strong></p>
 <ul>

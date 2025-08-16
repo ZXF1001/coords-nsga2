@@ -537,9 +537,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#evaluatepopulation" class="md-nav__link">
+  <a href="#evaluatepopulation-n_jobs1" class="md-nav__link">
     <span class="md-ellipsis">
-      evaluate(population)
+      evaluate(population, n_jobs=1)
     </span>
   </a>
   
@@ -809,9 +809,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#evaluatepopulation" class="md-nav__link">
+  <a href="#evaluatepopulation-n_jobs1" class="md-nav__link">
     <span class="md-ellipsis">
-      evaluate(population)
+      evaluate(population, n_jobs=1)
     </span>
   </a>
   
@@ -1043,16 +1043,36 @@
 <ul>
 <li><code>numpy.ndarray</code>: Population array with shape<code>(pop_size, n_points, 2)</code>.</li>
 </ul>
-<h4 id="evaluatepopulation">evaluate(population)<a class="headerlink" href="#evaluatepopulation" title="Permanent link">&para;</a></h4>
-<p>Evaluate the objective values for all individuals in a population.</p>
+<h4 id="evaluatepopulation-n_jobs1">evaluate(population, n_jobs=1)<a class="headerlink" href="#evaluatepopulation-n_jobs1" title="Permanent link">&para;</a></h4>
+<p>Evaluate the objective values for all individuals in a population. Uses serial computation when n_jobs=1 and parallel computation when n_jobs≠1.</p>
 <p><strong>Parameters:</strong></p>
 <ul>
 <li><code>population</code> (numpy.ndarray): Population with shape<code>(pop_size, n_points, 2)</code>.</li>
+<li><code>n_jobs</code> (int, optional): Number of jobs for parallel computation. Default is 1 (serial computation). Set to -1 to use all available CPU cores, or any other value to specify the number of cores to use.</li>
 </ul>
 <p><strong>Returns:</strong></p>
 <ul>
 <li><code>numpy.ndarray</code>: Array of objective values with shape <code>(n_objectives, pop_size)</code>.</li>
 </ul>
+<blockquote>
+<p><strong>Parallel Computation Notes:</strong></p>
+<ul>
+<li><strong>When to use parallel computation</strong>: Parallel processing is recommended for problems with computationally intensive objective functions or constraints. It's particularly effective for large populations or when each evaluation takes significant time.</li>
+<li><strong>When NOT to use parallel computation</strong>: For simple optimization problems with fast objective functions, the overhead of parallel processing may reduce performance. In these cases, serial computation (n_jobs=1) is recommended.</li>
+<li><strong>Example use cases for parallel computation</strong>:</li>
+<li>Complex simulations in each objective function</li>
+<li>Large population sizes (&gt;100 individuals)</li>
+<li>Objective functions involving numerical integration or differential equations</li>
+<li>
+<p>Problems with many coordinate points</p>
+</li>
+<li>
+<p><strong>When to use parallel computation</strong>: Parallel processing is most beneficial for computationally intensive objective functions or constraints, such as those involving complex simulations, numerical integrations, or when evaluating large populations. It's particularly effective when each individual evaluation takes significant time (&gt;0.01s).</p>
+</li>
+<li><strong>When NOT to use parallel computation</strong>: For simple and fast objective functions, the overhead of parallel processing may outweigh its benefits. If individual evaluations are very quick (&lt;0.001s), serial computation may be more efficient.</li>
+<li><strong>Performance considerations</strong>: The speedup from parallel computation depends on the number of available CPU cores and the computational complexity of the objective functions. The overhead of parallelization becomes negligible as the complexity of objective functions increases.</li>
+</ul>
+</blockquote>
 <p><strong>Example:</strong></p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-1-2"> 2</a></span>
@@ -1101,7 +1121,7 @@
 <h3 id="coordsnsga2">CoordsNSGA2<a class="headerlink" href="#coordsnsga2" title="Permanent link">&para;</a></h3>
 <p>NSGA-II optimiser for coordinate problems.</p>
 <p><strong>Constructor:</strong></p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="n">CoordsNSGA2</span><span class="p">(</span><span class="n">problem</span><span class="p">,</span> <span class="n">pop_size</span><span class="p">,</span> <span class="n">prob_crs</span><span class="p">,</span> <span class="n">prob_mut</span><span class="p">,</span> <span class="n">random_seed</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="n">CoordsNSGA2</span><span class="p">(</span><span class="n">problem</span><span class="p">,</span> <span class="n">pop_size</span><span class="p">,</span> <span class="n">prob_crs</span><span class="p">,</span> <span class="n">prob_mut</span><span class="p">,</span> <span class="n">random_seed</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
 <p><strong>Parameters:</strong></p>
 <ul>
@@ -1110,6 +1130,7 @@
 <li><code>prob_crs</code> (float): Crossover probability in the range 0-1.</li>
 <li><code>prob_mut</code> (float): Mutation probability in the range 0-1 or -1.</li>
 <li><code>random_seed</code> (int, optional): Random seed. Default is 42.</li>
+<li><code>n_jobs</code> (int, optional): Number of jobs for parallel computation. Default is 1 (serial computation). Set to -1 to use all available CPU cores, or any other value to specify the number of cores to use.</li>
 </ul>
 <p><strong>Attributes:</strong></p>
 <ul>
