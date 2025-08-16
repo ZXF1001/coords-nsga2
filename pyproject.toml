@@ -52,7 +52,7 @@ test = [
   "coverage[toml]>=7.5",
   "hypothesis>=6.100",
   "ruff>=0.11",
-  "pre-commit>=3.7",
+  "pre-commit",
   "scipy",
 ]
 docs = [
