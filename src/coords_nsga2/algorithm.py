@@ -1,5 +1,6 @@
 # 自己开发的针对风力机坐标点位布局用的NSGA-II算法
 import numpy as np
+from joblib import Parallel, delayed
 from tqdm import trange
 
 from .operators.crossover import coords_crossover
@@ -22,30 +23,65 @@ class Problem:
             self.region, pop_size * self.n_points)
         return coords.reshape(pop_size, self.n_points, 2)
 
-    def evaluate(self, population):
-        values = []
-        for obj_func in self.objectives:
-            values.append([obj_func(x) for x in population])
-        values = np.array(values)
-        if self.constraints:
-            penalty = self.penalty_weight * \
-                np.array([np.sum([c(x) for c in self.constraints])
-                         for x in population])
-            values -= penalty
-        return values
+    def evaluate(self, population, n_jobs=1):
+        """
+        评估种群中每个个体的目标函数值
+        
+        参数:
+            population: 种群，形状为(pop_size, n_points, 2)
+            n_jobs: 并行计算的作业数，默认为1（串行计算）。当n_jobs不为1时，使用并行计算。
+        
+        返回:
+            values: 目标函数值，形状为(n_objectives, pop_size)
+        """
+        # 当n_jobs=1时，使用原始的串行评估方法
+        if n_jobs == 1:
+            values = []
+            for obj_func in self.objectives:
+                values.append([obj_func(x) for x in population])
+            values = np.array(values)
+            if self.constraints:
+                penalty = self.penalty_weight * \
+                    np.array([np.sum([c(x) for c in self.constraints])
+                             for x in population])
+                values -= penalty
+            return values
+        
+        # 当n_jobs不为1时，使用joblib并行计算
+        else:
+            # 使用joblib并行计算每个个体的目标函数值
+            def evaluate_individual(individual):
+                # 计算单个个体的所有目标函数值
+                obj_values = np.array([obj_func(individual) for obj_func in self.objectives])
+                
+                # 计算约束违反惩罚（如果有约束）
+                if self.constraints:
+                    penalty = self.penalty_weight * np.sum([c(individual) for c in self.constraints])
+                    obj_values -= penalty
+
+                return obj_values
+            
+            # 并行计算所有个体的目标函数值
+            results = Parallel(n_jobs=n_jobs)(delayed(evaluate_individual)(ind) for ind in population)
+            
+            # 重新组织结果为所需的形状 (n_objectives, pop_size)
+            values = np.array(results).T
+            
+            return values
 
 
 class CoordsNSGA2:
-    def __init__(self, problem, pop_size, prob_crs, prob_mut, random_seed=42):
+    def __init__(self, problem, pop_size, prob_crs, prob_mut, random_seed=42, n_jobs=1):
         self.problem = problem
         self.pop_size = pop_size
         self.prob_crs = prob_crs
         self.prob_mut = prob_mut
+        self.n_jobs = n_jobs  # 并行计算的作业数，默认为1（串行计算）
 
         np.random.seed(random_seed)
         assert pop_size % 2 == 0, "pop_size must be even number"
         self.P = self.problem.sample_population(pop_size)
-        self.values_P = self.problem.evaluate(self.P)  # 评估
+        self.values_P = self.problem.evaluate(self.P, n_jobs=self.n_jobs)  # 并行评估
         self.P_history = [self.P]  # 记录每一代的解
         self.values_history = [self.values_P]  # 记录每一代的所有目标函数值
 
@@ -95,7 +131,7 @@ class CoordsNSGA2:
             Q = self.crossover(Q, self.prob_crs)  # 交叉
             Q = self.mutation(Q, self.prob_mut, self.problem.region)  # 变异
 
-            values_Q = self.problem.evaluate(Q)  # 评估
+            values_Q = self.problem.evaluate(Q, n_jobs=self.n_jobs)  # 并行评估
 
             # 合并为R=(P,Q)
             R = np.concatenate([self.P, Q])
@@ -111,7 +147,7 @@ class CoordsNSGA2:
                                               population_sorted_in_fronts, crowding_distances)
 
             self.values_P = self.problem.evaluate(
-                self.P)  # 评估
+                self.P, n_jobs=self.n_jobs)  # 并行评估
 
             self.P_history.append(self.P)  # 这里后面改成全流程使用np数组
             self.values_history.append(self.values_P)

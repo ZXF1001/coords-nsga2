@@ -35,12 +35,13 @@ Generate an initial population.
 
 - `numpy.ndarray`: Population array with shape`(pop_size, n_points, 2)`.
 
-#### evaluate(population)
-Evaluate the objective values for all individuals in a population.
+#### evaluate(population, n_jobs=1)
+Evaluate the objective values for all individuals in a population. Uses serial computation when n_jobs=1 and parallel computation when n_jobs≠1.
 
 **Parameters:**
 
 - `population` (numpy.ndarray): Population with shape`(pop_size, n_points, 2)`.
+- `n_jobs` (int, optional): Number of jobs for parallel computation. Default is 1 (serial computation). Set to -1 to use all available CPU cores, or any other value to specify the number of cores to use.
 
 **Returns:**
 
@@ -80,7 +81,7 @@ NSGA-II optimiser for coordinate problems.
 **Constructor:**
 
 ```python
-CoordsNSGA2(problem, pop_size, prob_crs, prob_mut, random_seed=42)
+CoordsNSGA2(problem, pop_size, prob_crs, prob_mut, random_seed=42, n_jobs=1)
 ```
 
 **Parameters:**
@@ -90,6 +91,7 @@ CoordsNSGA2(problem, pop_size, prob_crs, prob_mut, random_seed=42)
 - `prob_crs` (float): Crossover probability in the range 0-1.
 - `prob_mut` (float): Mutation probability in the range 0-1 or -1.
 - `random_seed` (int, optional): Random seed. Default is 42.
+- `n_jobs` (int, optional): Number of jobs for parallel computation. Default is 1 (serial computation). Set to -1 to use all available CPU cores, or any other value to specify the number of cores to use.
 
 **Attributes:**
 

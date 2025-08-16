@@ -35,12 +35,13 @@ Problem(objectives, n_points, region, constraints=[], penalty_weight=1e6)
 
 - `numpy.ndarray`: 形状为(pop_size, n_points, 2)的种群数组
 
-#### evaluate(population)
-评估种群中所有个体的目标函数值。
+#### evaluate(population, n_jobs=1)
+评估种群中所有个体的目标函数值。当n_jobs=1时使用串行计算，当n_jobs≠1时使用并行计算。
 
 **参数：**
 
 - `population` (numpy.ndarray): 形状为(pop_size, n_points, 2)的种群
+- `n_jobs` (int, optional): 并行计算的作业数，默认为1（串行计算）。设置为-1可使用所有可用的CPU核心，或设置为其他值以指定要使用的核心数量。
 
 **返回：**
 
@@ -80,7 +81,7 @@ NSGA-II坐标优化器类。
 **构造函数：**
 
 ```python
-CoordsNSGA2(problem, pop_size, prob_crs, prob_mut, random_seed=42)
+CoordsNSGA2(problem, pop_size, prob_crs, prob_mut, random_seed=42, n_jobs=1)
 ```
 
 **参数：**
@@ -90,6 +91,7 @@ CoordsNSGA2(problem, pop_size, prob_crs, prob_mut, random_seed=42)
 - `prob_crs` (float): 交叉概率（0-1之间）
 - `prob_mut` (float): 变异概率（0-1之间）
 - `random_seed` (int, optional): 随机种子，默认为42
+- `n_jobs` (int, optional): 并行计算的作业数，默认为1（串行计算）。设置为-1可使用所有可用的CPU核心，或设置为其他值以指定要使用的核心数量。
 
 **属性：**
 

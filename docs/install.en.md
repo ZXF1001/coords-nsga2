@@ -2,7 +2,7 @@
 
 > **⚠️ Important Notice**: This document is AI-generated based on source-code analysis. Although we strive for accuracy, inconsistencies or issues may still exist. We are actively improving and validating all content. If you encounter any problems, please report them promptly.
 
-## Installation (Chinese)
+## Installation
 
 ### System Requirements
 

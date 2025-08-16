@@ -13,7 +13,8 @@ dependencies = [
     "numpy>=1.23",
     "tqdm>=4",
     "shapely>=2",
-    "matplotlib"
+    "matplotlib",
+    "joblib>=1.5.0"
 ]
 requires-python = ">= 3.9"
 readme = { file = "README.md", content-type = "text/markdown" }
