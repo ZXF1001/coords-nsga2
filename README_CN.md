@@ -92,7 +92,7 @@ optimizer = CoordsNSGA2(
 result = optimizer.run(1000)
 
 # 访问结果
-print(f"最优解形状: {result.shape}")
+print(f"结果形状: {result.shape}")
 print(f"优化历史长度: {len(optimizer.P_history)}")
 ```
 

@@ -92,7 +92,7 @@ optimizer = CoordsNSGA2(
 result = optimizer.run(1000)
 
 # Access results
-print(f"Best solution shape: {result.shape}")
+print(f"Result shape: {result.shape}")
 print(f"Number of objectives: {len(optimizer.values_P)}")
 print(f"Optimization history length: {len(optimizer.P_history)}")
 ```
