@@ -85,7 +85,6 @@ class CoordsNSGA2:
         self.P_history = [self.P]  # 记录每一代的解
         self.values_history = [self.values_P]  # 记录每一代的所有目标函数值
 
-        # todo: 这部分未来要放在optimizer的定义的参数中
         self.crossover = coords_crossover  # 使用外部定义的crossover函数
         self.mutation = coords_mutation  # 使用外部定义的mutation函数
         self.selection = coords_selection  # 使用外部定义的selection函数
