@@ -42,3 +42,4 @@ Coords-NSGA2 是一个专门为坐标点布局优化而设计的Python库，基�
 - tqdm >= 4
 - Shapely >= 2
 - SciPy (可选，用于距离计算)
+- matplotlib (可选，用于结果可视化)
