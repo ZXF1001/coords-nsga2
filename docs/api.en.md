@@ -47,6 +47,20 @@ Evaluate the objective values for all individuals in a population. Uses serial c
 
 - `numpy.ndarray`: Array of objective values with shape `(n_objectives, pop_size)`.
 
+> **Parallel Computation Notes:**
+> 
+> - **When to use parallel computation**: Parallel processing is recommended for problems with computationally intensive objective functions or constraints. It's particularly effective for large populations or when each evaluation takes significant time.
+> - **When NOT to use parallel computation**: For simple optimization problems with fast objective functions, the overhead of parallel processing may reduce performance. In these cases, serial computation (n_jobs=1) is recommended.
+> - **Example use cases for parallel computation**:
+>   - Complex simulations in each objective function
+>   - Large population sizes (>100 individuals)
+>   - Objective functions involving numerical integration or differential equations
+>   - Problems with many coordinate points
+> 
+> - **When to use parallel computation**: Parallel processing is most beneficial for computationally intensive objective functions or constraints, such as those involving complex simulations, numerical integrations, or when evaluating large populations. It's particularly effective when each individual evaluation takes significant time (>0.01s).
+> - **When NOT to use parallel computation**: For simple and fast objective functions, the overhead of parallel processing may outweigh its benefits. If individual evaluations are very quick (<0.001s), serial computation may be more efficient.
+> - **Performance considerations**: The speedup from parallel computation depends on the number of available CPU cores and the computational complexity of the objective functions. The overhead of parallelization becomes negligible as the complexity of objective functions increases.
+
 **Example:**
 
 ```python

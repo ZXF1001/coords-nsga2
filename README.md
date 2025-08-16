@@ -15,6 +15,7 @@ A Python library implementing a coordinate-based NSGA-II (Non-dominated Sorting 
 
 - **Coordinate-focused optimization**: Designed specifically for optimizing layouts of coordinate points
 - **Multi-objective optimization**: Supports 2 or more objective functions using NSGA-II algorithm
+- **Parallel computation**: Accelerate optimization with parallel processing for computationally intensive problems
 - **Specialized constraints**: Built-in support for point spacing, boundary limits, and custom constraints
 - **Tailored genetic operators**: Custom crossover and mutation operators that directly act on coordinate points
 - **Flexible region definition**: Support for both polygon and rectangular regions
