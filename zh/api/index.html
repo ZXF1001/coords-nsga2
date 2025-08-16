@@ -1021,29 +1021,39 @@
 <h2 id="_1">核心类<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <h3 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h3>
 <p>多目标优化问题定义类。</p>
-<p><strong>构造函数：</strong>
+<p><strong>构造函数：</strong></p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="n">Problem</span><span class="p">(</span><span class="n">objectives</span><span class="p">,</span> <span class="n">n_points</span><span class="p">,</span> <span class="n">region</span><span class="p">,</span> <span class="n">constraints</span><span class="o">=</span><span class="p">[],</span> <span class="n">penalty_weight</span><span class="o">=</span><span class="mf">1e6</span><span class="p">)</span>
-</code></pre></div></td></tr></table></div></p>
-<p><strong>参数：</strong>
-- <code>objectives</code> (list[callable]): 目标函数列表，每个函数接受 <code>coords (n_points, 2)</code> 并返回标量
-- <code>n_points</code> (int): 要优化的坐标点数量
-- <code>region</code> (shapely.geometry.Polygon): 定义有效区域的Shapely多边形
-- <code>constraints</code> (list, optional): 约束函数列表，默认为空列表
-- <code>penalty_weight</code> (float, optional): 约束违反的权重，默认为1e6</p>
+</code></pre></div></td></tr></table></div>
+<p><strong>参数：</strong></p>
+<ul>
+<li><code>objectives</code> (list[callable]): 目标函数列表，每个函数接受 <code>coords (n_points, 2)</code> 并返回标量</li>
+<li><code>n_points</code> (int): 要优化的坐标点数量</li>
+<li><code>region</code> (shapely.geometry.Polygon): 定义有效区域的Shapely多边形</li>
+<li><code>constraints</code> (list, optional): 约束函数列表，默认为空列表</li>
+<li><code>penalty_weight</code> (float, optional): 约束违反的权重，默认为1e6</li>
+</ul>
 <p><strong>方法：</strong></p>
 <h4 id="sample_populationpop_size">sample_population(pop_size)<a class="headerlink" href="#sample_populationpop_size" title="Permanent link">&para;</a></h4>
 <p>生成初始种群。</p>
-<p><strong>参数：</strong>
-- <code>pop_size</code> (int): 种群大小</p>
-<p><strong>返回：</strong>
-- <code>numpy.ndarray</code>: 形状为(pop_size, n_points, 2)的种群数组</p>
+<p><strong>参数：</strong></p>
+<ul>
+<li><code>pop_size</code> (int): 种群大小</li>
+</ul>
+<p><strong>返回：</strong></p>
+<ul>
+<li><code>numpy.ndarray</code>: 形状为(pop_size, n_points, 2)的种群数组</li>
+</ul>
 <h4 id="evaluatepopulation">evaluate(population)<a class="headerlink" href="#evaluatepopulation" title="Permanent link">&para;</a></h4>
 <p>评估种群中所有个体的目标函数值。</p>
-<p><strong>参数：</strong>
-- <code>population</code> (numpy.ndarray): 形状为(pop_size, n_points, 2)的种群</p>
-<p><strong>返回：</strong>
-- <code>numpy.ndarray</code>: 形状为 <code>(n_objectives, pop_size)</code> 的目标函数值数组</p>
-<p><strong>示例：</strong>
+<p><strong>参数：</strong></p>
+<ul>
+<li><code>population</code> (numpy.ndarray): 形状为(pop_size, n_points, 2)的种群</li>
+</ul>
+<p><strong>返回：</strong></p>
+<ul>
+<li><code>numpy.ndarray</code>: 形状为 <code>(n_objectives, pop_size)</code> 的目标函数值数组</li>
+</ul>
+<p><strong>示例：</strong></p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-1-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-1-3"> 3</a></span>
@@ -1087,40 +1097,52 @@
 <a id="__codelineno-1-20" name="__codelineno-1-20"></a><span class="n">values</span> <span class="o">=</span> <span class="n">problem</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">population</span><span class="p">)</span>  <span class="c1"># shape: (n_objectives, pop_size)</span>
 <a id="__codelineno-1-21" name="__codelineno-1-21"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;目标函数1值: </span><span class="si">{</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <a id="__codelineno-1-22" name="__codelineno-1-22"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;目标函数2值: </span><span class="si">{</span><span class="n">values</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</code></pre></div></td></tr></table></div></p>
+</code></pre></div></td></tr></table></div>
 <h3 id="coordsnsga2">CoordsNSGA2<a class="headerlink" href="#coordsnsga2" title="Permanent link">&para;</a></h3>
 <p>NSGA-II坐标优化器类。</p>
-<p><strong>构造函数：</strong>
+<p><strong>构造函数：</strong></p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="n">CoordsNSGA2</span><span class="p">(</span><span class="n">problem</span><span class="p">,</span> <span class="n">pop_size</span><span class="p">,</span> <span class="n">prob_crs</span><span class="p">,</span> <span class="n">prob_mut</span><span class="p">,</span> <span class="n">random_seed</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
-</code></pre></div></td></tr></table></div></p>
-<p><strong>参数：</strong>
-- <code>problem</code> (Problem): 问题实例
-- <code>pop_size</code> (int): 种群大小（必须为偶数）
-- <code>prob_crs</code> (float): 交叉概率（0-1之间）
-- <code>prob_mut</code> (float): 变异概率（0-1之间）
-- <code>random_seed</code> (int, optional): 随机种子，默认为42</p>
-<p><strong>属性：</strong>
-- <code>P</code>: 当前种群，形状 <code>(pop_size, n_points, 2)</code>
-- <code>values_P</code>: 当前种群的目标函数值，形状 <code>(n_objectives, pop_size)</code>
-- <code>P_history</code>: 种群历史记录
-- <code>values_history</code>: 历史目标函数值列表，每代一个 <code>(n_objectives, pop_size)</code> 数组</p>
+</code></pre></div></td></tr></table></div>
+<p><strong>参数：</strong></p>
+<ul>
+<li><code>problem</code> (Problem): 问题实例</li>
+<li><code>pop_size</code> (int): 种群大小（必须为偶数）</li>
+<li><code>prob_crs</code> (float): 交叉概率（0-1之间）</li>
+<li><code>prob_mut</code> (float): 变异概率（0-1之间）</li>
+<li><code>random_seed</code> (int, optional): 随机种子，默认为42</li>
+</ul>
+<p><strong>属性：</strong></p>
+<ul>
+<li><code>P</code>: 当前种群，形状 <code>(pop_size, n_points, 2)</code></li>
+<li><code>values_P</code>: 当前种群的目标函数值，形状 <code>(n_objectives, pop_size)</code></li>
+<li><code>P_history</code>: 种群历史记录</li>
+<li><code>values_history</code>: 历史目标函数值列表，每代一个 <code>(n_objectives, pop_size)</code> 数组</li>
+</ul>
 <p><strong>方法：</strong></p>
 <h4 id="rungenerations-verbosetrue">run(generations, verbose=True)<a class="headerlink" href="#rungenerations-verbosetrue" title="Permanent link">&para;</a></h4>
 <p>运行优化算法。</p>
-<p><strong>参数：</strong>
-- <code>generations</code> (int): 优化代数
-- <code>verbose</code> (bool, optional): 是否显示进度条，默认为True</p>
-<p><strong>返回：</strong>
-- <code>numpy.ndarray</code>: 最终种群</p>
+<p><strong>参数：</strong></p>
+<ul>
+<li><code>generations</code> (int): 优化代数</li>
+<li><code>verbose</code> (bool, optional): 是否显示进度条，默认为True</li>
+</ul>
+<p><strong>返回：</strong></p>
+<ul>
+<li><code>numpy.ndarray</code>: 最终种群</li>
+</ul>
 <h4 id="savepath">save(path)<a class="headerlink" href="#savepath" title="Permanent link">&para;</a></h4>
 <p>保存优化状态到文件。</p>
-<p><strong>参数：</strong>
-- <code>path</code> (str): 保存文件路径</p>
+<p><strong>参数：</strong></p>
+<ul>
+<li><code>path</code> (str): 保存文件路径</li>
+</ul>
 <h4 id="loadpath">load(path)<a class="headerlink" href="#loadpath" title="Permanent link">&para;</a></h4>
 <p>从文件加载优化状态。</p>
-<p><strong>参数：</strong>
-- <code>path</code> (str): 加载文件路径</p>
-<p><strong>示例：</strong>
+<p><strong>参数：</strong></p>
+<ul>
+<li><code>path</code> (str): 加载文件路径</li>
+</ul>
+<p><strong>示例：</strong></p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-3-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-3-3"> 3</a></span>
@@ -1156,15 +1178,19 @@
 <a id="__codelineno-3-16" name="__codelineno-3-16"></a>
 <a id="__codelineno-3-17" name="__codelineno-3-17"></a><span class="c1"># 加载结果</span>
 <a id="__codelineno-3-18" name="__codelineno-3-18"></a><span class="n">optimizer</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;optimization_result.npz&quot;</span><span class="p">)</span>
-</code></pre></div></td></tr></table></div></p>
+</code></pre></div></td></tr></table></div>
 <h2 id="_2">空间工具<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <h3 id="region_from_pointspoints">region_from_points(points)<a class="headerlink" href="#region_from_pointspoints" title="Permanent link">&para;</a></h3>
 <p>从坐标点列表创建多边形区域。</p>
-<p><strong>参数：</strong>
-- <code>points</code> (list): 坐标点列表，格式为[[x1,y1], [x2,y2], ...]</p>
-<p><strong>返回：</strong>
-- <code>shapely.geometry.Polygon</code>: Shapely多边形对象</p>
-<p><strong>示例：</strong>
+<p><strong>参数：</strong></p>
+<ul>
+<li><code>points</code> (list): 坐标点列表，格式为[[x1,y1], [x2,y2], ...]</li>
+</ul>
+<p><strong>返回：</strong></p>
+<ul>
+<li><code>shapely.geometry.Polygon</code>: Shapely多边形对象</li>
+</ul>
+<p><strong>示例：</strong></p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span>
 <span class="normal"><a href="#__codelineno-4-2">2</a></span>
 <span class="normal"><a href="#__codelineno-4-3">3</a></span>
@@ -1176,17 +1202,21 @@
 <a id="__codelineno-4-4" name="__codelineno-4-4"></a><span class="n">points</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]</span>
 <a id="__codelineno-4-5" name="__codelineno-4-5"></a><span class="n">region</span> <span class="o">=</span> <span class="n">region_from_points</span><span class="p">(</span><span class="n">points</span><span class="p">)</span>
 <a id="__codelineno-4-6" name="__codelineno-4-6"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;区域面积: </span><span class="si">{</span><span class="n">region</span><span class="o">.</span><span class="n">area</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</code></pre></div></td></tr></table></div></p>
+</code></pre></div></td></tr></table></div>
 <h3 id="region_from_rangex_min-x_max-y_min-y_max">region_from_range(x_min, x_max, y_min, y_max)<a class="headerlink" href="#region_from_rangex_min-x_max-y_min-y_max" title="Permanent link">&para;</a></h3>
 <p>从坐标边界创建矩形区域。</p>
-<p><strong>参数：</strong>
-- <code>x_min</code> (float): x坐标最小值
-- <code>x_max</code> (float): x坐标最大值
-- <code>y_min</code> (float): y坐标最小值
-- <code>y_max</code> (float): y坐标最大值</p>
-<p><strong>返回：</strong>
-- <code>shapely.geometry.Polygon</code>: Shapely矩形对象</p>
-<p><strong>示例：</strong>
+<p><strong>参数：</strong></p>
+<ul>
+<li><code>x_min</code> (float): x坐标最小值</li>
+<li><code>x_max</code> (float): x坐标最大值</li>
+<li><code>y_min</code> (float): y坐标最小值</li>
+<li><code>y_max</code> (float): y坐标最大值</li>
+</ul>
+<p><strong>返回：</strong></p>
+<ul>
+<li><code>shapely.geometry.Polygon</code>: Shapely矩形对象</li>
+</ul>
+<p><strong>示例：</strong></p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span>
 <span class="normal"><a href="#__codelineno-5-2">2</a></span>
 <span class="normal"><a href="#__codelineno-5-3">3</a></span>
@@ -1196,15 +1226,19 @@
 <a id="__codelineno-5-3" name="__codelineno-5-3"></a><span class="c1"># 创建矩形区域</span>
 <a id="__codelineno-5-4" name="__codelineno-5-4"></a><span class="n">region</span> <span class="o">=</span> <span class="n">region_from_range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
 <a id="__codelineno-5-5" name="__codelineno-5-5"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;区域边界: </span><span class="si">{</span><span class="n">region</span><span class="o">.</span><span class="n">bounds</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</code></pre></div></td></tr></table></div></p>
+</code></pre></div></td></tr></table></div>
 <h3 id="create_points_in_polygonpolygon-n">create_points_in_polygon(polygon, n)<a class="headerlink" href="#create_points_in_polygonpolygon-n" title="Permanent link">&para;</a></h3>
 <p>在多边形内生成n个随机点。</p>
-<p><strong>参数：</strong>
-- <code>polygon</code> (shapely.geometry.Polygon): 目标多边形
-- <code>n</code> (int): 要生成的点数量</p>
-<p><strong>返回：</strong>
-- <code>numpy.ndarray</code>: 形状为(n, 2)的坐标点数组</p>
-<p><strong>示例：</strong>
+<p><strong>参数：</strong></p>
+<ul>
+<li><code>polygon</code> (shapely.geometry.Polygon): 目标多边形</li>
+<li><code>n</code> (int): 要生成的点数量</li>
+</ul>
+<p><strong>返回：</strong></p>
+<ul>
+<li><code>numpy.ndarray</code>: 形状为(n, 2)的坐标点数组</li>
+</ul>
+<p><strong>示例：</strong></p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span>
 <span class="normal"><a href="#__codelineno-6-2">2</a></span>
 <span class="normal"><a href="#__codelineno-6-3">3</a></span>
@@ -1220,20 +1254,26 @@
 <a id="__codelineno-6-6" name="__codelineno-6-6"></a><span class="c1"># 生成随机点</span>
 <a id="__codelineno-6-7" name="__codelineno-6-7"></a><span class="n">points</span> <span class="o">=</span> <span class="n">create_points_in_polygon</span><span class="p">(</span><span class="n">region</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
 <a id="__codelineno-6-8" name="__codelineno-6-8"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;生成的点: </span><span class="si">{</span><span class="n">points</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</code></pre></div></td></tr></table></div></p>
+</code></pre></div></td></tr></table></div>
 <h2 id="_3">遗传算子<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <h3 id="coords_crossoverpopulation-prob_crs">coords_crossover(population, prob_crs)<a class="headerlink" href="#coords_crossoverpopulation-prob_crs" title="Permanent link">&para;</a></h3>
 <p>坐标特定的交叉算子，在父代之间交换点子集。</p>
-<p><strong>参数：</strong>
-- <code>population</code> (numpy.ndarray): 形状为(pop_size, n_points, 2)的种群
-- <code>prob_crs</code> (float): 交叉概率</p>
-<p><strong>返回：</strong>
-- <code>numpy.ndarray</code>: 交叉后的种群</p>
-<p><strong>算法说明：</strong>
-- 对每对父代个体，以概率prob_crs进行交叉
-- 随机选择1到n_points-1个点进行交换
-- 保持种群大小不变</p>
-<p><strong>示例：</strong>
+<p><strong>参数：</strong></p>
+<ul>
+<li><code>population</code> (numpy.ndarray): 形状为(pop_size, n_points, 2)的种群</li>
+<li><code>prob_crs</code> (float): 交叉概率</li>
+</ul>
+<p><strong>返回：</strong></p>
+<ul>
+<li><code>numpy.ndarray</code>: 交叉后的种群</li>
+</ul>
+<p><strong>算法说明：</strong></p>
+<ul>
+<li>对每对父代个体，以概率prob_crs进行交叉</li>
+<li>随机选择1到n_points-1个点进行交换</li>
+<li>保持种群大小不变</li>
+</ul>
+<p><strong>示例：</strong></p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1">1</a></span>
 <span class="normal"><a href="#__codelineno-7-2">2</a></span>
 <span class="normal"><a href="#__codelineno-7-3">3</a></span>
@@ -1241,20 +1281,26 @@
 <a id="__codelineno-7-2" name="__codelineno-7-2"></a>
 <a id="__codelineno-7-3" name="__codelineno-7-3"></a><span class="c1"># 执行交叉操作</span>
 <a id="__codelineno-7-4" name="__codelineno-7-4"></a><span class="n">new_population</span> <span class="o">=</span> <span class="n">coords_crossover</span><span class="p">(</span><span class="n">population</span><span class="p">,</span> <span class="n">prob_crs</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
-</code></pre></div></td></tr></table></div></p>
+</code></pre></div></td></tr></table></div>
 <h3 id="coords_mutationpopulation-prob_mut-region">coords_mutation(population, prob_mut, region)<a class="headerlink" href="#coords_mutationpopulation-prob_mut-region" title="Permanent link">&para;</a></h3>
 <p>坐标特定的变异算子，在区域内随机重新定位点。</p>
-<p><strong>参数：</strong>
-- <code>population</code> (numpy.ndarray): 形状为(pop_size, n_points, 2)的种群
-- <code>prob_mut</code> (float): 变异概率
-- <code>region</code> (shapely.geometry.Polygon): 有效区域</p>
-<p><strong>返回：</strong>
-- <code>numpy.ndarray</code>: 变异后的种群</p>
-<p><strong>算法说明：</strong>
-- 对每个坐标点，以概率prob_mut进行变异
-- 变异时在区域内重新生成随机位置
-- 确保变异后的点仍在有效区域内</p>
-<p><strong>示例：</strong>
+<p><strong>参数：</strong></p>
+<ul>
+<li><code>population</code> (numpy.ndarray): 形状为(pop_size, n_points, 2)的种群</li>
+<li><code>prob_mut</code> (float): 变异概率</li>
+<li><code>region</code> (shapely.geometry.Polygon): 有效区域</li>
+</ul>
+<p><strong>返回：</strong></p>
+<ul>
+<li><code>numpy.ndarray</code>: 变异后的种群</li>
+</ul>
+<p><strong>算法说明：</strong></p>
+<ul>
+<li>对每个坐标点，以概率prob_mut进行变异</li>
+<li>变异时在区域内重新生成随机位置</li>
+<li>确保变异后的点仍在有效区域内</li>
+</ul>
+<p><strong>示例：</strong></p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span>
 <span class="normal"><a href="#__codelineno-8-2">2</a></span>
 <span class="normal"><a href="#__codelineno-8-3">3</a></span>
@@ -1262,21 +1308,27 @@
 <a id="__codelineno-8-2" name="__codelineno-8-2"></a>
 <a id="__codelineno-8-3" name="__codelineno-8-3"></a><span class="c1"># 执行变异操作</span>
 <a id="__codelineno-8-4" name="__codelineno-8-4"></a><span class="n">new_population</span> <span class="o">=</span> <span class="n">coords_mutation</span><span class="p">(</span><span class="n">population</span><span class="p">,</span> <span class="n">prob_mut</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">region</span><span class="o">=</span><span class="n">region</span><span class="p">)</span>
-</code></pre></div></td></tr></table></div></p>
+</code></pre></div></td></tr></table></div>
 <h3 id="coords_selectionpopulation-values_p-tourn_size3">coords_selection(population, values_P, tourn_size=3)<a class="headerlink" href="#coords_selectionpopulation-values_p-tourn_size3" title="Permanent link">&para;</a></h3>
 <p>基于非支配排序和拥挤距离的锦标赛选择。</p>
-<p><strong>参数：</strong>
-- <code>population</code> (numpy.ndarray): 形状为 <code>(pop_size, n_points, 2)</code> 的种群
-- <code>values_P</code> (numpy.ndarray): 形状为 <code>(n_objectives, pop_size)</code> 的目标函数值数组
-- <code>tourn_size</code> (int, optional): 锦标赛大小，默认为3</p>
-<p><strong>返回：</strong>
-- <code>numpy.ndarray</code>: 选择后的种群</p>
-<p><strong>算法说明：</strong>
-- 使用快速非支配排序确定前沿等级
-- 计算每个前沿内的拥挤距离
-- 使用锦标赛选择，优先选择前沿等级低的个体
-- 前沿等级相同时，选择拥挤距离大的个体</p>
-<p><strong>示例：</strong>
+<p><strong>参数：</strong></p>
+<ul>
+<li><code>population</code> (numpy.ndarray): 形状为 <code>(pop_size, n_points, 2)</code> 的种群</li>
+<li><code>values_P</code> (numpy.ndarray): 形状为 <code>(n_objectives, pop_size)</code> 的目标函数值数组</li>
+<li><code>tourn_size</code> (int, optional): 锦标赛大小，默认为3</li>
+</ul>
+<p><strong>返回：</strong></p>
+<ul>
+<li><code>numpy.ndarray</code>: 选择后的种群</li>
+</ul>
+<p><strong>算法说明：</strong></p>
+<ul>
+<li>使用快速非支配排序确定前沿等级</li>
+<li>计算每个前沿内的拥挤距离</li>
+<li>使用锦标赛选择，优先选择前沿等级低的个体</li>
+<li>前沿等级相同时，选择拥挤距离大的个体</li>
+</ul>
+<p><strong>示例：</strong></p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1">1</a></span>
 <span class="normal"><a href="#__codelineno-9-2">2</a></span>
 <span class="normal"><a href="#__codelineno-9-3">3</a></span>
@@ -1284,20 +1336,26 @@
 <a id="__codelineno-9-2" name="__codelineno-9-2"></a>
 <a id="__codelineno-9-3" name="__codelineno-9-3"></a><span class="c1"># 执行选择操作</span>
 <a id="__codelineno-9-4" name="__codelineno-9-4"></a><span class="n">selected_population</span> <span class="o">=</span> <span class="n">coords_selection</span><span class="p">(</span><span class="n">population</span><span class="p">,</span> <span class="n">values_P</span><span class="p">,</span> <span class="n">tourn_size</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-</code></pre></div></td></tr></table></div></p>
+</code></pre></div></td></tr></table></div>
 <h2 id="_4">工具函数<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <h3 id="fast_non_dominated_sortobjectives">fast_non_dominated_sort(objectives)<a class="headerlink" href="#fast_non_dominated_sortobjectives" title="Permanent link">&para;</a></h3>
 <p>快速非支配排序算法。</p>
-<p><strong>参数：</strong>
-- <code>objectives</code> (numpy.ndarray): 形状为 <code>(n_objectives, pop_size)</code> 的目标函数值数组</p>
-<p><strong>返回：</strong>
-- <code>list</code>: 前沿列表，每个前沿包含该前沿中个体的索引</p>
-<p><strong>算法说明：</strong>
-- 计算每个个体被支配的次数
-- 记录每个个体支配的其他个体
-- 按前沿等级对个体进行排序
-- 返回按前沿分组的个体索引</p>
-<p><strong>示例：</strong>
+<p><strong>参数：</strong></p>
+<ul>
+<li><code>objectives</code> (numpy.ndarray): 形状为 <code>(n_objectives, pop_size)</code> 的目标函数值数组</li>
+</ul>
+<p><strong>返回：</strong></p>
+<ul>
+<li><code>list</code>: 前沿列表，每个前沿包含该前沿中个体的索引</li>
+</ul>
+<p><strong>算法说明：</strong></p>
+<ul>
+<li>计算每个个体被支配的次数</li>
+<li>记录每个个体支配的其他个体</li>
+<li>按前沿等级对个体进行排序</li>
+<li>返回按前沿分组的个体索引</li>
+</ul>
+<p><strong>示例：</strong></p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1">1</a></span>
 <span class="normal"><a href="#__codelineno-10-2">2</a></span>
 <span class="normal"><a href="#__codelineno-10-3">3</a></span>
@@ -1311,19 +1369,25 @@
 <a id="__codelineno-10-5" name="__codelineno-10-5"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;前沿数量: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">fronts</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <a id="__codelineno-10-6" name="__codelineno-10-6"></a><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">front</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">fronts</span><span class="p">):</span>
 <a id="__codelineno-10-7" name="__codelineno-10-7"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;前沿</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">front</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</code></pre></div></td></tr></table></div></p>
+</code></pre></div></td></tr></table></div>
 <h3 id="crowding_distanceobjectives">crowding_distance(objectives)<a class="headerlink" href="#crowding_distanceobjectives" title="Permanent link">&para;</a></h3>
 <p>计算拥挤距离。</p>
-<p><strong>参数：</strong>
-- <code>objectives</code> (numpy.ndarray): 形状为 <code>(n_objectives, pop_size)</code> 的目标函数值数组</p>
-<p><strong>返回：</strong>
-- <code>numpy.ndarray</code>: 拥挤距离数组</p>
-<p><strong>算法说明：</strong>
-- 对每个目标函数值进行排序
-- 边界点的拥挤距离设为无穷大
-- 中间点的拥挤距离为相邻点目标函数值差的归一化和
-- 返回按原始顺序排列的拥挤距离</p>
-<p><strong>示例：</strong>
+<p><strong>参数：</strong></p>
+<ul>
+<li><code>objectives</code> (numpy.ndarray): 形状为 <code>(n_objectives, pop_size)</code> 的目标函数值数组</li>
+</ul>
+<p><strong>返回：</strong></p>
+<ul>
+<li><code>numpy.ndarray</code>: 拥挤距离数组</li>
+</ul>
+<p><strong>算法说明：</strong></p>
+<ul>
+<li>对每个目标函数值进行排序</li>
+<li>边界点的拥挤距离设为无穷大</li>
+<li>中间点的拥挤距离为相邻点目标函数值差的归一化和</li>
+<li>返回按原始顺序排列的拥挤距离</li>
+</ul>
+<p><strong>示例：</strong></p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1">1</a></span>
 <span class="normal"><a href="#__codelineno-11-2">2</a></span>
 <span class="normal"><a href="#__codelineno-11-3">3</a></span>
@@ -1333,7 +1397,7 @@
 <a id="__codelineno-11-3" name="__codelineno-11-3"></a><span class="c1"># 计算拥挤距离（对同一前沿子集计算时传入子集）</span>
 <a id="__codelineno-11-4" name="__codelineno-11-4"></a><span class="n">distances</span> <span class="o">=</span> <span class="n">crowding_distance</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
 <a id="__codelineno-11-5" name="__codelineno-11-5"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;拥挤距离: </span><span class="si">{</span><span class="n">distances</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</code></pre></div></td></tr></table></div></p>
+</code></pre></div></td></tr></table></div>
 <h2 id="_5">完整示例<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-12-2"> 2</a></span>
