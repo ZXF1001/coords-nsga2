@@ -102,7 +102,7 @@ CoordsNSGA2(problem, pop_size, prob_crs, prob_mut, random_seed=42, n_jobs=1)
 
 - `problem` (Problem): 问题实例
 - `pop_size` (int): 种群大小（必须为偶数）
-- `prob_crs` (float): 交叉概率（0-1之间）
+- `prob_crs` (float): 交叉概率（0-1之间，或-1）
 - `prob_mut` (float): 变异概率（0-1之间）
 - `random_seed` (int, optional): 随机种子，默认为42
 - `n_jobs` (int, optional): 并行计算的作业数，默认为1（串行计算）。设置为-1可使用所有可用的CPU核心，或设置为其他值以指定要使用的核心数量。

@@ -103,7 +103,7 @@ CoordsNSGA2(problem, pop_size, prob_crs, prob_mut, random_seed=42, n_jobs=1)
 - `problem` (Problem): Problem instance.
 - `pop_size` (int): Population size (must be even).
 - `prob_crs` (float): Crossover probability in the range 0-1.
-- `prob_mut` (float): Mutation probability in the range 0-1 or -1.
+- `prob_mut` (float): Mutation probability in the range 0-1.
 - `random_seed` (int, optional): Random seed. Default is 42.
 - `n_jobs` (int, optional): Number of jobs for parallel computation. Default is 1 (serial computation). Set to -1 to use all available CPU cores, or any other value to specify the number of cores to use.
 
