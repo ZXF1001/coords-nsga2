@@ -54,7 +54,6 @@ test = [
   "ruff>=0.11",
   "pre-commit>=3.7",
   "scipy",
-  "pre-commit"
 ]
 docs = [
   "mkdocs",
