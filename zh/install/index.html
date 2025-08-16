@@ -1,6 +1,6 @@
 
 <!doctype html>
-<html lang="en" class="no-js">
+<html lang="zh" class="no-js">
   <head>
     
       <meta charset="utf-8">
@@ -10,26 +10,28 @@
       
       
       
-        <link rel="canonical" href="https://coords-nsga2.cc/">
+        <link rel="canonical" href="https://coords-nsga2.cc/zh/install/">
       
       
+        <link rel="prev" href="../">
       
-        <link rel="next" href="install/">
+      
+        <link rel="next" href="../usage/">
       
       
-      <link rel="icon" href="assets/images/favicon.png">
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.17">
     
     
       
-        <title>Coords-NSGA2 Docs</title>
+        <title>安装指南 - Coords-NSGA2 Docs</title>
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.7e37652d.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.7e37652d.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -48,7 +50,7 @@
       
     
     
-    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -74,8 +76,8 @@
     <div data-md-component="skip">
       
         
-        <a href="#welcome-to-coords-nsga2" class="md-skip">
-          Skip to content
+        <a href="#_1" class="md-skip">
+          跳转至
         </a>
       
     </div>
@@ -89,8 +91,8 @@
   
 
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
-  <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="." title="Coords-NSGA2 Docs" class="md-header__button md-logo" aria-label="Coords-NSGA2 Docs" data-md-component="logo">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../" title="Coords-NSGA2 Docs" class="md-header__button md-logo" aria-label="Coords-NSGA2 Docs" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -110,7 +112,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Home
+              安装指南
             
           </span>
         </div>
@@ -150,20 +152,20 @@
       <div class="md-header__option">
   <div class="md-select">
     
-    <button class="md-header__button md-icon" aria-label="Select language">
+    <button class="md-header__button md-icon" aria-label="选择当前语言">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
     </button>
     <div class="md-select__inner">
       <ul class="md-select__list">
         
           <li class="md-select__item">
-            <a href="/" hreflang="en" class="md-select__link">
+            <a href="../../install/" hreflang="en" class="md-select__link">
               English
             </a>
           </li>
         
           <li class="md-select__item">
-            <a href="/zh/" hreflang="zh" class="md-select__link">
+            <a href="./" hreflang="zh" class="md-select__link">
               简体中文
             </a>
           </li>
@@ -184,16 +186,16 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
         
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
         
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
       </label>
-      <nav class="md-search__options" aria-label="Search">
+      <nav class="md-search__options" aria-label="查找">
         
-        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
           
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
         </button>
@@ -204,7 +206,7 @@
       <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
         <div class="md-search-result" data-md-component="search-result">
           <div class="md-search-result__meta">
-            Initializing search
+            正在初始化搜索引擎
           </div>
           <ol class="md-search-result__list" role="presentation"></ol>
         </div>
@@ -216,7 +218,7 @@
     
     
       <div class="md-header__source">
-        <a href="https://github.com/ZXF1001/coords-nsga2" title="Go to repository" class="md-source" data-md-component="source">
+        <a href="https://github.com/ZXF1001/coords-nsga2" title="前往仓库" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
@@ -231,9 +233,28 @@
   
     
       
-<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
   <div class="md-grid">
     <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../" class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
       
         
   
@@ -243,13 +264,13 @@
   
   
     <li class="md-tabs__item md-tabs__item--active">
-      <a href="." class="md-tabs__link">
+      <a href="./" class="md-tabs__link">
         
   
   
     
   
-  Home
+  安装指南
 
       </a>
     </li>
@@ -262,13 +283,13 @@
   
   
     <li class="md-tabs__item">
-      <a href="install/" class="md-tabs__link">
+      <a href="../usage/" class="md-tabs__link">
         
   
   
     
   
-  Installation
+  使用说明
 
       </a>
     </li>
@@ -281,13 +302,13 @@
   
   
     <li class="md-tabs__item">
-      <a href="usage/" class="md-tabs__link">
+      <a href="../api/" class="md-tabs__link">
         
   
   
     
   
-  Usage
+  API参考
 
       </a>
     </li>
@@ -300,32 +321,13 @@
   
   
     <li class="md-tabs__item">
-      <a href="api/" class="md-tabs__link">
+      <a href="../examples/" class="md-tabs__link">
         
   
   
     
   
-  API
-
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="examples/" class="md-tabs__link">
-        
-  
-  
-    
-  
-  Examples
+  示例代码
 
       </a>
     </li>
@@ -358,9 +360,9 @@
   
 
 
-<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="." title="Coords-NSGA2 Docs" class="md-nav__button md-logo" aria-label="Coords-NSGA2 Docs" data-md-component="logo">
+    <a href="../" title="Coords-NSGA2 Docs" class="md-nav__button md-logo" aria-label="Coords-NSGA2 Docs" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -370,7 +372,7 @@
   </label>
   
     <div class="md-nav__source">
-      <a href="https://github.com/ZXF1001/coords-nsga2" title="Go to repository" class="md-source" data-md-component="source">
+      <a href="https://github.com/ZXF1001/coords-nsga2" title="前往仓库" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
@@ -382,6 +384,28 @@
     </div>
   
   <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    首页
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
     
       
       
@@ -404,7 +428,7 @@
   
   
   <span class="md-ellipsis">
-    Home
+    安装指南
     
   </span>
   
@@ -412,12 +436,12 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <a href="." class="md-nav__link md-nav__link--active">
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
   <span class="md-ellipsis">
-    Home
+    安装指南
     
   </span>
   
@@ -426,7 +450,7 @@
       
         
 
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+<nav class="md-nav md-nav--secondary" aria-label="目录">
   
   
   
@@ -435,52 +459,109 @@
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
-      Table of contents
+      目录
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#overview" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      Overview
+      中文安装指南
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="中文安装指南">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      系统要求
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#key-features" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#pypi" class="md-nav__link">
     <span class="md-ellipsis">
-      Key Features
+      从 PyPI 安装（推荐）
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#quick-start" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
-      Quick Start
+      从源码安装
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#use-cases" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
-      Use Cases
+      开发环境安装
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#system-requirements" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
-      System Requirements
+      验证安装
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      依赖包
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="依赖包">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      必需依赖
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      可选依赖
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      开发依赖
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -499,12 +580,12 @@
   
   
     <li class="md-nav__item">
-      <a href="install/" class="md-nav__link">
+      <a href="../usage/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Installation
+    使用说明
     
   </span>
   
@@ -521,12 +602,12 @@
   
   
     <li class="md-nav__item">
-      <a href="usage/" class="md-nav__link">
+      <a href="../api/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Usage
+    API参考
     
   </span>
   
@@ -543,34 +624,12 @@
   
   
     <li class="md-nav__item">
-      <a href="api/" class="md-nav__link">
+      <a href="../examples/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    API
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="examples/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Examples
+    示例代码
     
   </span>
   
@@ -593,7 +652,7 @@
                   <div class="md-sidebar__inner">
                     
 
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+<nav class="md-nav md-nav--secondary" aria-label="目录">
   
   
   
@@ -602,52 +661,109 @@
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
-      Table of contents
+      目录
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#overview" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      Overview
+      中文安装指南
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="中文安装指南">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      系统要求
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#key-features" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#pypi" class="md-nav__link">
     <span class="md-ellipsis">
-      Key Features
+      从 PyPI 安装（推荐）
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#quick-start" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
-      Quick Start
+      从源码安装
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#use-cases" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
-      Use Cases
+      开发环境安装
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#system-requirements" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
-      System Requirements
+      验证安装
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      依赖包
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="依赖包">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      必需依赖
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      可选依赖
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      开发依赖
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -670,47 +786,61 @@
   
 
 
-<p><img alt="Coords-NSGA2" src="logo.drawio.svg" /></p>
-<h1 id="welcome-to-coords-nsga2">Welcome to Coords-NSGA2<a class="headerlink" href="#welcome-to-coords-nsga2" title="Permanent link">&para;</a></h1>
+<h1 id="_1">安装指南<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
 <blockquote>
-<p><strong>⚠️ Important Notice</strong>: This document is AI-generated based on source-code analysis. Although we strive for accuracy, inconsistencies or issues may still exist. We are actively improving and validating all content. If you encounter any problems, please report them promptly.</p>
+<p><strong>⚠️ 重要提示</strong>: 本文档是基于源码分析由AI生成的。虽然我们努力确保准确性，但仍可能存在不一致或问题。我们正在积极改进和验证所有内容。如遇到任何问题，请及时报告。</p>
 </blockquote>
-<p>Coords-NSGA2 is a Python library for multi-objective optimization of coordinate layouts, built upon an enhanced version of the NSGA-II algorithm.</p>
-<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
-<p>Coords-NSGA2 is a Python library specifically designed for optimizing the layout of coordinate points, based on an improved implementation of the classic NSGA-II (Non-Dominated Sorting Genetic Algorithm II).</p>
-<h2 id="key-features">Key Features<a class="headerlink" href="#key-features" title="Permanent link">&para;</a></h2>
+<h2 id="_2">中文安装指南<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h3 id="_3">系统要求<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
 <ul>
-<li><strong>Coordinate-focused optimization</strong>: Purpose-built for optimizing point layouts  </li>
-<li><strong>Specialized constraints</strong>: Built-in support for inter-point spacing, boundary limits, and custom constraints  </li>
-<li><strong>Customized genetic operators</strong>: Crossover and mutation operators tailored to coordinate data  </li>
-<li><strong>Multi-objective optimization</strong>: Leveraging the proven NSGA-II algorithm  </li>
-<li><strong>Flexible region definitions</strong>: Supports both polygonal and rectangular regions  </li>
-<li><strong>Lightweight and extensible</strong>: Easy to add custom operators and constraints  </li>
-<li><strong>Progress tracking</strong>: Built-in progress bar and optimization history  </li>
-<li><strong>Save/Load capability</strong>: Persist and restore optimization state  </li>
+<li>Python 3.9 或更高版本</li>
+<li>pip 包管理器</li>
 </ul>
-<h2 id="quick-start">Quick Start<a class="headerlink" href="#quick-start" title="Permanent link">&para;</a></h2>
+<h3 id="pypi">从 PyPI 安装（推荐）<a class="headerlink" href="#pypi" title="Permanent link">&para;</a></h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a>pip<span class="w"> </span>install<span class="w"> </span>coords-nsga2
+</code></pre></div></td></tr></table></div>
+<h3 id="_4">从源码安装<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p>如果您想安装最新开发版本或修改代码：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
+<span class="normal"><a href="#__codelineno-1-2">2</a></span>
+<span class="normal"><a href="#__codelineno-1-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/ZXF1001/coords-nsga2.git
+<a id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="nb">cd</span><span class="w"> </span>coords-nsga2
+<a id="__codelineno-1-3" name="__codelineno-1-3"></a>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.
+</code></pre></div></td></tr></table></div>
+<h3 id="_5">开发环境安装<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<p>如果您想参与开发：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
+<span class="normal"><a href="#__codelineno-2-2">2</a></span>
+<span class="normal"><a href="#__codelineno-2-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/ZXF1001/coords-nsga2.git
+<a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="nb">cd</span><span class="w"> </span>coords-nsga2
+<a id="__codelineno-2-3" name="__codelineno-2-3"></a>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;.[test]&quot;</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="_6">验证安装<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p>安装完成后，您可以通过以下方式验证安装：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span>
+<span class="normal"><a href="#__codelineno-3-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">coords_nsga2</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="nb">print</span><span class="p">(</span><span class="n">coords_nsga2</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="_7">依赖包<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<h3 id="_8">必需依赖<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
 <ul>
-<li><strong>Installation</strong>: See the <a href="install/">Installation Guide</a>  </li>
-<li><strong>Usage</strong>: Detailed tutorial in the <a href="usage/">User Guide</a>  </li>
-<li><strong>API Reference</strong>: Refer to the <a href="api/">API Documentation</a>  </li>
-<li><strong>Examples</strong>: Browse the <a href="examples/">Example Code</a>  </li>
+<li><strong>numpy &gt;= 1.23</strong>: 数值计算库</li>
+<li><strong>tqdm &gt;= 4</strong>: 进度条显示</li>
+<li><strong>shapely &gt;= 2</strong>: 几何计算库</li>
 </ul>
-<h2 id="use-cases">Use Cases<a class="headerlink" href="#use-cases" title="Permanent link">&para;</a></h2>
+<h3 id="_9">可选依赖<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
 <ul>
-<li>Wind turbine layout optimization  </li>
-<li>Sensor network deployment  </li>
-<li>Facility location problems  </li>
-<li>Robot path planning  </li>
-<li>Any scenario requiring optimized coordinate layouts  </li>
+<li><strong>scipy</strong>: 用于距离计算和其他科学计算</li>
+<li><strong>matplotlib</strong>: 用于结果可视化</li>
 </ul>
-<h2 id="system-requirements">System Requirements<a class="headerlink" href="#system-requirements" title="Permanent link">&para;</a></h2>
+<h3 id="_10">开发依赖<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
 <ul>
-<li>Python 3.9+  </li>
-<li>NumPy &gt;= 1.23  </li>
-<li>tqdm &gt;= 4  </li>
-<li>Shapely &gt;= 2  </li>
-<li>SciPy (optional, for distance computations)  </li>
+<li><strong>pytest &gt;= 8.2</strong>: 测试框架</li>
+<li><strong>pytest-cov &gt;= 5</strong>: 测试覆盖率</li>
+<li><strong>coverage[toml] &gt;= 7.5</strong>: 代码覆盖率</li>
+<li><strong>hypothesis &gt;= 6.100</strong>: 属性测试</li>
+<li><strong>ruff &gt;= 0.11</strong>: 代码格式化和检查</li>
+<li><strong>pre-commit &gt;= 3.7</strong>: Git钩子</li>
 </ul>
 
 
@@ -735,7 +865,7 @@
           <button type="button" class="md-top md-icon" data-md-component="top" hidden>
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
-  Back to top
+  回到页面顶部
 </button>
         
       </main>
@@ -766,10 +896,10 @@
     
     
       
-      <script id="__config" type="application/json">{"base": ".", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "search.highlight", "content.code.copy"], "search": "assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
     
     
-      <script src="assets/javascripts/bundle.92b07e13.min.js"></script>
+      <script src="../../assets/javascripts/bundle.92b07e13.min.js"></script>
       
     
   </body>
