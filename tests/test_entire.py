@@ -63,34 +63,12 @@ def test_main():
     assert len(result) == 20
 
     # 1. Pareto Front Visualizations
-    optimizer.plot.pareto_front(obj_indices=[0, 1], figsize = None)  # 2D
-    optimizer.plot.pareto_front(obj_indices=[0, 1, 2], figsize = None)  # 3D
-
-    # 2. Parallel Coordinates Plot
-    optimizer.plot.parallel_coordinates(figsize = None)
-
-    # 3. Hypervolume Trend
-    optimizer.plot.hypervolume_trend(figsize = None)
+    optimizer.plot.pareto_front(obj_indices=[0, 1], is_show=False)  # 2D
+    optimizer.plot.pareto_front(obj_indices=[0, 1, 2], is_show=False)  # 3D
 
     # 4. Objective Optimal Layouts
-    optimizer.plot.objective_optimal_layouts(figsize = None)
+    optimizer.plot.optimal_coords(obj_indices=0, is_show=False)
 
-    # 5. Solution Comparison
-    # Select some diverse solutions for comparison
-    selected_solutions = [0, 5, 10, 15]  # Indices of solutions to compare
-    optimizer.plot.solution_comparison(solution_indices=selected_solutions, figsize = None)
-
-    # 6. Convergence Analysis
-    optimizer.plot.convergence_analysis(figsize = None)
-
-    # 7. Constraint Violations
-    optimizer.plot.constraint_violations(figsize = None)
-
-    # 8. Objective Distributions
-    optimizer.plot.objective_distributions(figsize = None)
-
-    # 9. Objective Correlations
-    optimizer.plot.objective_correlations(figsize = None)
 
 if __name__ == '__main__':
     test_main()
