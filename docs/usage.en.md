@@ -72,7 +72,7 @@ print(f"Optimization complete! Result shape: {result.shape}")
 print(f"Population size: {len(result)}")
 print(f"Points per solution: {result.shape[1]}")
 # Visualize optimal layouts for each objective
-optimizer.plot.optimal_coords()
+optimizer.plot.optimal_coords(obj_indices=0)
 ```
 
 ### Region Definition

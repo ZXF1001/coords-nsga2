@@ -92,7 +92,7 @@ optimizer = CoordsNSGA2(
 result = optimizer.run(1000)
 
 # Visualize optimal layouts for each objective
-optimizer.plot.optimal_coords()
+optimizer.plot.optimal_coords(obj_indices=0)
 
 # Access results
 print(f"Result shape: {result.shape}")
