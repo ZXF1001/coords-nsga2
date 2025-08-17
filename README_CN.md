@@ -91,6 +91,9 @@ optimizer = CoordsNSGA2(
 # 运行优化
 result = optimizer.run(1000)
 
+# 可视化各目标函数的最优布局
+optimizer.plot.objective_optimal_layouts()
+
 # 访问结果
 print(f"结果形状: {result.shape}")
 print(f"优化历史长度: {len(optimizer.P_history)}")
