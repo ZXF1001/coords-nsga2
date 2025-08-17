@@ -91,6 +91,9 @@ optimizer = CoordsNSGA2(
 # Run optimization
 result = optimizer.run(1000)
 
+# Visualize optimal layouts for each objective
+optimizer.plot.objective_optimal_layouts()
+
 # Access results
 print(f"Result shape: {result.shape}")
 print(f"Number of objectives: {len(optimizer.values_P)}")

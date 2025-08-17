@@ -1,4 +1,3 @@
-import matplotlib.pyplot as plt
 import numpy as np
 from scipy.spatial import distance
 
@@ -44,19 +43,5 @@ optimizer = CoordsNSGA2(
 )
 result = optimizer.run(1000, verbose=True) # 设置为True显示进度条，False则不显示
 
-# 获取最终的目标函数值
-final_values = optimizer.values_P
-v1_max_index = final_values[0].argmax()
-v1_min_index = final_values[0].argmin()
-
-# 绘制结果
-plt.figure(figsize=(10, 6))
-plt.scatter(result[v1_max_index, :, 0], result[v1_max_index, :, 1], 
-           color='red', label='Best Solution')
-plt.scatter(result[v1_min_index, :, 0], result[v1_min_index, :, 1], 
-           color='blue', label='Worst Solution')
-
-# 绘制多边形边界
-x, y = region.exterior.xy
-plt.fill(x, y, alpha=0.2, fc='gray', ec='black')
-plt.show()
+# 可视化各目标函数的最优布局
+optimizer.plot.example(arg1=1, arg2=2)

@@ -71,6 +71,8 @@ result = optimizer.run(1000)
 print(f"Optimization complete! Result shape: {result.shape}")
 print(f"Population size: {len(result)}")
 print(f"Points per solution: {result.shape[1]}")
+# Visualize optimal layouts for each objective
+optimizer.plot.objective_optimal_layouts()
 ```
 
 ### Region Definition
