@@ -72,7 +72,7 @@ print(f"优化完成！结果形状: {result.shape}")
 print(f"种群大小: {len(result)}")
 print(f"每个解的坐标点数: {result.shape[1]}")
 # 可视化各目标函数的最优布局
-optimizer.plot.objective_optimal_layouts()
+optimizer.plot.optimal_coords()
 ```
 
 ### 区域定义
