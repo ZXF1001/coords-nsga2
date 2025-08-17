@@ -8,6 +8,7 @@ from .operators.mutation import coords_mutation
 from .operators.selection import coords_selection
 from .spatial import create_points_in_polygon
 from .utils import crowding_distance, fast_non_dominated_sort
+from .visualization import Plotting
 
 
 class Problem:
@@ -85,20 +86,14 @@ class CoordsNSGA2:
         self.P_history = [self.P]  # 记录每一代的解
         self.values_history = [self.values_P]  # 记录每一代的所有目标函数值
         
-        # 添加可视化代理
-        self._plot = None
+        # 初始化可视化模块
+        self.plot = Plotting(self)
 
         # todo: 这部分未来要放在optimizer的定义的参数中
         self.crossover = coords_crossover  # 使用外部定义的crossover函数
         self.mutation = coords_mutation  # 使用外部定义的mutation函数
         self.selection = coords_selection  # 使用外部定义的selection函数
     
-    @property
-    def plot(self):
-        if self._plot is None:
-            from .visualization.plotter import VisualizationPlotter
-            self._plot = VisualizationPlotter(self)
-        return self._plot
     
     def get_next_population(self, R,
                             population_sorted_in_fronts,

@@ -44,4 +44,4 @@ optimizer = CoordsNSGA2(
 result = optimizer.run(1000, verbose=True) # 设置为True显示进度条，False则不显示
 
 # 可视化各目标函数的最优布局
-optimizer.plot.objective_optimal_layouts()
+optimizer.plot.example(arg1=1, arg2=2)
