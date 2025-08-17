@@ -88,4 +88,5 @@ def plot_solution_comparison(optimizer, solution_indices=None, figsize=(15, 10),
     plt.tight_layout()
     if save_path:
         plt.savefig(save_path, dpi=300, bbox_inches='tight')
-    plt.show()
+    if figsize:
+        plt.show()

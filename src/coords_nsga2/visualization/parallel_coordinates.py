@@ -53,4 +53,5 @@ def plot_parallel_coordinates(optimizer, figsize=(12, 6), save_path=None):
     plt.tight_layout()
     if save_path:
         plt.savefig(save_path, dpi=300, bbox_inches='tight')
-    plt.show()
+    if figsize:
+        plt.show()

@@ -101,7 +101,7 @@ def plot_hypervolume_trend(optimizer, reference_point=None, figsize=(10, 6), sav
             focused_generations = range(start_idx, len(hypervolumes))
             
             # Create subplot with both full and focused views
-            fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(figsize[0], figsize[1]*1.5))
+            fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(figsize[0], figsize[1]*1.5) if figsize else (10, 9))
             
             # Full view
             ax1.plot(range(len(hypervolumes)), hypervolumes, 'b-', linewidth=2, marker='o', markersize=3)
@@ -149,7 +149,8 @@ def plot_hypervolume_trend(optimizer, reference_point=None, figsize=(10, 6), sav
     plt.tight_layout()
     if save_path:
         plt.savefig(save_path, dpi=300, bbox_inches='tight')
-    plt.show()
+    if figsize:
+        plt.show()
     
     # Print summary statistics
     print("Hypervolume Statistics:")

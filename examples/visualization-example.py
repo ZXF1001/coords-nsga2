@@ -3,15 +3,11 @@ Comprehensive visualization example for coords-nsga2
 This example demonstrates all available visualization functions
 """
 
-import matplotlib.pyplot as plt
 import numpy as np
 from scipy.spatial import distance
 
 from coords_nsga2 import CoordsNSGA2, Problem
 from coords_nsga2.spatial import region_from_points
-
-# Set matplotlib to use a backend that works without Chinese font issues
-plt.rcParams['font.family'] = 'DejaVu Sans'
 
 # Create optimization region
 region = region_from_points([

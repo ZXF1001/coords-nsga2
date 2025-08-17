@@ -59,4 +59,5 @@ def plot_pareto_front(optimizer, obj_indices=None, figsize=(12, 8), save_path=No
     plt.tight_layout()
     if save_path:
         plt.savefig(save_path, dpi=300, bbox_inches='tight')
-    plt.show()
+    if figsize:
+        plt.show()

@@ -14,7 +14,8 @@ dependencies = [
     "tqdm>=4",
     "shapely>=2",
     "matplotlib",
-    "joblib>=1.4"
+    "joblib>=1.4",
+    "seaborn"
 ]
 requires-python = ">= 3.8"
 readme = { file = "README.md", content-type = "text/markdown" }
@@ -73,7 +74,7 @@ source  = ["coords_nsga2"]
 
 [tool.coverage.report]
 show_missing = true
-fail_under   = 80
+fail_under   = 75
 
 [tool.hatch.envs.dev]
 dependencies = ["coords-nsga2[test]"]

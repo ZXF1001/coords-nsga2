@@ -84,4 +84,5 @@ def plot_constraint_violations(optimizer, figsize=(12, 8), save_path=None):
     plt.tight_layout()
     if save_path:
         plt.savefig(save_path, dpi=300, bbox_inches='tight')
-    plt.show()
+    if figsize:
+        plt.show()
