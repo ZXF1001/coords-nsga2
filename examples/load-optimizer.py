@@ -1,18 +1,11 @@
 import numpy as np
 from scipy.spatial import distance
 
-from coords_nsga2 import CoordsNSGA2, Problem
-from coords_nsga2.spatial import region_from_points
+from coords_nsga2 import CoordsNSGA2
 
-# 创建边界
-region = region_from_points([
-    [0, 0],
-    [1, 0],
-    [2, 1],
-    [1, 1],
-])
+# 下面的三个函数还是得手动重新定义一下
 
-    # Define multiple objective functions
+# Define multiple objective functions
 def objective_1(coords):
     """Maximize sum of x and y coordinates (prefer upper-right)"""
     return np.sum(coords[:, 0]) + np.sum(coords[:, 1])
@@ -44,23 +37,6 @@ def constraint_spacing(coords):
     violations = min_spacing - dist_list[dist_list < min_spacing]
     return np.sum(violations)
 
-problem = Problem(
-    objectives=[objective_1, objective_2, objective_3, objective_4],
-    n_points=10,
-    region=region,
-    constraints=[constraint_spacing]
-)
-
-optimizer = CoordsNSGA2(
-    problem=problem,
-    pop_size=20,
-    prob_crs=0.5,
-    prob_mut=0.1
-)
-result = optimizer.run(500, verbose=True) # 设置为True显示进度条，False则不显示
-
-# 保存当前状态
-optimizer.save("examples/data/test_optimizer.pkl")
-
-# 可视化各目标函数的最优布局
-optimizer.plot.optimal_coords(obj_indices=[0, 1])
+loaded_optimizer = CoordsNSGA2.load("examples/data/test_optimizer.pkl")
+loaded_optimizer.run(200, verbose=True)
+loaded_optimizer.plot.pareto_front([0,1])

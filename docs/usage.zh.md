@@ -72,7 +72,7 @@ print(f"优化完成！结果形状: {result.shape}")
 print(f"种群大小: {len(result)}")
 print(f"每个解的坐标点数: {result.shape[1]}")
 # 可视化各目标函数的最优布局
-optimizer.plot.objective_optimal_layouts()
+optimizer.plot.optimal_coords(obj_indices=0)
 ```
 
 ### 区域定义
@@ -183,8 +183,8 @@ pareto_front = optimizer.P[fronts[0]]
 
 ```python
 # 保存优化状态
-optimizer.save("optimization_result.npz")
+optimizer.save("optimization_result.pkl")
 
 # 加载优化状态
-optimizer.load("optimization_result.npz")
+optimizer.load("optimization_result.pkl")
 ```

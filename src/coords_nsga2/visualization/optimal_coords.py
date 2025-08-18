@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+import numpy as np
 
 
 def _plot_region_boundary(ax, region):
@@ -36,31 +37,11 @@ def plot_optimal_coords(optimizer, obj_indices, figsize, is_show):
 
 
 if __name__ == "__main__":
-    import numpy as np
+    from coords_nsga2 import CoordsNSGA2
+    # 这些是pickle读取时必要的，但是内容不重要
+    objective_1 = objective_2 = objective_3 = objective_4 = constraint_spacing = None
 
-    from coords_nsga2.spatial import region_from_points
+    loaded_optimizer = CoordsNSGA2.load("examples/data/test_optimizer.pkl")
 
-    test_data = np.load("examples/data/test.npz")
-
-    region = region_from_points([
-        [0, 0],
-        [2, 0],
-        [2, 1.5],
-        [1, 2],
-        [0, 1.5],
-    ])
-
-    class Problem:
-        def __init__(self):
-            self.region = region
-
-    class Optimizer:
-        def __init__(self, data):
-            self.values_P = data["values_P"]
-            self.P = data["P"]
-            self.problem = Problem()
-
-    optimizer = Optimizer(test_data)
-
-    plot_optimal_coords(optimizer, 1, (8, 6), True)
-    plot_optimal_coords(optimizer, [0, 1], (8, 6), True)
+    plot_optimal_coords(loaded_optimizer, 1, (8, 6), True)
+    plot_optimal_coords(loaded_optimizer, [0, 1], (8, 6), True)

@@ -72,7 +72,7 @@ print(f"Optimization complete! Result shape: {result.shape}")
 print(f"Population size: {len(result)}")
 print(f"Points per solution: {result.shape[1]}")
 # Visualize optimal layouts for each objective
-optimizer.plot.objective_optimal_layouts()
+optimizer.plot.optimal_coords(obj_indices=0)
 ```
 
 ### Region Definition
@@ -183,8 +183,8 @@ pareto_front = optimizer.P[fronts[0]]
 
 ```python
 # Save optimization state
-optimizer.save("optimization_result.npz")
+optimizer.save("optimization_result.pkl")
 
 # Load optimization state
-optimizer.load("optimization_result.npz")
+optimizer.load("optimization_result.pkl")
 ```

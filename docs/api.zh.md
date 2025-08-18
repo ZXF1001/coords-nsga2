@@ -129,14 +129,14 @@ CoordsNSGA2(problem, pop_size, prob_crs, prob_mut, random_seed=42, n_jobs=1)
 - `numpy.ndarray`: 最终种群
 
 #### save(path)
-保存优化状态到文件。
+保存优化状态到pkl文件。
 
 **参数：**
 
 - `path` (str): 保存文件路径
 
 #### load(path)
-从文件加载优化状态。
+从pkl文件加载优化状态。
 
 **参数：**
 
