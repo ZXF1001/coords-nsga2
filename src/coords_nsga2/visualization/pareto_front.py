@@ -33,13 +33,25 @@ def plot_pareto_front(optimizer, obj_indices, figsize, is_show):
 
 
 if __name__ == "__main__":
-    import numpy as np
-    test_data = np.load("examples/data/test.npz")
+    from coords_nsga2 import CoordsNSGA2
+    # 这些是pickle读取时必要的，但是内容不重要
 
-    class Optimizer:
-        def __init__(self, data):
-            self.values_P = data["values_P"]
+    def objective_1():
+        pass
 
-    optimizer = Optimizer(test_data)
-    plot_pareto_front(optimizer, [0, 1], (8, 6), True)
-    plot_pareto_front(optimizer, [0, 1, 2], (8, 6), True)
+    def objective_2():
+        pass
+
+    def objective_3():
+        pass
+
+    def objective_4():
+        pass
+
+    def constraint_spacing():
+        pass
+
+    loaded_optimizer = CoordsNSGA2.load("examples/data/test_optimizer.pkl")
+
+    plot_pareto_front(loaded_optimizer, [0, 1], (8, 6), True)
+    plot_pareto_front(loaded_optimizer, [0, 1, 2], (8, 6), True)

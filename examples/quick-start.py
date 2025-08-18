@@ -12,26 +12,43 @@ region = region_from_points([
     [1, 1],
 ])
 
-# 定义目标函数1：更靠近右上方
+    # Define multiple objective functions
 def objective_1(coords):
+    """Maximize sum of x and y coordinates (prefer upper-right)"""
     return np.sum(coords[:, 0]) + np.sum(coords[:, 1])
 
-# 定义目标函数2：布局更分散
 def objective_2(coords):
+    """Maximize layout dispersion"""
     return np.std(coords[:, 0]) + np.std(coords[:, 1])
 
-spacing = 0.05  # 间距限制
-def constraint_1(coords):
+def objective_3(coords):
+    """Minimize distance to center"""
+    center = np.array([1.0, 1.0])  # Region center
+    distances = np.linalg.norm(coords - center, axis=1)
+    return -np.mean(distances)  # Negative for maximization
+
+def objective_4(coords):
+    """Maximize minimum distance between points"""
+    if len(coords) < 2:
+        return 0
+    dist_matrix = distance.pdist(coords)
+    return np.min(dist_matrix)
+
+
+def constraint_spacing(coords):
+    min_spacing = 0.1  # 间距限制
+    """Minimum spacing constraint between points"""
+    if len(coords) < 2:
+        return 0
     dist_list = distance.pdist(coords)
-    penalty_list = spacing-dist_list[dist_list < spacing]
-    penalty_sum = np.sum(penalty_list)
-    return penalty_sum
+    violations = min_spacing - dist_list[dist_list < min_spacing]
+    return np.sum(violations)
 
 problem = Problem(
-    objectives=[objective_1, objective_2],
+    objectives=[objective_1, objective_2, objective_3, objective_4],
     n_points=10,
     region=region,
-    constraints=[constraint_1]
+    constraints=[constraint_spacing]
 )
 
 optimizer = CoordsNSGA2(
@@ -40,10 +57,10 @@ optimizer = CoordsNSGA2(
     prob_crs=0.5,
     prob_mut=0.1
 )
-result = optimizer.run(1000, verbose=True) # 设置为True显示进度条，False则不显示
+result = optimizer.run(500, verbose=True) # 设置为True显示进度条，False则不显示
 
 # 保存当前状态
 optimizer.save("examples/data/test_optimizer.pkl")
 
 # 可视化各目标函数的最优布局
-optimizer.plot.optimal_coords(obj_indices=0)
+optimizer.plot.optimal_coords(obj_indices=[0, 1])

@@ -183,8 +183,8 @@ pareto_front = optimizer.P[fronts[0]]
 
 ```python
 # 保存优化状态
-optimizer.save("optimization_result.npz")
+optimizer.save("optimization_result.pkl")
 
 # 加载优化状态
-optimizer.load("optimization_result.npz")
+optimizer.load("optimization_result.pkl")
 ```

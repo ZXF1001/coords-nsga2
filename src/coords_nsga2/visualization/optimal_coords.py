@@ -37,31 +37,25 @@ def plot_optimal_coords(optimizer, obj_indices, figsize, is_show):
 
 
 if __name__ == "__main__":
-    import numpy as np
+    from coords_nsga2 import CoordsNSGA2
+    # 这些是pickle读取时必要的，但是内容不重要
 
-    from coords_nsga2.spatial import region_from_points
+    def objective_1():
+        pass
 
-    test_data = np.load("examples/data/test.npz")
+    def objective_2():
+        pass
 
-    region = region_from_points([
-        [0, 0],
-        [2, 0],
-        [2, 1.5],
-        [1, 2],
-        [0, 1.5],
-    ])
+    def objective_3():
+        pass
 
-    class Problem:
-        def __init__(self):
-            self.region = region
+    def objective_4():
+        pass
 
-    class Optimizer:
-        def __init__(self, data):
-            self.values_P = data["values_P"]
-            self.P = data["P"]
-            self.problem = Problem()
+    def constraint_spacing():
+        pass
 
-    optimizer = Optimizer(test_data)
+    loaded_optimizer = CoordsNSGA2.load("examples/data/test_optimizer.pkl")
 
-    plot_optimal_coords(optimizer, 1, (8, 6), True)
-    plot_optimal_coords(optimizer, [0, 1], (8, 6), True)
+    plot_optimal_coords(loaded_optimizer, 1, (8, 6), True)
+    plot_optimal_coords(loaded_optimizer, [0, 1], (8, 6), True)
