@@ -39,21 +39,7 @@ def plot_optimal_coords(optimizer, obj_indices, figsize, is_show):
 if __name__ == "__main__":
     from coords_nsga2 import CoordsNSGA2
     # 这些是pickle读取时必要的，但是内容不重要
-
-    def objective_1():
-        pass
-
-    def objective_2():
-        pass
-
-    def objective_3():
-        pass
-
-    def objective_4():
-        pass
-
-    def constraint_spacing():
-        pass
+    objective_1 = objective_2 = objective_3 = objective_4 = constraint_spacing = None
 
     loaded_optimizer = CoordsNSGA2.load("examples/data/test_optimizer.pkl")
 
