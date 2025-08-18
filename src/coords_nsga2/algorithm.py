@@ -5,8 +5,8 @@ import numpy as np
 from joblib import Parallel, delayed
 from tqdm import trange
 
-from .operators.crossover import coords_crossover
-from .operators.mutation import coords_mutation
+from .operators.crossover import coords_crossover, region_crossover
+from .operators.mutation import coords_mutation, variable_mutation
 from .operators.selection import coords_selection
 from .spatial import create_points_in_polygon
 from .utils import crowding_distance, fast_non_dominated_sort
@@ -21,19 +21,35 @@ class Problem:
         self.constraints = constraints
         self.penalty_weight = penalty_weight  # 可改为自适应
 
+        if isinstance(self.n_points, int):
+            self.variable_n_points = False
+        else:
+            assert len(self.n_points) == 2
+            self.variable_n_points = True
+            self.n_points_min = self.n_points[0]
+            self.n_points_max = self.n_points[1]
+
     def sample_population(self, pop_size):
-        coords = create_points_in_polygon(
-            self.region, pop_size * self.n_points)
-        return coords.reshape(pop_size, self.n_points, 2)
+        if self.variable_n_points:
+            # 可变坐标点数的代码
+            n_points_list = np.random.randint(
+                self.n_points_min, self.n_points_max+1, pop_size)
+            coords = [create_points_in_polygon(
+                self.region, n_p) for n_p in n_points_list]
+            return coords
+        else:
+            coords = create_points_in_polygon(
+                self.region, pop_size * self.n_points)
+            return coords.reshape(pop_size, self.n_points, 2)
 
     def evaluate(self, population, n_jobs=1):
         """
         评估种群中每个个体的目标函数值
-        
+
         参数:
             population: 种群，形状为(pop_size, n_points, 2)
             n_jobs: 并行计算的作业数，默认为1（串行计算）。当n_jobs不为1时，使用并行计算。
-        
+
         返回:
             values: 目标函数值，形状为(n_objectives, pop_size)
         """
@@ -49,33 +65,37 @@ class Problem:
                              for x in population])
                 values -= penalty
             return values
-        
+
         # 当n_jobs不为1时，使用joblib并行计算
         else:
             # 使用joblib并行计算每个个体的目标函数值
             def evaluate_individual(individual):
                 # 计算单个个体的所有目标函数值
-                obj_values = np.array([obj_func(individual) for obj_func in self.objectives])
-                
+                obj_values = np.array([obj_func(individual)
+                                      for obj_func in self.objectives])
+
                 # 计算约束违反惩罚（如果有约束）
                 if self.constraints:
-                    penalty = self.penalty_weight * np.sum([c(individual) for c in self.constraints])
+                    penalty = self.penalty_weight * \
+                        np.sum([c(individual) for c in self.constraints])
                     obj_values -= penalty
 
                 return obj_values
-            
+
             # 并行计算所有个体的目标函数值
-            results = Parallel(n_jobs=n_jobs)(delayed(evaluate_individual)(ind) for ind in population)
-            
+            results = Parallel(n_jobs=n_jobs)(
+                delayed(evaluate_individual)(ind) for ind in population)
+
             # 重新组织结果为所需的形状 (n_objectives, pop_size)
             values = np.array(results).T
-            
+
             return values
 
 
 class CoordsNSGA2:
     def __init__(self, problem, pop_size, prob_crs, prob_mut, random_seed=42, n_jobs=1):
         self.problem = problem
+        self.variable_n_points = self.problem.variable_n_points
         self.pop_size = pop_size
         self.prob_crs = prob_crs
         self.prob_mut = prob_mut
@@ -84,18 +104,22 @@ class CoordsNSGA2:
         np.random.seed(random_seed)
         assert pop_size % 2 == 0, "pop_size must be even number"
         self.P = self.problem.sample_population(pop_size)
-        self.values_P = self.problem.evaluate(self.P, n_jobs=self.n_jobs)  # 并行评估
+        self.values_P = self.problem.evaluate(
+            self.P, n_jobs=self.n_jobs)  # 并行评估
         self.P_history = [self.P]  # 记录每一代的解
         self.values_history = [self.values_P]  # 记录每一代的所有目标函数值
-        
+
         # 初始化可视化模块
         self.plot = Plotting(self)
+        if self.variable_n_points:
+            self.crossover = region_crossover  # 使用外部定义的crossover函数
+            self.mutation = variable_mutation  # 使用外部定义的mutation函数
+            self.selection = coords_selection  # 使用外部定义的selection函数
+        else:
+            self.crossover = coords_crossover  # 使用外部定义的crossover函数
+            self.mutation = coords_mutation  # 使用外部定义的mutation函数
+            self.selection = coords_selection  # 使用外部定义的selection函数
 
-        self.crossover = coords_crossover  # 使用外部定义的crossover函数
-        self.mutation = coords_mutation  # 使用外部定义的mutation函数
-        self.selection = coords_selection  # 使用外部定义的selection函数
-    
-    
     def get_next_population(self, R,
                             population_sorted_in_fronts,
                             crowding_distances):
