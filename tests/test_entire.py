@@ -38,9 +38,9 @@ def test_main():
         dist_matrix = distance.pdist(coords)
         return np.min(dist_matrix)
 
-    min_spacing = 0.1  # 间距限制
 
     def constraint_spacing(coords):
+        min_spacing = 0.1  # 间距限制
         """Minimum spacing constraint between points"""
         if len(coords) < 2:
             return 0

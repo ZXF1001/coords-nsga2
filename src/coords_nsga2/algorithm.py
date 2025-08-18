@@ -1,4 +1,6 @@
 # 自己开发的针对风力机坐标点位布局用的NSGA-II算法
+import pickle
+
 import numpy as np
 from joblib import Parallel, delayed
 from tqdm import trange
@@ -159,16 +161,20 @@ class CoordsNSGA2:
             # todo: 排序后再输出
         return self.P
 
-    def save(self, path):
-        # 将self.P, self.values_P, self.P_history, self.values_history保存到path
-        np.savez(path, P=self.P, values_P=self.values_P, P_history=self.P_history,
-                 values_history=self.values_history)
+    def save(self, filepath):
+        print("请确保优化器所用到的外部函数（objective和constraint）都是自我封闭的，如果用到了外部的全局变量，可能会导致后续load之后无法读取！")
+        try:
+            with open(filepath, 'wb') as f:
+                pickle.dump(self, f)
+            print(f"CoordsNSGA2 instance successfully saved to {filepath}")
+        except Exception as e:
+            print("Warning: Failed to save CoordsNSGA2 instance. This may be due to unpickleable objects (e.g., lambda functions or nested functions).")
+            print(f"Error details: {e}")
+            raise
 
-    def load(self, path):
-        # 从path中加载self.P, self.values_P, self.P_history, self.values_history
-        data = np.load(path)
-        self.P = data['P']
-        self.values_P = data['values_P']
-        self.P_history = data['P_history'].tolist()
-        self.values_history = data['values_history'].tolist()
-        print(f'Loaded generation {len(self.P_history)} successfully!')
+    @classmethod
+    def load(cls, filepath):
+        with open(filepath, 'rb') as f:
+            instance = pickle.load(f)
+        print(f"CoordsNSGA2 instance successfully loaded from {filepath}")
+        return instance

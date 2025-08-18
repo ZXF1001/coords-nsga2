@@ -21,7 +21,6 @@ def objective_2(coords):
     return np.std(coords[:, 0]) + np.std(coords[:, 1])
 
 spacing = 0.05  # 间距限制
-
 def constraint_1(coords):
     dist_list = distance.pdist(coords)
     penalty_list = spacing-dist_list[dist_list < spacing]
@@ -43,5 +42,8 @@ optimizer = CoordsNSGA2(
 )
 result = optimizer.run(1000, verbose=True) # 设置为True显示进度条，False则不显示
 
+# 保存当前状态
+optimizer.save("examples/data/test_optimizer.pkl")
+
 # 可视化各目标函数的最优布局
-optimizer.plot.example(arg1=1, arg2=2)
+optimizer.plot.optimal_coords(obj_indices=0)
