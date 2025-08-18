@@ -183,8 +183,8 @@ pareto_front = optimizer.P[fronts[0]]
 
 ```python
 # Save optimization state
-optimizer.save("optimization_result.npz")
+optimizer.save("optimization_result.pkl")
 
 # Load optimization state
-optimizer.load("optimization_result.npz")
+optimizer.load("optimization_result.pkl")
 ```

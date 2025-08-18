@@ -129,14 +129,14 @@ Run the optimization algorithm.
 - `numpy.ndarray`: Final population.
 
 #### save(path)
-Save the optimiser state to a file.
+Save the optimiser state to a pkl file.
 
 **Parameters:**
 
 - `path` (str): File path to save to.s
 
 #### load(path)
-Load the optimiser state from a file.
+Load the optimiser state from a pkl file.
 
 **Parameters:**
 
@@ -159,10 +159,10 @@ optimizer = CoordsNSGA2(
 result = optimizer.run(1000)
 
 # Save results
-optimizer.save("optimization_result.npz")
+optimizer.save("optimization_result.pkl")
 
 # Load results
-optimizer.load("optimization_result.npz")
+optimizer.load("optimization_result.pkl")
 ```
 
 ## Spatial Utilities

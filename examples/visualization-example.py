@@ -47,9 +47,8 @@ def objective_4(coords):
 
 
 # Define constraints
+
 min_spacing = 0.1
-
-
 def constraint_spacing(coords):
     """Minimum spacing constraint between points"""
     if len(coords) < 2:
@@ -93,9 +92,9 @@ optimizer.plot.pareto_front(obj_indices=[0, 1, 2])  # 3D
 # print("\n3. Plotting Hypervolume Trend...")
 # optimizer.plot.hypervolume_trend()
 
-# # 4. Objective Optimal Layouts
-# print("\n4. Plotting Optimal Layouts for Each Objective...")
-# optimizer.plot.objective_optimal_layouts()
+# 4. Objective Optimal Layouts
+print("\n4. Plotting Optimal Layouts for Each Objective...")
+optimizer.plot.optimal_coords(obj_indices=0)
 
 # # 5. Solution Comparison
 # print("\n5. Plotting Solution Comparison...")
