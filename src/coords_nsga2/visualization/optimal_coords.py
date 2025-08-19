@@ -23,10 +23,16 @@ def plot_optimal_coords(optimizer, obj_indices, figsize, is_show):
         best_solution = optimizer.P[best_idx]
         ax.scatter(best_solution[:, 0], best_solution[:,
                    1],  alpha=0.8, edgecolors='black')
+        
+        is_max_or_min = ""
+        if hasattr(optimizer, "n_points_max"):
+            if len(best_solution) == optimizer.n_points_max:
+                is_max_or_min = " (Max)"
+            elif len(best_solution) == optimizer.n_points_min:
+                is_max_or_min = " (Min)"
 
         ax.set_title(f'Optimal Layout for Objective {obj_index}\n'
-                     f'Value: {optimizer.values_P[obj_index][best_idx]:.4f}\t'
-                     f'Points Number: {len(best_solution)}')
+                     f'Value: {optimizer.values_P[obj_index][best_idx]:.4f}, Points Number: {len(best_solution)}{is_max_or_min}')
         ax.set_xlabel('X Coordinate')
         ax.set_ylabel('Y Coordinate')
         ax.grid(True, alpha=0.3)

@@ -46,7 +46,7 @@ def constraint_spacing(coords):
 
 problem = Problem(
     objectives=[objective_1, objective_2, objective_3, objective_4],
-    n_points=[10,30],
+    n_points=[10,20],
     region=region,
     constraints=[constraint_spacing]
 )
@@ -58,6 +58,6 @@ optimizer = CoordsNSGA2(
     prob_mut=0.1
 )
 
-result = optimizer.run(1000, verbose=True) # 设置为True显示进度条，False则不显示
+result = optimizer.run(500, verbose=True) # 设置为True显示进度条，False则不显示
 optimizer.plot.optimal_coords([0,1,2,3])
 optimizer.plot.pareto_front([0,1,2])
