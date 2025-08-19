@@ -12,7 +12,7 @@ def coords_crossover(population, prob_crs):
     return population
 
 
-def region_crossover(population_list, prob_crs, max_attempts=100):
+def region_crossover(population_list, prob_crs, n_points_min, n_points_max, max_attempts=100):
     """
     区域交叉算子    
     Args:
@@ -57,11 +57,15 @@ def region_crossover(population_list, prob_crs, max_attempts=100):
                     region1 = parent1[mask1]
                     region2 = parent2[mask2]
 
-                    result[i] = np.vstack(
+                    result_1 = np.vstack(
                         [parent1[~mask1], region2]) if region2.size > 0 else parent1[~mask1]
-                    result[i + 1] = np.vstack(
+                    result_2 = np.vstack(
                         [parent2[~mask2], region1]) if region1.size > 0 else parent2[~mask2]
-                    break
+                    # 限制点的范围
+                    if len(result_1) >= n_points_min and len(result_1) <= n_points_max and len(result_2) >= n_points_min and len(result_2) <= n_points_max:
+                        result[i] = result_1
+                        result[i + 1] = result_2
+                        break
 
     return result
 
@@ -76,5 +80,5 @@ if __name__ == "__main__":
         np.array([[0.60111501, 0.70807258],
                   [0.02058449, 0.96990985]])
     ]
-    res = region_crossover(population_list, 1)
+    res = region_crossover(population_list, 1, 1, 5)
     print(res)

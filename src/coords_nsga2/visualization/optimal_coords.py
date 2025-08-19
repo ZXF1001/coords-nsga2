@@ -25,7 +25,8 @@ def plot_optimal_coords(optimizer, obj_indices, figsize, is_show):
                    1],  alpha=0.8, edgecolors='black')
 
         ax.set_title(f'Optimal Layout for Objective {obj_index}\n'
-                     f'Value: {optimizer.values_P[obj_index][best_idx]:.4f}')
+                     f'Value: {optimizer.values_P[obj_index][best_idx]:.4f}\t'
+                     f'Points Number: {len(best_solution)}')
         ax.set_xlabel('X Coordinate')
         ax.set_ylabel('Y Coordinate')
         ax.grid(True, alpha=0.3)

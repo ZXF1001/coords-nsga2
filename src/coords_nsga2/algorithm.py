@@ -111,14 +111,16 @@ class CoordsNSGA2:
 
         # 初始化可视化模块
         self.plot = Plotting(self)
+
+        self.selection = coords_selection  # 使用外部定义的selection函数
         if self.variable_n_points:
+            self.n_points_min = problem.n_points_min
+            self.n_points_max = problem.n_points_max
             self.crossover = region_crossover  # 使用外部定义的crossover函数
             self.mutation = variable_mutation  # 使用外部定义的mutation函数
-            self.selection = coords_selection  # 使用外部定义的selection函数
         else:
             self.crossover = coords_crossover  # 使用外部定义的crossover函数
             self.mutation = coords_mutation  # 使用外部定义的mutation函数
-            self.selection = coords_selection  # 使用外部定义的selection函数
 
     def get_next_population(self, R,
                             population_sorted_in_fronts,
@@ -148,7 +150,7 @@ class CoordsNSGA2:
                 sorted_front = np.array(front)[sorted_front_idx]
                 new_idx.extend(sorted_front[:remaining_size])
                 break
-        return R[new_idx]
+        return [R[i] for i in new_idx] if self.variable_n_points else R[new_idx]
 
     def run(self, gen=1000, verbose=True):
         if verbose:
@@ -158,13 +160,22 @@ class CoordsNSGA2:
 
         for _ in iterator:
             Q = self.selection(self.P, self.values_P)  # 选择
-            Q = self.crossover(Q, self.prob_crs)  # 交叉
-            Q = self.mutation(Q, self.prob_mut, self.problem.region)  # 变异
+            if self.variable_n_points:
+                Q = self.crossover(
+                    Q, self.prob_crs, self.n_points_min, self.n_points_max)  # 交叉
+                Q = self.mutation(
+                    Q, self.prob_mut, self.problem.region, self.n_points_min, self.n_points_max)
+                assert np.min([len(q) for q in Q]) >= self.n_points_min \
+                    and np.max([len(q) for q in Q]) <= self.n_points_max
+            else:
+                Q = self.crossover(Q, self.prob_crs)  # 交叉
+                Q = self.mutation(Q, self.prob_mut, self.problem.region)  # 变异
 
             values_Q = self.problem.evaluate(Q, n_jobs=self.n_jobs)  # 并行评估
 
             # 合并为R=(P,Q)
-            R = np.concatenate([self.P, Q])
+            R = self.P + Q if self.variable_n_points \
+                else np.concatenate([self.P, Q])
             values_R = np.concatenate([self.values_P, values_Q], axis=1)
 
             # 快速非支配排序

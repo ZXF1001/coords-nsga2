@@ -27,4 +27,20 @@ def coords_selection(population, values_P, tourn_size=3):
     candidates = compare_table[aspirants_idx]
     sorted_indices = np.lexsort((-candidates[..., 2], candidates[..., 1]))
     Q_idx = aspirants_idx[np.arange(pop_size), sorted_indices[:, 0]]
-    return population[Q_idx]
+
+    return [population[idx] for idx in Q_idx] if isinstance(population, list) else population[Q_idx]
+
+
+if __name__ == "__main__":
+    np.random.seed(42)
+    population_list = [
+        np.array([[0.37454012, 0.95071431],
+                  [0.73199394, 0.59865848],
+                  [0.15601864, 0.15599452],
+                  [0.05808361, 0.86617615]]),
+        np.array([[0.60111501, 0.70807258],
+                  [0.02058449, 0.96990985]])
+    ]
+    values_P = np.array([[4, 5], [2, 3], [3, 6]])
+    res = coords_selection(population_list, values_P)
+    print(res)
