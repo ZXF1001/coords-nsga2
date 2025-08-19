@@ -1027,7 +1027,7 @@
 <p><strong>Parameters:</strong></p>
 <ul>
 <li><code>objectives</code> (list[callable]): List of objective functions. Each function takes coords (n_points, 2) and returns a scalar.</li>
-<li><code>n_points</code> (int): Number of coordinate points to optimise.</li>
+<li><code>n_points</code> (int or list[int]): Number of coordinate points to optimise. Can be a fixed integer (e.g., <code>10</code>) or a list <code>[min, max]</code> to allow the number of points to vary within a range during optimization.</li>
 <li><code>region</code> (shapely.geometry.Polygon): Shapely polygon defining the feasible region.</li>
 <li><code>constraints</code> (list, optional): List of constraint functions. Default is an empty list.</li>
 <li><code>penalty_weight</code> (float, optional): Weight applied to constraint violations. Default is 1e6.</li>
@@ -1152,13 +1152,13 @@
 <li><code>numpy.ndarray</code>: Final population.</li>
 </ul>
 <h4 id="savepath">save(path)<a class="headerlink" href="#savepath" title="Permanent link">&para;</a></h4>
-<p>Save the optimiser state to a file.</p>
+<p>Save the optimiser state to a pkl file.</p>
 <p><strong>Parameters:</strong></p>
 <ul>
 <li><code>path</code> (str): File path to save to.s</li>
 </ul>
 <h4 id="loadpath">load(path)<a class="headerlink" href="#loadpath" title="Permanent link">&para;</a></h4>
-<p>Load the optimiser state from a file.</p>
+<p>Load the optimiser state from a pkl file.</p>
 <p><strong>Parameters:</strong></p>
 <ul>
 <li><code>path</code> (str): File path to load from.</li>
@@ -1195,10 +1195,10 @@
 <a id="__codelineno-3-12" name="__codelineno-3-12"></a><span class="n">result</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
 <a id="__codelineno-3-13" name="__codelineno-3-13"></a>
 <a id="__codelineno-3-14" name="__codelineno-3-14"></a><span class="c1"># Save results</span>
-<a id="__codelineno-3-15" name="__codelineno-3-15"></a><span class="n">optimizer</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;optimization_result.npz&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15"></a><span class="n">optimizer</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;optimization_result.pkl&quot;</span><span class="p">)</span>
 <a id="__codelineno-3-16" name="__codelineno-3-16"></a>
 <a id="__codelineno-3-17" name="__codelineno-3-17"></a><span class="c1"># Load results</span>
-<a id="__codelineno-3-18" name="__codelineno-3-18"></a><span class="n">optimizer</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;optimization_result.npz&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-18" name="__codelineno-3-18"></a><span class="n">optimizer</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;optimization_result.pkl&quot;</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
 <h2 id="spatial-utilities">Spatial Utilities<a class="headerlink" href="#spatial-utilities" title="Permanent link">&para;</a></h2>
 <h3 id="region_from_pointspoints">region_from_points(points)<a class="headerlink" href="#region_from_pointspoints" title="Permanent link">&para;</a></h3>

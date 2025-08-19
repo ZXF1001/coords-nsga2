@@ -1027,7 +1027,7 @@
 <p><strong>参数：</strong></p>
 <ul>
 <li><code>objectives</code> (list[callable]): 目标函数列表，每个函数接受 <code>coords (n_points, 2)</code> 并返回标量</li>
-<li><code>n_points</code> (int): 要优化的坐标点数量</li>
+<li><code>n_points</code> (int或list[int]): 要优化的坐标点数量。可以是固定整数（如 <code>10</code>）或列表 <code>[最小值, 最大值]</code>，允许点数在优化过程中在指定范围内变化。</li>
 <li><code>region</code> (shapely.geometry.Polygon): 定义有效区域的Shapely多边形</li>
 <li><code>constraints</code> (list, optional): 约束函数列表，默认为空列表</li>
 <li><code>penalty_weight</code> (float, optional): 约束违反的权重，默认为1e6</li>
@@ -1152,13 +1152,13 @@
 <li><code>numpy.ndarray</code>: 最终种群</li>
 </ul>
 <h4 id="savepath">save(path)<a class="headerlink" href="#savepath" title="Permanent link">&para;</a></h4>
-<p>保存优化状态到文件。</p>
+<p>保存优化状态到pkl文件。</p>
 <p><strong>参数：</strong></p>
 <ul>
 <li><code>path</code> (str): 保存文件路径</li>
 </ul>
 <h4 id="loadpath">load(path)<a class="headerlink" href="#loadpath" title="Permanent link">&para;</a></h4>
-<p>从文件加载优化状态。</p>
+<p>从pkl文件加载优化状态。</p>
 <p><strong>参数：</strong></p>
 <ul>
 <li><code>path</code> (str): 加载文件路径</li>

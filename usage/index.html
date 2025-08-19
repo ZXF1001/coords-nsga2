@@ -584,6 +584,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#problem-parameter-description" class="md-nav__link">
+    <span class="md-ellipsis">
+      Problem Parameter Description
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#parameter-tuning-suggestions" class="md-nav__link">
     <span class="md-ellipsis">
       Parameter Tuning Suggestions
@@ -797,6 +806,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#problem-parameter-description" class="md-nav__link">
+    <span class="md-ellipsis">
+      Problem Parameter Description
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#parameter-tuning-suggestions" class="md-nav__link">
     <span class="md-ellipsis">
       Parameter Tuning Suggestions
@@ -975,7 +993,7 @@
 <a id="__codelineno-0-52" name="__codelineno-0-52"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Population size: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">result</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <a id="__codelineno-0-53" name="__codelineno-0-53"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Points per solution: </span><span class="si">{</span><span class="n">result</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <a id="__codelineno-0-54" name="__codelineno-0-54"></a><span class="c1"># Visualize optimal layouts for each objective</span>
-<a id="__codelineno-0-55" name="__codelineno-0-55"></a><span class="n">optimizer</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">optimal_coords</span><span class="p">()</span>
+<a id="__codelineno-0-55" name="__codelineno-0-55"></a><span class="n">optimizer</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">optimal_coords</span><span class="p">(</span><span class="n">obj_indices</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
 <h3 id="region-definition">Region Definition<a class="headerlink" href="#region-definition" title="Permanent link">&para;</a></h3>
 <h4 id="create-polygon-region-from-point-list">Create polygon region from point list<a class="headerlink" href="#create-polygon-region-from-point-list" title="Permanent link">&para;</a></h4>
@@ -1069,6 +1087,13 @@
 <li><code>prob_mut</code>: Mutation probability (between 0-1)</li>
 <li><code>random_seed</code>: Random seed (for reproducibility)</li>
 </ul>
+<h4 id="problem-parameter-description">Problem Parameter Description<a class="headerlink" href="#problem-parameter-description" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>objectives</code>: List of objective functions</li>
+<li><code>n_points</code>: Number of coordinate points. Can be a fixed integer (e.g., <code>10</code>) or a list <code>[min, max]</code> to allow the number of points to vary within a range during optimization.</li>
+<li><code>region</code>: Region instance defining the valid search space</li>
+<li><code>constraints</code>: List of constraint functions (optional)</li>
+</ul>
 <h4 id="parameter-tuning-suggestions">Parameter Tuning Suggestions<a class="headerlink" href="#parameter-tuning-suggestions" title="Permanent link">&para;</a></h4>
 <ul>
 <li><strong>Population size</strong>: Usually set to 20-100, use larger populations for complex problems</li>
@@ -1116,10 +1141,10 @@
 <span class="normal"><a href="#__codelineno-6-3">3</a></span>
 <span class="normal"><a href="#__codelineno-6-4">4</a></span>
 <span class="normal"><a href="#__codelineno-6-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="c1"># Save optimization state</span>
-<a id="__codelineno-6-2" name="__codelineno-6-2"></a><span class="n">optimizer</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;optimization_result.npz&quot;</span><span class="p">)</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2"></a><span class="n">optimizer</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;optimization_result.pkl&quot;</span><span class="p">)</span>
 <a id="__codelineno-6-3" name="__codelineno-6-3"></a>
 <a id="__codelineno-6-4" name="__codelineno-6-4"></a><span class="c1"># Load optimization state</span>
-<a id="__codelineno-6-5" name="__codelineno-6-5"></a><span class="n">optimizer</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;optimization_result.npz&quot;</span><span class="p">)</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5"></a><span class="n">optimizer</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;optimization_result.pkl&quot;</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
 
 

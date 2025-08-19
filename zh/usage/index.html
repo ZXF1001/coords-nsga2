@@ -584,6 +584,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      Problem 参数说明
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#_10" class="md-nav__link">
     <span class="md-ellipsis">
       参数调优建议
@@ -797,6 +806,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      Problem 参数说明
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#_10" class="md-nav__link">
     <span class="md-ellipsis">
       参数调优建议
@@ -975,7 +993,7 @@
 <a id="__codelineno-0-52" name="__codelineno-0-52"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;种群大小: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">result</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <a id="__codelineno-0-53" name="__codelineno-0-53"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;每个解的坐标点数: </span><span class="si">{</span><span class="n">result</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <a id="__codelineno-0-54" name="__codelineno-0-54"></a><span class="c1"># 可视化各目标函数的最优布局</span>
-<a id="__codelineno-0-55" name="__codelineno-0-55"></a><span class="n">optimizer</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">optimal_coords</span><span class="p">()</span>
+<a id="__codelineno-0-55" name="__codelineno-0-55"></a><span class="n">optimizer</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">optimal_coords</span><span class="p">(</span><span class="n">obj_indices</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
 <h3 id="_4">区域定义<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
 <h4 id="_5">从点列表创建多边形区域<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h4>
@@ -1069,6 +1087,13 @@
 <li><code>prob_mut</code>: 变异概率（0-1之间）</li>
 <li><code>random_seed</code>: 随机种子（用于可重现性）</li>
 </ul>
+<h4 id="problem">Problem 参数说明<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>objectives</code>: 目标函数列表</li>
+<li><code>n_points</code>: 坐标点数量。可以是固定整数（如 <code>10</code>）或列表 <code>[最小值, 最大值]</code>，允许点数在优化过程中在指定范围内变化。</li>
+<li><code>region</code>: 定义有效搜索空间的区域实例</li>
+<li><code>constraints</code>: 约束函数列表（可选）</li>
+</ul>
 <h4 id="_10">参数调优建议<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h4>
 <ul>
 <li><strong>种群大小</strong>: 通常设置为20-100，问题复杂时使用更大的种群</li>
@@ -1116,10 +1141,10 @@
 <span class="normal"><a href="#__codelineno-6-3">3</a></span>
 <span class="normal"><a href="#__codelineno-6-4">4</a></span>
 <span class="normal"><a href="#__codelineno-6-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="c1"># 保存优化状态</span>
-<a id="__codelineno-6-2" name="__codelineno-6-2"></a><span class="n">optimizer</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;optimization_result.npz&quot;</span><span class="p">)</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2"></a><span class="n">optimizer</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;optimization_result.pkl&quot;</span><span class="p">)</span>
 <a id="__codelineno-6-3" name="__codelineno-6-3"></a>
 <a id="__codelineno-6-4" name="__codelineno-6-4"></a><span class="c1"># 加载优化状态</span>
-<a id="__codelineno-6-5" name="__codelineno-6-5"></a><span class="n">optimizer</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;optimization_result.npz&quot;</span><span class="p">)</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5"></a><span class="n">optimizer</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;optimization_result.pkl&quot;</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
 
 
