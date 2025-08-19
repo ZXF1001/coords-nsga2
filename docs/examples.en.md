@@ -240,10 +240,6 @@ result = optimizer.run(1000, verbose=True)  # Set to True to show progress bar
 # Visualize results
 optimizer.plot.optimal_coords([0, 1, 2, 3])  # Show optimal layouts for all objectives
 optimizer.plot.pareto_front([0, 1, 2])       # Show Pareto front for first 3 objectives
-
-print(f"Optimization completed!")
-print(f"Final population shape: {result.shape}")
-print(f"Point count varies from {result.shape[1]} in different solutions")
 ```
 
 This example shows how to:

@@ -240,10 +240,6 @@ result = optimizer.run(1000, verbose=True)  # 设置为True显示进度条
 # 可视化结果
 optimizer.plot.optimal_coords([0, 1, 2, 3])  # 显示所有目标的最优布局
 optimizer.plot.pareto_front([0, 1, 2])       # 显示前3个目标的帕累托前沿
-
-print(f"优化完成！")
-print(f"最终种群形状: {result.shape}")
-print(f"不同解中的点数在 {result.shape[1]} 之间变化")
 ```
 
 此示例展示了如何：
