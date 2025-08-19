@@ -1114,11 +1114,7 @@
 <span class="normal"><a href="#__codelineno-2-63">63</a></span>
 <span class="normal"><a href="#__codelineno-2-64">64</a></span>
 <span class="normal"><a href="#__codelineno-2-65">65</a></span>
-<span class="normal"><a href="#__codelineno-2-66">66</a></span>
-<span class="normal"><a href="#__codelineno-2-67">67</a></span>
-<span class="normal"><a href="#__codelineno-2-68">68</a></span>
-<span class="normal"><a href="#__codelineno-2-69">69</a></span>
-<span class="normal"><a href="#__codelineno-2-70">70</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="normal"><a href="#__codelineno-2-66">66</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">scipy.spatial</span><span class="w"> </span><span class="kn">import</span> <span class="n">distance</span>
 <a id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">coords_nsga2</span><span class="w"> </span><span class="kn">import</span> <span class="n">CoordsNSGA2</span><span class="p">,</span> <span class="n">Problem</span>
 <a id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="kn">from</span><span class="w"> </span><span class="nn">coords_nsga2.spatial</span><span class="w"> </span><span class="kn">import</span> <span class="n">region_from_points</span>
@@ -1184,10 +1180,6 @@
 <a id="__codelineno-2-64" name="__codelineno-2-64"></a><span class="c1"># 可视化结果</span>
 <a id="__codelineno-2-65" name="__codelineno-2-65"></a><span class="n">optimizer</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">optimal_coords</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>  <span class="c1"># 显示所有目标的最优布局</span>
 <a id="__codelineno-2-66" name="__codelineno-2-66"></a><span class="n">optimizer</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">pareto_front</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>       <span class="c1"># 显示前3个目标的帕累托前沿</span>
-<a id="__codelineno-2-67" name="__codelineno-2-67"></a>
-<a id="__codelineno-2-68" name="__codelineno-2-68"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;优化完成！&quot;</span><span class="p">)</span>
-<a id="__codelineno-2-69" name="__codelineno-2-69"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;最终种群形状: </span><span class="si">{</span><span class="n">result</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<a id="__codelineno-2-70" name="__codelineno-2-70"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;不同解中的点数在 </span><span class="si">{</span><span class="n">result</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2"> 之间变化&quot;</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
 <p>此示例展示了如何：
 - 通过指定 <code>n_points=[10, 30]</code> 而不是固定数字来使用可变点数
