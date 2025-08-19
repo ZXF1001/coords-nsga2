@@ -49,13 +49,13 @@ print(coords_nsga2.__version__)
 ### 必需依赖
 
 - **numpy >= 1.23**: 数值计算库
-- **tqdm >= 4**: 进度条显示
+- **tqdm >= 4.64**: 进度条显示
 - **shapely >= 2**: 几何计算库
+- **matplotlib**: 用于结果可视化
 
 ### 可选依赖
 
 - **scipy**: 用于距离计算和其他科学计算
-- **matplotlib**: 用于结果可视化
 
 ### 开发依赖
 
@@ -64,4 +64,4 @@ print(coords_nsga2.__version__)
 - **coverage[toml] >= 7.5**: 代码覆盖率
 - **hypothesis >= 6.100**: 属性测试
 - **ruff >= 0.11**: 代码格式化和检查
-- **pre-commit >= 3.7**: Git钩子
+- **pre-commit**: Git钩子

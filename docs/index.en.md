@@ -41,7 +41,8 @@ Coords-NSGA2 is a Python library specifically designed for optimizing the layout
 
 - Python 3.8+
 - NumPy >= 1.23
-- tqdm >= 4
+- tqdm >= 4.64
 - Shapely >= 2
+- matplotlib >= 3.6
+- joblib >= 1.4
 - SciPy (optional, for distance computations)
-- matplotlib (optional, for result visualization)

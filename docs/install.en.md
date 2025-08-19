@@ -46,13 +46,13 @@ print(coords_nsga2.__version__)
 ## Dependencies
 ### Required
 - **numpy >= 1.23**: Numerical computation
-- **tqdm >= 4**: Progress bars
+- **tqdm >= 4.64**: Progress bars
 - **shapely >= 2**: Geometry operations
+- **matplotlib >= 3.6**: Result visualization
 
 ### Optional
 
 - **scipy**: Distance calculations and other scientific computing
-- **matplotlib**: Result visualization
 
 ### Development
 
@@ -61,4 +61,4 @@ print(coords_nsga2.__version__)
 - **coverage[toml] >= 7.5**: Code coverage
 - **hypothesis >= 6.100**: Property-based testing
 - **ruff >= 0.11**: Code formatting and linting
-- **pre-commit >= 3.7**: Git hooks
+- **pre-commit**: Git hooks
