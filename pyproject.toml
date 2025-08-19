@@ -11,19 +11,19 @@ authors = [
 ]
 dependencies = [
     "numpy>=1.23",
-    "tqdm>=4",
+    "tqdm>=4.64",
     "shapely>=2",
-    "matplotlib",
-    "joblib>=1.4",
-    "seaborn"
+    "matplotlib>=3.6",
+    "joblib>=1.4"
 ]
 requires-python = ">= 3.8"
 readme = { file = "README.md", content-type = "text/markdown" }
 license = "Apache-2.0"
 keywords = ['optimization',"nsga2","coordinates","genetic-algorithm"]
 classifiers = [
-    "Development Status :: 4 - Beta",
+    "Development Status :: 5 - Production/Stable",
     "Intended Audience :: Science/Research",
+    "Intended Audience :: Education",
     "Intended Audience :: Developers",
     "License :: OSI Approved :: Apache Software License",
     "Programming Language :: Python :: 3",
