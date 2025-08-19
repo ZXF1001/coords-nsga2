@@ -1,6 +1,6 @@
 import numpy as np
 
-from coords_nsga2.spatial import create_points_in_polygon
+from ..spatial import create_points_in_polygon
 
 
 def coords_mutation(population, prob_mut, region):
