@@ -1,6 +1,6 @@
 ![Coords-NSGA2](./docs/logo.drawio.svg)
 
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![License](https://img.shields.io/github/license/ZXF1001/coords-nsga2)](LICENSE)
 [![Python](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![PyPI](https://img.shields.io/badge/pypi-coords--nsga2-blue.svg)](https://pypi.org/project/coords-nsga2/)
 [![GitHub Tag](https://img.shields.io/github/v/tag/ZXF1001/coords-nsga2)](https://github.com/ZXF1001/coords-nsga2/tags)
