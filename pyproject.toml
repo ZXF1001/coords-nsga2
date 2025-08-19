@@ -39,7 +39,7 @@ classifiers = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/ZXF1001/coords-nsga2"
+Homepage = "https://coords-nsga2.cc"
 
 [tool.hatch.version]
 source = "vcs"
