@@ -14,6 +14,7 @@
 ## 特性
 
 - **坐标优化专用**：专门为优化坐标点布局而设计
+- **可变点数支持**：支持固定数量的点和在指定范围内动态变化的点数
 - **专业约束条件**：内置支持点间距、边界限制和自定义约束
 - **定制遗传算子**：专门作用于坐标点的交叉和变异算子
 - **多目标优化**：基于成熟的NSGA-II算法
@@ -75,7 +76,7 @@ def constraint_1(coords):
 # 设置问题（传入目标函数列表）
 problem = Problem(
     objectives=[objective_1, objective_2],
-    n_points=10,
+    n_points=[10, 30],  # 可以是固定数字或范围 [最小值, 最大值]
     region=region,
     constraints=[constraint_1]
 )

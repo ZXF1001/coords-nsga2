@@ -169,9 +169,97 @@ plt.tight_layout()
 plt.show()
 ```
 
+### 3. Variable Point Count Optimization
+
+This example demonstrates the feature of variable point count, where the number of points can vary within a specified range during optimization.
+
+```python
+import numpy as np
+from scipy.spatial import distance
+from coords_nsga2 import CoordsNSGA2, Problem
+from coords_nsga2.spatial import region_from_points
+
+# Create boundary region
+region = region_from_points([
+    [0, 0],
+    [1, 0],
+    [2, 1],
+    [1, 1],
+])
+
+# Define multiple objective functions
+def objective_1(coords):
+    """Maximize num of points and right-top positioning"""
+    return np.sum(coords[:, 0]) + np.sum(coords[:, 1])
+
+def objective_2(coords):
+    """Minimize layout dispersion"""
+    return np.std(coords[:, 0]) + np.std(coords[:, 1])
+
+def objective_3(coords):
+    """Minimize distance to center"""
+    center = np.array([1.0, 1.0])  # Region center
+    distances = np.linalg.norm(coords - center, axis=1)
+    return -np.mean(distances)  # Negative for maximization
+
+def objective_4(coords):
+    """Maximize minimum distance between points"""
+    if len(coords) < 2:
+        return 0
+    dist_matrix = distance.pdist(coords)
+    return np.min(dist_matrix)
+
+def constraint_spacing(coords):
+    """Minimum spacing constraint between points"""
+    min_spacing = 0.1  # Spacing constraint
+    if len(coords) < 2:
+        return 0
+    dist_list = distance.pdist(coords)
+    violations = min_spacing - dist_list[dist_list < min_spacing]
+    return np.sum(violations)
+
+# Create problem with variable point count
+problem = Problem(
+    objectives=[objective_1, objective_2, objective_3, objective_4],
+    n_points=[10, 30],  # Variable point count: between 10 and 30 points
+    region=region,
+    constraints=[constraint_spacing]
+)
+
+# Create optimizer
+optimizer = CoordsNSGA2(
+    problem=problem,
+    pop_size=40,
+    prob_crs=0.5,
+    prob_mut=0.1
+)
+
+# Run optimization
+result = optimizer.run(1000, verbose=True)  # Set to True to show progress bar
+
+# Visualize results
+optimizer.plot.optimal_coords([0, 1, 2, 3])  # Show optimal layouts for all objectives
+optimizer.plot.pareto_front([0, 1, 2])       # Show Pareto front for first 3 objectives
+
+print(f"Optimization completed!")
+print(f"Final population shape: {result.shape}")
+print(f"Point count varies from {result.shape[1]} in different solutions")
+```
+
+This example shows how to:
+- Use variable point count by specifying `n_points=[10, 30]` instead of a fixed number
+- Handle multiple objectives (4 in this case)
+- Apply constraints that work with variable point counts
+- Visualize results for problems with variable point counts
+
+The variable point count feature is particularly useful when:
+- The optimal number of points is unknown
+- You want to explore trade-offs between solution complexity and performance
+- Different objectives may favor different numbers of points
+
 ## Advanced Examples
 
-### 3. Wind-Turbine Layout Optimization
+### 4. Wind-Turbine Layout Optimization
 
 ```python
 import numpy as np
@@ -310,7 +398,7 @@ print(f"Best power production: {np.max(optimizer.values_P[0]):.4f}")
 print(f"Best cost: {np.max(optimizer.values_P[1]):.4f}")
 ```
 
-### 4. Sensor-Network Deployment Optimization
+### 5. Sensor-Network Deployment Optimization
 
 ```python
 import numpy as np
@@ -472,99 +560,3 @@ print(f"Found {len(pareto_solutions)} Pareto-optimal solutions")
 print(f"Best coverage: {np.max(optimizer.values_P[0]):.4f}")
 print(f"Best energy efficiency: {np.max(optimizer.values_P[1]):.4f}")
 ```
-
-## Custom Operator Example
-
-### 5. Custom Crossover and Mutation Operators
-
-```python
-import numpy as np
-import matplotlib.pyplot as plt
-from coords_nsga2 import CoordsNSGA2, Problem
-from coords_nsga2.spatial import region_from_range
-
-# Define a custom crossover operator
-def custom_crossover(population, prob_crs):
-    """Distance-based crossover"""
-    n_points = population.shape[1]
-    for i in range(0, len(population), 2):
-        if np.random.rand() < prob_crs:
-            parent1 = population[i]
-            parent2 = population[i+1]
-            distances = np.sqrt(np.sum((parent1 - parent2)**2, axis=1))
-            cross_points = distances > np.median(distances)
-            population[i, cross_points] = parent2[cross_points]
-            population[i+1, cross_points] = parent1[cross_points]
-    return population
-
-# Define a custom mutation operator
-def custom_mutation(population, prob_mut, region):
-    """Gaussian mutation with region check"""
-    from coords_nsga2.spatial import create_points_in_polygon
-    mutation_mask = np.random.random(population.shape[:-1]) < prob_mut
-    for i in range(len(population)):
-        for j in range(population.shape[1]):
-            if mutation_mask[i, j]:
-                current_point = population[i, j]
-                new_point = current_point + np.random.normal(0, 0.5, 2)
-                if region.contains(plt.matplotlib.patches.Circle(new_point, 0)):
-                    population[i, j] = new_point
-                else:
-                    population[i, j] = create_points_in_polygon(region, 1)[0]
-    return population
-
-# Define region and objective functions
-region = region_from_range(0, 10, 0, 10)
-
-def objective_1(coords):
-    return np.sum(coords[:, 0])
-
-def objective_2(coords):
-    return np.sum(coords[:, 1])
-
-# Create the problem
-problem = Problem(
-    objectives=[objective_1, objective_2],
-    n_points=5,
-    region=region
-)
-
-# Create the optimizer and replace operators
-optimizer = CoordsNSGA2(
-    problem=problem,
-    pop_size=20,
-    prob_crs=0.5,
-    prob_mut=0.1
-)
-
-optimizer.crossover = custom_crossover
-optimizer.mutation = custom_mutation
-
-# Run the optimization
-result = optimizer.run(300)
-
-# Visualize the results
-plt.figure(figsize=(12, 5))
-
-plt.subplot(1, 2, 1)
-x, y = region.exterior.xy
-plt.fill(x, y, alpha=0.2, fc='gray', ec='black')
-for i in range(len(result)):
-    plt.scatter(result[i, :, 0], result[i, :, 1], alpha=0.6)
-plt.title('Custom Operators – Final Population')
-plt.xlabel('X')
-plt.ylabel('Y')
-plt.grid(True)
-
-plt.subplot(1, 2, 2)
-plt.scatter(optimizer.values_P[0], optimizer.values_P[1])
-plt.title('Custom Operators – Objective Values')
-plt.xlabel('Objective 1')
-plt.ylabel('Objective 2')
-plt.grid(True)
-
-plt.tight_layout()
-plt.show()
-```
-
-These examples showcase various ways to use the Coords-NSGA2 library, ranging from basic multi-objective optimization to complex real-world applications. Feel free to modify them to suit your needs.

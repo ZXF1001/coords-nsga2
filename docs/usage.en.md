@@ -149,6 +149,13 @@ def my_constraint(coords):
 - `prob_mut`: Mutation probability (between 0-1)
 - `random_seed`: Random seed (for reproducibility)
 
+#### Problem Parameter Description
+
+- `objectives`: List of objective functions
+- `n_points`: Number of coordinate points. Can be a fixed integer (e.g., `10`) or a list `[min, max]` to allow the number of points to vary within a range during optimization.
+- `region`: Region instance defining the valid search space
+- `constraints`: List of constraint functions (optional)
+
 #### Parameter Tuning Suggestions
 
 - **Population size**: Usually set to 20-100, use larger populations for complex problems

@@ -17,7 +17,7 @@ Problem(objectives, n_points, region, constraints=[], penalty_weight=1e6)
 **Parameters:**
 
 - `objectives` (list[callable]): List of objective functions. Each function takes coords (n_points, 2) and returns a scalar.
-- `n_points` (int): Number of coordinate points to optimise.
+- `n_points` (int or list[int]): Number of coordinate points to optimise. Can be a fixed integer (e.g., `10`) or a list `[min, max]` to allow the number of points to vary within a range during optimization.
 - `region` (shapely.geometry.Polygon): Shapely polygon defining the feasible region.
 - `constraints` (list, optional): List of constraint functions. Default is an empty list.
 - `penalty_weight` (float, optional): Weight applied to constraint violations. Default is 1e6.

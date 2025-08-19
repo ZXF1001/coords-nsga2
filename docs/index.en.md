@@ -11,7 +11,8 @@ Coords-NSGA2 is a Python library specifically designed for optimizing the layout
 
 ## Key Features
 
-- **Coordinate-focused optimization**: Purpose-built for optimizing point layouts  
+- **Coordinate-focused optimization**: Purpose-built for optimizing point layouts
+- **Variable point count support**: Supports both fixed number of points and dynamic point count within a specified range
 - **Specialized constraints**: Built-in support for inter-point spacing, boundary limits, and custom constraints  
 - **Customized genetic operators**: Crossover and mutation operators tailored to coordinate data  
 - **Multi-objective optimization**: Leveraging the proven NSGA-II algorithm  

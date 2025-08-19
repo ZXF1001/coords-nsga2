@@ -169,9 +169,97 @@ plt.tight_layout()
 plt.show()
 ```
 
+### 3. 可变点数优化
+
+此示例演示了可变点数的功能，其中点的数量可以在优化过程中在指定范围内变化。
+
+```python
+import numpy as np
+from scipy.spatial import distance
+from coords_nsga2 import CoordsNSGA2, Problem
+from coords_nsga2.spatial import region_from_points
+
+# 创建边界
+region = region_from_points([
+    [0, 0],
+    [1, 0],
+    [2, 1],
+    [1, 1],
+])
+
+# 定义多个目标函数
+def objective_1(coords):
+    """最大化点数和右上角位置"""
+    return np.sum(coords[:, 0]) + np.sum(coords[:, 1])
+
+def objective_2(coords):
+    """最小化布局分散度"""
+    return np.std(coords[:, 0]) + np.std(coords[:, 1])
+
+def objective_3(coords):
+    """最小化到中心的距离"""
+    center = np.array([1.0, 1.0])  # 区域中心
+    distances = np.linalg.norm(coords - center, axis=1)
+    return -np.mean(distances)  # 负号表示最大化
+
+def objective_4(coords):
+    """最大化点之间的最小距离"""
+    if len(coords) < 2:
+        return 0
+    dist_matrix = distance.pdist(coords)
+    return np.min(dist_matrix)
+
+def constraint_spacing(coords):
+    """点之间的最小间距约束"""
+    min_spacing = 0.1  # 间距限制
+    if len(coords) < 2:
+        return 0
+    dist_list = distance.pdist(coords)
+    violations = min_spacing - dist_list[dist_list < min_spacing]
+    return np.sum(violations)
+
+# 创建具有可变点数的问题
+problem = Problem(
+    objectives=[objective_1, objective_2, objective_3, objective_4],
+    n_points=[10, 30],  # 可变点数：10到30个点之间
+    region=region,
+    constraints=[constraint_spacing]
+)
+
+# 创建优化器
+optimizer = CoordsNSGA2(
+    problem=problem,
+    pop_size=40,
+    prob_crs=0.5,
+    prob_mut=0.1
+)
+
+# 运行优化
+result = optimizer.run(1000, verbose=True)  # 设置为True显示进度条
+
+# 可视化结果
+optimizer.plot.optimal_coords([0, 1, 2, 3])  # 显示所有目标的最优布局
+optimizer.plot.pareto_front([0, 1, 2])       # 显示前3个目标的帕累托前沿
+
+print(f"优化完成！")
+print(f"最终种群形状: {result.shape}")
+print(f"不同解中的点数在 {result.shape[1]} 之间变化")
+```
+
+此示例展示了如何：
+- 通过指定 `n_points=[10, 30]` 而不是固定数字来使用可变点数
+- 处理多个目标（本例中为4个）
+- 应用适用于可变点数的约束
+- 可视化可变点数问题的结果
+
+可变点数功能在以下情况下特别有用：
+- 最佳点数未知
+- 您希望探索解决方案复杂性和性能之间的权衡
+- 不同的目标可能偏好不同数量的点
+
 ## 高级示例
 
-### 3. 风力发电机布局优化
+### 4. 风力发电机布局优化
 
 ```python
 import numpy as np
@@ -318,7 +406,7 @@ print(f"最佳发电量: {np.max(optimizer.values_P[0]):.4f}")
 print(f"最佳成本: {np.max(optimizer.values_P[1]):.4f}")
 ```
 
-### 4. 传感器网络部署优化
+### 5. 传感器网络部署优化
 
 ```python
 import numpy as np
@@ -490,116 +578,3 @@ print(f"找到 {len(pareto_solutions)} 个帕累托最优解")
 print(f"最佳覆盖率: {np.max(optimizer.values_P[0]):.4f}")
 print(f"最佳能量效率: {np.max(optimizer.values_P[1]):.4f}")
 ```
-
-## 自定义算子示例
-
-### 5. 自定义交叉和变异算子
-
-```python
-import numpy as np
-import matplotlib.pyplot as plt
-from coords_nsga2 import CoordsNSGA2, Problem
-from coords_nsga2.spatial import region_from_range
-
-# 定义自定义交叉算子
-def custom_crossover(population, prob_crs):
-    """自定义交叉算子：基于距离的交叉"""
-    n_points = population.shape[1]
-    
-    for i in range(0, len(population), 2):
-        if np.random.rand() < prob_crs:
-            # 计算两个父代之间的距离
-            parent1 = population[i]
-            parent2 = population[i+1]
-            
-            # 基于距离选择交叉点
-            distances = np.sqrt(np.sum((parent1 - parent2)**2, axis=1))
-            cross_points = distances > np.median(distances)
-            
-            # 交换选中的点
-            population[i, cross_points] = parent2[cross_points]
-            population[i+1, cross_points] = parent1[cross_points]
-    
-    return population
-
-# 定义自定义变异算子
-def custom_mutation(population, prob_mut, region):
-    """自定义变异算子：高斯变异"""
-    from coords_nsga2.spatial import create_points_in_polygon
-    
-    mutation_mask = np.random.random(population.shape[:-1]) < prob_mut
-    
-    for i in range(len(population)):
-        for j in range(population.shape[1]):
-            if mutation_mask[i, j]:
-                # 高斯变异
-                current_point = population[i, j]
-                new_point = current_point + np.random.normal(0, 0.5, 2)
-                
-                # 确保新点在区域内
-                if region.contains(plt.matplotlib.patches.Circle(new_point, 0)):
-                    population[i, j] = new_point
-                else:
-                    # 如果不在区域内，重新生成
-                    new_points = create_points_in_polygon(region, 1)
-                    population[i, j] = new_points[0]
-    
-    return population
-
-# 定义区域和目标函数
-region = region_from_range(0, 10, 0, 10)
-
-def objective_1(coords):
-    return np.sum(coords[:, 0])
-
-def objective_2(coords):
-    return np.sum(coords[:, 1])
-
-# 创建问题
-problem = Problem(
-    objectives=[objective_1, objective_2],
-    n_points=5,
-    region=region
-)
-
-# 创建优化器并替换自定义算子
-optimizer = CoordsNSGA2(
-    problem=problem,
-    pop_size=20,
-    prob_crs=0.5,
-    prob_mut=0.1
-)
-
-# 替换为自定义算子
-optimizer.crossover = custom_crossover
-optimizer.mutation = custom_mutation
-
-# 运行优化
-result = optimizer.run(300)
-
-# 可视化结果
-plt.figure(figsize=(12, 5))
-
-plt.subplot(1, 2, 1)
-x, y = region.exterior.xy
-plt.fill(x, y, alpha=0.2, fc='gray', ec='black')
-
-for i in range(len(result)):
-    plt.scatter(result[i, :, 0], result[i, :, 1], alpha=0.6)
-plt.title('Custom Operators - Final Population')
-plt.xlabel('X')
-plt.ylabel('Y')
-plt.grid(True)
-
-plt.subplot(1, 2, 2)
-plt.scatter(optimizer.values_P[0], optimizer.values_P[1])
-plt.title('Custom Operators - Objective Values')
-plt.xlabel('Objective 1')
-plt.ylabel('Objective 2')
-plt.grid(True)
-
-plt.tight_layout()
-plt.show()
-```
-
-这些示例展示了Coords-NSGA2库的各种用法，从基础的多目标优化到复杂的实际应用场景。您可以根据自己的需求修改这些示例。

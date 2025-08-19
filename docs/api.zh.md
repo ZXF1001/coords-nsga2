@@ -17,7 +17,7 @@ Problem(objectives, n_points, region, constraints=[], penalty_weight=1e6)
 **参数：**
 
 - `objectives` (list[callable]): 目标函数列表，每个函数接受 `coords (n_points, 2)` 并返回标量
-- `n_points` (int): 要优化的坐标点数量
+- `n_points` (int或list[int]): 要优化的坐标点数量。可以是固定整数（如 `10`）或列表 `[最小值, 最大值]`，允许点数在优化过程中在指定范围内变化。
 - `region` (shapely.geometry.Polygon): 定义有效区域的Shapely多边形
 - `constraints` (list, optional): 约束函数列表，默认为空列表
 - `penalty_weight` (float, optional): 约束违反的权重，默认为1e6
