@@ -17,3 +17,11 @@ class Plotting:
     def objective_correlations(self, figsize=None, is_show=True):
         from .objective_correlations import plot_objective_correlations
         return plot_objective_correlations(self.optimizer, figsize, is_show)
+
+    def objective_distributions(self, figsize=None, is_show=True):
+        from .objective_distributions import plot_objective_distributions
+        return plot_objective_distributions(self.optimizer, figsize, is_show)
+
+    def constraint_violations(self, figsize=None, is_show=True):
+        from .constraint_violations import plot_constraint_violations
+        return plot_constraint_violations(self.optimizer, figsize, is_show)

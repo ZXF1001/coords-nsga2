@@ -32,6 +32,7 @@ def plot_solution_comparison(optimizer, solution_indices, figsize=None, is_show=
         ax.scatter(
             solution[:, 0],
             solution[:, 1],
+            color=f'C{i}',
             alpha=0.8,
             edgecolors='k')
         is_max_or_min = ""
