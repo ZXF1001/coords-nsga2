@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
-from utils import _plot_region_boundary
+
+from .utils import _plot_region_boundary
 
 
 def plot_solution_comparison(optimizer, solution_indices, figsize=None, is_show=True):

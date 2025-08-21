@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
-from utils import _plot_region_boundary
+
+from .utils import _plot_region_boundary
 
 
 def plot_optimal_coords(optimizer, obj_indices, figsize=None, is_show=True):
