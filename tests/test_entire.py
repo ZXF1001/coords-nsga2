@@ -80,6 +80,9 @@ def test_main():
     # 5. Solution Comparison
     optimizer.plot.solution_comparison(solution_indices=[0, 1], is_show=False)
 
+    # 6. Parallel Coordinates
+    optimizer.plot.parallel_coordinates(is_show=False)
+
 
 if __name__ == '__main__':
     test_main()

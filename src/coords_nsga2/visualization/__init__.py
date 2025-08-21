@@ -25,3 +25,7 @@ class Plotting:
     def constraint_violations(self, figsize=None, is_show=True):
         from .constraint_violations import plot_constraint_violations
         return plot_constraint_violations(self.optimizer, figsize, is_show)
+
+    def parallel_coordinates(self, figsize=None, is_show=True):
+        from .parallel_coordinates import plot_parallel_coordinates
+        return plot_parallel_coordinates(self.optimizer, figsize, is_show)
