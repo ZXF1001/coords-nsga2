@@ -38,7 +38,6 @@ def test_main():
         dist_matrix = distance.pdist(coords)
         return np.min(dist_matrix)
 
-
     def constraint_spacing(coords):
         min_spacing = 0.1  # 间距限制
         """Minimum spacing constraint between points"""
@@ -66,8 +65,20 @@ def test_main():
     optimizer.plot.pareto_front(obj_indices=[0, 1], is_show=False)  # 2D
     optimizer.plot.pareto_front(obj_indices=[0, 1, 2], is_show=False)  # 3D
 
-    # 4. Objective Optimal Layouts
+    # 2. Objective Optimal Layouts
     optimizer.plot.optimal_coords(obj_indices=0, is_show=False)
+
+    # 3. Constraint Violations
+    optimizer.plot.constraint_violations(is_show=False)
+
+    # 3. Objective Correlations
+    optimizer.plot.objective_correlations(is_show=False)
+
+    # 4. Objective Distributions
+    optimizer.plot.objective_distributions(is_show=False)
+
+    # 5. Solution Comparison
+    optimizer.plot.solution_comparison(solution_indices=[0, 1], is_show=False)
 
 
 if __name__ == '__main__':
