@@ -1,17 +1,9 @@
 import matplotlib.pyplot as plt
 import numpy as np
+from utils import _plot_region_boundary
 
 
-def _plot_region_boundary(ax, region):
-    """Plot the optimization region boundary"""
-    if hasattr(region, 'exterior'):
-        # Shapely polygon
-        x, y = region.exterior.xy
-        ax.plot(x, y, 'k', alpha=0.7)
-        ax.fill(x, y, alpha=0.1, color='gray')
-
-
-def plot_optimal_coords(optimizer, obj_indices, figsize, is_show):
+def plot_optimal_coords(optimizer, obj_indices, figsize=None, is_show=True):
     if isinstance(obj_indices, int):
         obj_indices = [obj_indices]
 
@@ -23,7 +15,7 @@ def plot_optimal_coords(optimizer, obj_indices, figsize, is_show):
         best_solution = optimizer.P[best_idx]
         ax.scatter(best_solution[:, 0], best_solution[:,
                    1],  alpha=0.8, edgecolors='black')
-        
+
         is_max_or_min = ""
         if hasattr(optimizer, "n_points_max"):
             if len(best_solution) == optimizer.n_points_max:
@@ -50,5 +42,5 @@ if __name__ == "__main__":
 
     loaded_optimizer = CoordsNSGA2.load("examples/data/test_optimizer.pkl")
 
-    plot_optimal_coords(loaded_optimizer, 1, (8, 6), True)
-    plot_optimal_coords(loaded_optimizer, [0, 1], (8, 6), True)
+    plot_optimal_coords(loaded_optimizer, 1)
+    plot_optimal_coords(loaded_optimizer, [0, 1])

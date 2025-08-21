@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 
 
-def plot_pareto_front(optimizer, obj_indices, figsize, is_show):
+def plot_pareto_front(optimizer, obj_indices, figsize=None, is_show=True):
     if len(obj_indices) == 2:
         # 2D Pareto front
         fig, ax = plt.subplots(figsize=figsize)
@@ -40,5 +40,5 @@ if __name__ == "__main__":
 
     loaded_optimizer = CoordsNSGA2.load("examples/data/test_optimizer.pkl")
 
-    plot_pareto_front(loaded_optimizer, [0, 1], (8, 6), True)
-    plot_pareto_front(loaded_optimizer, [0, 1, 2], (8, 6), True)
+    plot_pareto_front(loaded_optimizer, [0, 1])
+    plot_pareto_front(loaded_optimizer, [0, 1, 2])
