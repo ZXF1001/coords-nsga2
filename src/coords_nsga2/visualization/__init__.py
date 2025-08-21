@@ -13,3 +13,7 @@ class Plotting:
     def solution_comparison(self, solution_indices, figsize=None, is_show=True):
         from .solution_comparison import plot_solution_comparison
         return plot_solution_comparison(self.optimizer, solution_indices, figsize, is_show)
+
+    def objective_correlations(self, figsize=None, is_show=True):
+        from .objective_correlations import plot_objective_correlations
+        return plot_objective_correlations(self.optimizer, figsize, is_show)
