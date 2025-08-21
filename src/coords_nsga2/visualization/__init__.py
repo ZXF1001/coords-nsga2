@@ -5,7 +5,11 @@ class Plotting:
     def pareto_front(self, obj_indices, figsize=None, is_show=True):
         from .pareto_front import plot_pareto_front
         return plot_pareto_front(self.optimizer, obj_indices, figsize, is_show)
-    
+
     def optimal_coords(self, obj_indices, figsize=None, is_show=True):
         from .optimal_coords import plot_optimal_coords
         return plot_optimal_coords(self.optimizer, obj_indices, figsize, is_show)
+
+    def solution_comparison(self, solution_indices, figsize=None, is_show=True):
+        from .solution_comparison import plot_solution_comparison
+        return plot_solution_comparison(self.optimizer, solution_indices, figsize, is_show)
