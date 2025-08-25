@@ -18,6 +18,7 @@
 - **专业约束条件**：内置支持点间距、边界限制和自定义约束
 - **定制遗传算子**：专门作用于坐标点的交叉和变异算子
 - **多目标优化**：基于成熟的NSGA-II算法
+- **灵活的目标/约束定义**：支持将多个目标/约束定义为函数列表，或定义为返回元组/列表的单个函数，以适应计算之间的相互依赖性。
 - **并行计算加速**：支持计算密集型问题的并行处理加速
 - **灵活区域定义**：支持多边形和矩形区域
 - **轻量级可扩展**：易于自定义算子和约束条件
@@ -73,12 +74,12 @@ def constraint_1(coords):
     penalty_list = spacing - dist_list[dist_list < spacing]
     return np.sum(penalty_list)
 
-# 设置问题（传入目标函数列表）
+# 设置问题
 problem = Problem(
-    objectives=[objective_1, objective_2],
+    objectives=[objective_1, objective_2],  # 可以是函数列表，也可以是返回元组/列表的单个函数
     n_points=[10, 30],  # 可以是固定数字或范围 [最小值, 最大值]
     region=region,
-    constraints=[constraint_1]
+    constraints=[constraint_1] # 可以是函数列表，也可以是返回元组/列表的单个函数
 )
 
 # 初始化优化器

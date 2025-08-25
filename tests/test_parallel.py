@@ -18,10 +18,13 @@ def test_region():
     ])
 
 # 创建简单的目标函数
+
+
 def simple_objective_1(coords):
     # 添加小延迟模拟计算
     time.sleep(0.01)
     return np.sum(coords[:, 0])
+
 
 def simple_objective_2(coords):
     # 添加小延迟模拟计算
@@ -29,6 +32,8 @@ def simple_objective_2(coords):
     return np.sum(coords[:, 1])
 
 # 测试Problem类的evaluate方法在串行和并行模式下是否正常工作
+
+
 def test_problem_evaluate_serial_vs_parallel(test_region):
     # 创建问题实例
     problem = Problem(
@@ -58,11 +63,13 @@ def test_problem_evaluate_serial_vs_parallel(test_region):
     print(f"并行评估时间: {parallel_time:.4f}秒")
 
 # 测试CoordsNSGA2类在串行和并行模式下是否正常工作
+
+
 def test_nsga2_serial_vs_parallel(test_region):
     # 创建问题实例
     problem = Problem(
         objectives=[simple_objective_1, simple_objective_2],
-        n_points=5,
+        n_points=[5, 10],
         region=test_region
     )
 
@@ -102,11 +109,14 @@ def test_nsga2_serial_vs_parallel(test_region):
 
     # 验证结果是否相同（由于随机性，可能会有微小差异，但应该非常接近）
     # 我们检查最终种群的形状是否相同
-    assert np.all(result_serial == result_parallel) ,"串行和并行优化结果形状应该相同"
+    for i in range(len(result_serial)):
+        assert np.all(result_serial[i] ==
+                      result_parallel[i]), "串行和并行优化结果形状应该相同"
 
     # 打印时间比较
     print(f"串行优化时间: {serial_time:.4f}秒")
     print(f"并行优化时间: {parallel_time:.4f}秒")
+
 
 if __name__ == "__main__":
     # 手动运行测试

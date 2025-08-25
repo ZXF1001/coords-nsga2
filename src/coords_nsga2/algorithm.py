@@ -42,54 +42,48 @@ class Problem:
                 self.region, pop_size * self.n_points)
             return coords.reshape(pop_size, self.n_points, 2)
 
+    def _evaluate_individual(self, individual):
+        """
+        计算单个个体的所有目标函数值，并根据约束进行惩罚调整。
+        如果是列表形式的目标函数，则分别进行计算
+        如果是单个多输出目标函数，则一次性计算
+        惩罚函数同理
+        """
+        if isinstance(self.objectives, list):
+            obj_values = np.array([obj(individual) for obj in self.objectives])
+        else:
+            obj_values = np.array(self.objectives(individual))
+        # 如果设有约束，则计算约束惩罚
+        if self.constraints:
+            if isinstance(self.constraints, list):
+                penalty = self.penalty_weight * \
+                    np.sum([c(individual) for c in self.constraints])
+            else:
+                penalty = self.penalty_weight * \
+                    np.sum(self.constraints(individual))
+            obj_values -= penalty
+        return obj_values
+
     def evaluate(self, population, n_jobs=1):
         """
         评估种群中每个个体的目标函数值
 
         参数:
-            population: 种群，形状为(pop_size, n_points, 2)
-            n_jobs: 并行计算的作业数，默认为1（串行计算）。当n_jobs不为1时，使用并行计算。
+            population: 种群，形状为 (pop_size, n_points, 2)
+            n_jobs: 并行计算的作业数，默认为 1（串行计算），否则使用 joblib 并行
 
         返回:
-            values: 目标函数值，形状为(n_objectives, pop_size)
+            values: 目标函数值，形状为 (n_objectives, pop_size)
         """
-        # 当n_jobs=1时，使用原始的串行评估方法
         if n_jobs == 1:
-            values = []
-            for obj_func in self.objectives:
-                values.append([obj_func(x) for x in population])
-            values = np.array(values)
-            if self.constraints:
-                penalty = self.penalty_weight * \
-                    np.array([np.sum([c(x) for c in self.constraints])
-                             for x in population])
-                values -= penalty
-            return values
-
-        # 当n_jobs不为1时，使用joblib并行计算
+            results = [self._evaluate_individual(ind) for ind in population]
         else:
-            # 使用joblib并行计算每个个体的目标函数值
-            def evaluate_individual(individual):
-                # 计算单个个体的所有目标函数值
-                obj_values = np.array([obj_func(individual)
-                                      for obj_func in self.objectives])
-
-                # 计算约束违反惩罚（如果有约束）
-                if self.constraints:
-                    penalty = self.penalty_weight * \
-                        np.sum([c(individual) for c in self.constraints])
-                    obj_values -= penalty
-
-                return obj_values
-
-            # 并行计算所有个体的目标函数值
             results = Parallel(n_jobs=n_jobs)(
-                delayed(evaluate_individual)(ind) for ind in population)
+                delayed(self._evaluate_individual)(ind) for ind in population
+            )
 
-            # 重新组织结果为所需的形状 (n_objectives, pop_size)
-            values = np.array(results).T
-
-            return values
+        # 组织结果为所需的形状 (n_objectives, pop_size)
+        return np.array(results).T
 
 
 class CoordsNSGA2:

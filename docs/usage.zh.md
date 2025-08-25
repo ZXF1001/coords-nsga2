@@ -50,10 +50,10 @@ def constraint_1(coords):
 
 # 4. 创建问题实例（支持任意多个目标）
 problem = Problem(
-    objectives=[objective_1, objective_2],
+    objectives=[objective_1, objective_2],  # 可以是函数列表，也可以是返回元组/列表的单个函数
     n_points=10,
     region=region,
-    constraints=[constraint_1]
+    constraints=[constraint_1] # 可以是函数列表，也可以是返回元组/列表的单个函数
 )
 
 # 5. 创建优化器
@@ -103,7 +103,33 @@ region = region_from_range(x_min=0, x_max=10, y_min=0, y_max=5)
 
 ### 目标函数定义
 
-目标函数应该接受一个形状为 `(n_points, 2)` 的numpy数组作为输入，返回一个标量值：
+目标函数应该接受一个形状为 `(n_points, 2)` 的numpy数组作为输入。
+
+#### 定义单个函数返回多个目标值
+
+当目标函数之间存在依赖关系或共享公共计算时，您可以定义一个返回目标值元组或列表的单个函数。
+
+```python
+import numpy as np
+
+def combined_objectives(coords):
+    """
+    参数:
+        coords: numpy数组，形状为(n_points, 2)
+                每行是一个坐标点 [x, y]
+    
+    返回:
+        tuple 或 list: 目标函数值的元组或列表。
+    """
+    # 示例：计算坐标和与点的分布
+    obj1_val = np.sum(coords[:, 0]) + np.sum(coords[:, 1])
+    obj2_val = np.std(coords[:, 0]) + np.std(coords[:, 1])
+    return obj1_val, obj2_val # 或者 [obj1_val, obj2_val]
+```
+
+#### 定义多个目标函数（每个返回一个标量）
+
+或者，您可以单独定义每个目标函数，每个函数返回一个标量值。
 
 ```python
 def my_objective(coords):
@@ -122,7 +148,39 @@ def my_objective(coords):
 
 ### 约束条件定义
 
-约束函数应该返回违反约束的惩罚值。返回0表示没有违反约束：
+约束函数应该接受一个形状为 `(n_points, 2)` 的numpy数组作为输入，并返回违反约束的惩罚值。返回0表示没有违反约束。
+
+#### 定义单个函数返回多个约束值
+
+与目标函数类似，您可以定义一个返回多个约束惩罚值元组或列表的单个函数。
+
+```python
+from scipy.spatial import distance
+
+def combined_constraints(coords):
+    """
+    参数:
+        coords: numpy数组，形状为(n_points, 2)
+    
+    返回:
+        tuple 或 list: 约束违反惩罚值的元组或列表。
+    """
+    spacing = 0.05
+    dist_list = distance.pdist(coords)
+    
+    # 约束1：点之间的最小间距
+    penalty1 = np.sum(spacing - dist_list[dist_list < spacing])
+    
+    # 约束2：所有点都在单位圆内（示例，可能依赖于其他计算）
+    distances_to_origin = np.sqrt(coords[:, 0]**2 + coords[:, 1]**2)
+    penalty2 = np.sum(distances_to_origin[distances_to_origin > 1] - 1)
+    
+    return penalty1, penalty2 # 或者 [penalty1, penalty2]
+```
+
+#### 定义多个约束函数（每个返回一个标量惩罚）
+
+或者，您可以单独定义每个约束函数，每个函数返回一个标量惩罚值。
 
 ```python
 def my_constraint(coords):
@@ -151,10 +209,10 @@ def my_constraint(coords):
 
 #### Problem 参数说明
 
-- `objectives`: 目标函数列表
+- `objectives`: 目标函数。可以是一个函数列表（每个函数返回一个标量），也可以是一个返回多个目标值（元组或列表）的单个函数。
 - `n_points`: 坐标点数量。可以是固定整数（如 `10`）或列表 `[最小值, 最大值]`，允许点数在优化过程中在指定范围内变化。
 - `region`: 定义有效搜索空间的区域实例
-- `constraints`: 约束函数列表（可选）
+- `constraints`: 约束函数（可选）。可以是一个函数列表（每个函数返回一个标量惩罚值），也可以是一个返回多个约束惩罚值（元组或列表）的单个函数。
 
 #### 参数调优建议
 

@@ -50,10 +50,10 @@ def constraint_1(coords):
 
 # 4. Create problem instance (supports arbitrary number of objectives)
 problem = Problem(
-    objectives=[objective_1, objective_2],
+    objectives=[objective_1, objective_2],  # Can be a list of functions, or a single function returning a tuple/list of values
     n_points=10,
     region=region,
-    constraints=[constraint_1]
+    constraints=[constraint_1] # Can be a list of functions, or a single function returning a tuple/list of values
 )
 
 # 5. Create optimizer
@@ -103,7 +103,33 @@ region = region_from_range(x_min=0, x_max=10, y_min=0, y_max=5)
 
 ### Objective Function Definition
 
-Objective functions should accept a numpy array of shape `(n_points, 2)` as input and return a scalar value:
+Objective functions should accept a numpy array of shape `(n_points, 2)` as input.
+
+#### Defining a Single Function Returning Multiple Objective Values
+
+When objective functions have interdependencies or share common calculations, you can define a single function that returns a tuple or list of objective values.
+
+```python
+import numpy as np
+
+def combined_objectives(coords):
+    """
+    Parameters:
+        coords: numpy array of shape (n_points, 2)
+                each row is a coordinate point [x, y]
+    
+    Returns:
+        tuple or list: A tuple or list of objective function values.
+    """
+    # Example: calculate sum of coordinates and spread of points
+    obj1_val = np.sum(coords[:, 0]) + np.sum(coords[:, 1])
+    obj2_val = np.std(coords[:, 0]) + np.std(coords[:, 1])
+    return obj1_val, obj2_val # Or [obj1_val, obj2_val]
+```
+
+#### Defining Multiple Objective Functions (each returning a scalar)
+
+Alternatively, you can define each objective function separately, with each returning a single scalar value.
 
 ```python
 def my_objective(coords):
@@ -122,7 +148,39 @@ def my_objective(coords):
 
 ### Constraint Definition
 
-Constraint functions should return penalty values for constraint violations. Return 0 if no constraints are violated:
+Constraint functions should accept a numpy array of shape `(n_points, 2)` as input and return penalty values for constraint violations. Return 0 if no constraints are violated.
+
+#### Defining a Single Function Returning Multiple Constraint Values
+
+Similar to objective functions, you can define a single function that returns a tuple or list of penalty values for multiple constraints.
+
+```python
+from scipy.spatial import distance
+
+def combined_constraints(coords):
+    """
+    Parameters:
+        coords: numpy array of shape (n_points, 2)
+    
+    Returns:
+        tuple or list: A tuple or list of penalty values for constraint violations.
+    """
+    spacing = 0.05
+    dist_list = distance.pdist(coords)
+    
+    # Constraint 1: Minimum spacing between points
+    penalty1 = np.sum(spacing - dist_list[dist_list < spacing])
+    
+    # Constraint 2: All points within unit circle (example, might depend on other calculations)
+    distances_to_origin = np.sqrt(coords[:, 0]**2 + coords[:, 1]**2)
+    penalty2 = np.sum(distances_to_origin[distances_to_origin > 1] - 1)
+    
+    return penalty1, penalty2 # Or [penalty1, penalty2]
+```
+
+#### Defining Multiple Constraint Functions (each returning a scalar penalty)
+
+Alternatively, you can define each constraint function separately, with each returning a single scalar penalty value.
 
 ```python
 def my_constraint(coords):
@@ -151,10 +209,10 @@ def my_constraint(coords):
 
 #### Problem Parameter Description
 
-- `objectives`: List of objective functions
+- `objectives`: Objective function(s). Can be a list of functions (each returning a scalar) or a single function returning multiple objective values (tuple or list).
 - `n_points`: Number of coordinate points. Can be a fixed integer (e.g., `10`) or a list `[min, max]` to allow the number of points to vary within a range during optimization.
 - `region`: Region instance defining the valid search space
-- `constraints`: List of constraint functions (optional)
+- `constraints`: Constraint function(s) (optional). Can be a list of functions (each returning a scalar penalty value) or a single function returning multiple constraint penalty values (tuple or list).
 
 #### Parameter Tuning Suggestions
 
