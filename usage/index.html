@@ -20,7 +20,7 @@
       
       
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.17">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.18">
     
     
       
@@ -553,6 +553,30 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Objective Function Definition">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#defining-a-single-function-returning-multiple-objective-values" class="md-nav__link">
+    <span class="md-ellipsis">
+      Defining a Single Function Returning Multiple Objective Values
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#defining-multiple-objective-functions-each-returning-a-scalar" class="md-nav__link">
+    <span class="md-ellipsis">
+      Defining Multiple Objective Functions (each returning a scalar)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -561,6 +585,30 @@
       Constraint Definition
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Constraint Definition">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#defining-a-single-function-returning-multiple-constraint-values" class="md-nav__link">
+    <span class="md-ellipsis">
+      Defining a Single Function Returning Multiple Constraint Values
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#defining-multiple-constraint-functions-each-returning-a-scalar-penalty" class="md-nav__link">
+    <span class="md-ellipsis">
+      Defining Multiple Constraint Functions (each returning a scalar penalty)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -775,6 +823,30 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Objective Function Definition">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#defining-a-single-function-returning-multiple-objective-values" class="md-nav__link">
+    <span class="md-ellipsis">
+      Defining a Single Function Returning Multiple Objective Values
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#defining-multiple-objective-functions-each-returning-a-scalar" class="md-nav__link">
+    <span class="md-ellipsis">
+      Defining Multiple Objective Functions (each returning a scalar)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -783,6 +855,30 @@
       Constraint Definition
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Constraint Definition">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#defining-a-single-function-returning-multiple-constraint-values" class="md-nav__link">
+    <span class="md-ellipsis">
+      Defining a Single Function Returning Multiple Constraint Values
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#defining-multiple-constraint-functions-each-returning-a-scalar-penalty" class="md-nav__link">
+    <span class="md-ellipsis">
+      Defining Multiple Constraint Functions (each returning a scalar penalty)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -971,10 +1067,10 @@
 <a id="__codelineno-0-30" name="__codelineno-0-30"></a>
 <a id="__codelineno-0-31" name="__codelineno-0-31"></a><span class="c1"># 4. Create problem instance (supports arbitrary number of objectives)</span>
 <a id="__codelineno-0-32" name="__codelineno-0-32"></a><span class="n">problem</span> <span class="o">=</span> <span class="n">Problem</span><span class="p">(</span>
-<a id="__codelineno-0-33" name="__codelineno-0-33"></a>    <span class="n">objectives</span><span class="o">=</span><span class="p">[</span><span class="n">objective_1</span><span class="p">,</span> <span class="n">objective_2</span><span class="p">],</span>
+<a id="__codelineno-0-33" name="__codelineno-0-33"></a>    <span class="n">objectives</span><span class="o">=</span><span class="p">[</span><span class="n">objective_1</span><span class="p">,</span> <span class="n">objective_2</span><span class="p">],</span>  <span class="c1"># Can be a list of functions, or a single function returning a tuple/list of values</span>
 <a id="__codelineno-0-34" name="__codelineno-0-34"></a>    <span class="n">n_points</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
 <a id="__codelineno-0-35" name="__codelineno-0-35"></a>    <span class="n">region</span><span class="o">=</span><span class="n">region</span><span class="p">,</span>
-<a id="__codelineno-0-36" name="__codelineno-0-36"></a>    <span class="n">constraints</span><span class="o">=</span><span class="p">[</span><span class="n">constraint_1</span><span class="p">]</span>
+<a id="__codelineno-0-36" name="__codelineno-0-36"></a>    <span class="n">constraints</span><span class="o">=</span><span class="p">[</span><span class="n">constraint_1</span><span class="p">]</span> <span class="c1"># Can be a list of functions, or a single function returning a tuple/list of values</span>
 <a id="__codelineno-0-37" name="__codelineno-0-37"></a><span class="p">)</span>
 <a id="__codelineno-0-38" name="__codelineno-0-38"></a>
 <a id="__codelineno-0-39" name="__codelineno-0-39"></a><span class="c1"># 5. Create optimizer</span>
@@ -1027,7 +1123,9 @@
 <a id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="n">region</span> <span class="o">=</span> <span class="n">region_from_range</span><span class="p">(</span><span class="n">x_min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">x_max</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">y_min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">y_max</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
 <h3 id="objective-function-definition">Objective Function Definition<a class="headerlink" href="#objective-function-definition" title="Permanent link">&para;</a></h3>
-<p>Objective functions should accept a numpy array of shape <code>(n_points, 2)</code> as input and return a scalar value:</p>
+<p>Objective functions should accept a numpy array of shape <code>(n_points, 2)</code> as input.</p>
+<h4 id="defining-a-single-function-returning-multiple-objective-values">Defining a Single Function Returning Multiple Objective Values<a class="headerlink" href="#defining-a-single-function-returning-multiple-objective-values" title="Permanent link">&para;</a></h4>
+<p>When objective functions have interdependencies or share common calculations, you can define a single function that returns a tuple or list of objective values.</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-3-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-3-3"> 3</a></span>
@@ -1039,21 +1137,27 @@
 <span class="normal"><a href="#__codelineno-3-9"> 9</a></span>
 <span class="normal"><a href="#__codelineno-3-10">10</a></span>
 <span class="normal"><a href="#__codelineno-3-11">11</a></span>
-<span class="normal"><a href="#__codelineno-3-12">12</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">my_objective</span><span class="p">(</span><span class="n">coords</span><span class="p">):</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<a id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="sd">    Parameters:</span>
-<a id="__codelineno-3-4" name="__codelineno-3-4"></a><span class="sd">        coords: numpy array of shape (n_points, 2)</span>
-<a id="__codelineno-3-5" name="__codelineno-3-5"></a><span class="sd">                each row is a coordinate point [x, y]</span>
-<a id="__codelineno-3-6" name="__codelineno-3-6"></a>
-<a id="__codelineno-3-7" name="__codelineno-3-7"></a><span class="sd">    Returns:</span>
-<a id="__codelineno-3-8" name="__codelineno-3-8"></a><span class="sd">        float: objective function value</span>
-<a id="__codelineno-3-9" name="__codelineno-3-9"></a><span class="sd">    &quot;&quot;&quot;</span>
-<a id="__codelineno-3-10" name="__codelineno-3-10"></a>    <span class="c1"># Example: calculate average distance to origin</span>
-<a id="__codelineno-3-11" name="__codelineno-3-11"></a>    <span class="n">distances</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">coords</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">coords</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
-<a id="__codelineno-3-12" name="__codelineno-3-12"></a>    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">distances</span><span class="p">)</span>
+<span class="normal"><a href="#__codelineno-3-12">12</a></span>
+<span class="normal"><a href="#__codelineno-3-13">13</a></span>
+<span class="normal"><a href="#__codelineno-3-14">14</a></span>
+<span class="normal"><a href="#__codelineno-3-15">15</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2"></a>
+<a id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="k">def</span><span class="w"> </span><span class="nf">combined_objectives</span><span class="p">(</span><span class="n">coords</span><span class="p">):</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5"></a><span class="sd">    Parameters:</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6"></a><span class="sd">        coords: numpy array of shape (n_points, 2)</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7"></a><span class="sd">                each row is a coordinate point [x, y]</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8"></a>
+<a id="__codelineno-3-9" name="__codelineno-3-9"></a><span class="sd">    Returns:</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10"></a><span class="sd">        tuple or list: A tuple or list of objective function values.</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12"></a>    <span class="c1"># Example: calculate sum of coordinates and spread of points</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13"></a>    <span class="n">obj1_val</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">coords</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">coords</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14"></a>    <span class="n">obj2_val</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">coords</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">coords</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15"></a>    <span class="k">return</span> <span class="n">obj1_val</span><span class="p">,</span> <span class="n">obj2_val</span> <span class="c1"># Or [obj1_val, obj2_val]</span>
 </code></pre></div></td></tr></table></div>
-<h3 id="constraint-definition">Constraint Definition<a class="headerlink" href="#constraint-definition" title="Permanent link">&para;</a></h3>
-<p>Constraint functions should return penalty values for constraint violations. Return 0 if no constraints are violated:</p>
+<h4 id="defining-multiple-objective-functions-each-returning-a-scalar">Defining Multiple Objective Functions (each returning a scalar)<a class="headerlink" href="#defining-multiple-objective-functions-each-returning-a-scalar" title="Permanent link">&para;</a></h4>
+<p>Alternatively, you can define each objective function separately, with each returning a single scalar value.</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-4-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-4-3"> 3</a></span>
@@ -1065,44 +1169,23 @@
 <span class="normal"><a href="#__codelineno-4-9"> 9</a></span>
 <span class="normal"><a href="#__codelineno-4-10">10</a></span>
 <span class="normal"><a href="#__codelineno-4-11">11</a></span>
-<span class="normal"><a href="#__codelineno-4-12">12</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">my_constraint</span><span class="p">(</span><span class="n">coords</span><span class="p">):</span>
+<span class="normal"><a href="#__codelineno-4-12">12</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">my_objective</span><span class="p">(</span><span class="n">coords</span><span class="p">):</span>
 <a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <a id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="sd">    Parameters:</span>
 <a id="__codelineno-4-4" name="__codelineno-4-4"></a><span class="sd">        coords: numpy array of shape (n_points, 2)</span>
-<a id="__codelineno-4-5" name="__codelineno-4-5"></a>
-<a id="__codelineno-4-6" name="__codelineno-4-6"></a><span class="sd">    Returns:</span>
-<a id="__codelineno-4-7" name="__codelineno-4-7"></a><span class="sd">        float: penalty value for constraint violation (0 means no violation)</span>
-<a id="__codelineno-4-8" name="__codelineno-4-8"></a><span class="sd">    &quot;&quot;&quot;</span>
-<a id="__codelineno-4-9" name="__codelineno-4-9"></a>    <span class="c1"># Example: ensure all points are within unit circle</span>
-<a id="__codelineno-4-10" name="__codelineno-4-10"></a>    <span class="n">distances</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">coords</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">coords</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
-<a id="__codelineno-4-11" name="__codelineno-4-11"></a>    <span class="n">violations</span> <span class="o">=</span> <span class="n">distances</span><span class="p">[</span><span class="n">distances</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span>
-<a id="__codelineno-4-12" name="__codelineno-4-12"></a>    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">violations</span><span class="p">)</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5"></a><span class="sd">                each row is a coordinate point [x, y]</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6"></a>
+<a id="__codelineno-4-7" name="__codelineno-4-7"></a><span class="sd">    Returns:</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8"></a><span class="sd">        float: objective function value</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10"></a>    <span class="c1"># Example: calculate average distance to origin</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11"></a>    <span class="n">distances</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">coords</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">coords</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12"></a>    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">distances</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-<h3 id="optimizer-parameters">Optimizer Parameters<a class="headerlink" href="#optimizer-parameters" title="Permanent link">&para;</a></h3>
-<h4 id="coordsnsga2-parameter-description">CoordsNSGA2 Parameter Description<a class="headerlink" href="#coordsnsga2-parameter-description" title="Permanent link">&para;</a></h4>
-<ul>
-<li><code>problem</code>: Problem instance</li>
-<li><code>pop_size</code>: Population size (must be even)</li>
-<li><code>prob_crs</code>: Crossover probability (between 0-1)</li>
-<li><code>prob_mut</code>: Mutation probability (between 0-1)</li>
-<li><code>random_seed</code>: Random seed (for reproducibility)</li>
-</ul>
-<h4 id="problem-parameter-description">Problem Parameter Description<a class="headerlink" href="#problem-parameter-description" title="Permanent link">&para;</a></h4>
-<ul>
-<li><code>objectives</code>: List of objective functions</li>
-<li><code>n_points</code>: Number of coordinate points. Can be a fixed integer (e.g., <code>10</code>) or a list <code>[min, max]</code> to allow the number of points to vary within a range during optimization.</li>
-<li><code>region</code>: Region instance defining the valid search space</li>
-<li><code>constraints</code>: List of constraint functions (optional)</li>
-</ul>
-<h4 id="parameter-tuning-suggestions">Parameter Tuning Suggestions<a class="headerlink" href="#parameter-tuning-suggestions" title="Permanent link">&para;</a></h4>
-<ul>
-<li><strong>Population size</strong>: Usually set to 20-100, use larger populations for complex problems</li>
-<li><strong>Crossover probability</strong>: Usually set to 0.5-0.9</li>
-<li><strong>Mutation probability</strong>: Usually set to 0.01-0.1</li>
-<li><strong>Generations</strong>: Set based on problem complexity, usually 100-1000 generations</li>
-</ul>
-<h3 id="result-analysis">Result Analysis<a class="headerlink" href="#result-analysis" title="Permanent link">&para;</a></h3>
-<p>After optimization is complete, you can access the following attributes:</p>
+<h3 id="constraint-definition">Constraint Definition<a class="headerlink" href="#constraint-definition" title="Permanent link">&para;</a></h3>
+<p>Constraint functions should accept a numpy array of shape <code>(n_points, 2)</code> as input and return penalty values for constraint violations. Return 0 if no constraints are violated.</p>
+<h4 id="defining-a-single-function-returning-multiple-constraint-values">Defining a Single Function Returning Multiple Constraint Values<a class="headerlink" href="#defining-a-single-function-returning-multiple-constraint-values" title="Permanent link">&para;</a></h4>
+<p>Similar to objective functions, you can define a single function that returns a tuple or list of penalty values for multiple constraints.</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-5-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-5-3"> 3</a></span>
@@ -1118,33 +1201,126 @@
 <span class="normal"><a href="#__codelineno-5-13">13</a></span>
 <span class="normal"><a href="#__codelineno-5-14">14</a></span>
 <span class="normal"><a href="#__codelineno-5-15">15</a></span>
-<span class="normal"><a href="#__codelineno-5-16">16</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="c1"># Final population</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2"></a><span class="n">final_population</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">P</span>
-<a id="__codelineno-5-3" name="__codelineno-5-3"></a>
-<a id="__codelineno-5-4" name="__codelineno-5-4"></a><span class="c1"># Objective function values (shape: n_objectives × pop_size)</span>
-<a id="__codelineno-5-5" name="__codelineno-5-5"></a><span class="n">values</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">values_P</span>
-<a id="__codelineno-5-6" name="__codelineno-5-6"></a><span class="n">values1</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<a id="__codelineno-5-7" name="__codelineno-5-7"></a><span class="n">values2</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-<a id="__codelineno-5-8" name="__codelineno-5-8"></a>
-<a id="__codelineno-5-9" name="__codelineno-5-9"></a><span class="c1"># Optimization history</span>
-<a id="__codelineno-5-10" name="__codelineno-5-10"></a><span class="n">population_history</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">P_history</span>
-<a id="__codelineno-5-11" name="__codelineno-5-11"></a><span class="n">values_history</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">values_history</span>  <span class="c1"># list of (n_objectives, pop_size) per generation</span>
-<a id="__codelineno-5-12" name="__codelineno-5-12"></a>
-<a id="__codelineno-5-13" name="__codelineno-5-13"></a><span class="c1"># Find Pareto optimal solutions (based on last generation objective values)</span>
-<a id="__codelineno-5-14" name="__codelineno-5-14"></a><span class="kn">from</span><span class="w"> </span><span class="nn">coords_nsga2.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">fast_non_dominated_sort</span>
-<a id="__codelineno-5-15" name="__codelineno-5-15"></a><span class="n">fronts</span> <span class="o">=</span> <span class="n">fast_non_dominated_sort</span><span class="p">(</span><span class="n">optimizer</span><span class="o">.</span><span class="n">values_P</span><span class="p">)</span>
-<a id="__codelineno-5-16" name="__codelineno-5-16"></a><span class="n">pareto_front</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">P</span><span class="p">[</span><span class="n">fronts</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
+<span class="normal"><a href="#__codelineno-5-16">16</a></span>
+<span class="normal"><a href="#__codelineno-5-17">17</a></span>
+<span class="normal"><a href="#__codelineno-5-18">18</a></span>
+<span class="normal"><a href="#__codelineno-5-19">19</a></span>
+<span class="normal"><a href="#__codelineno-5-20">20</a></span>
+<span class="normal"><a href="#__codelineno-5-21">21</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">scipy.spatial</span><span class="w"> </span><span class="kn">import</span> <span class="n">distance</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2"></a>
+<a id="__codelineno-5-3" name="__codelineno-5-3"></a><span class="k">def</span><span class="w"> </span><span class="nf">combined_constraints</span><span class="p">(</span><span class="n">coords</span><span class="p">):</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5"></a><span class="sd">    Parameters:</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6"></a><span class="sd">        coords: numpy array of shape (n_points, 2)</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7"></a>
+<a id="__codelineno-5-8" name="__codelineno-5-8"></a><span class="sd">    Returns:</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9"></a><span class="sd">        tuple or list: A tuple or list of penalty values for constraint violations.</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11"></a>    <span class="n">spacing</span> <span class="o">=</span> <span class="mf">0.05</span>
+<a id="__codelineno-5-12" name="__codelineno-5-12"></a>    <span class="n">dist_list</span> <span class="o">=</span> <span class="n">distance</span><span class="o">.</span><span class="n">pdist</span><span class="p">(</span><span class="n">coords</span><span class="p">)</span>
+<a id="__codelineno-5-13" name="__codelineno-5-13"></a>
+<a id="__codelineno-5-14" name="__codelineno-5-14"></a>    <span class="c1"># Constraint 1: Minimum spacing between points</span>
+<a id="__codelineno-5-15" name="__codelineno-5-15"></a>    <span class="n">penalty1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">spacing</span> <span class="o">-</span> <span class="n">dist_list</span><span class="p">[</span><span class="n">dist_list</span> <span class="o">&lt;</span> <span class="n">spacing</span><span class="p">])</span>
+<a id="__codelineno-5-16" name="__codelineno-5-16"></a>
+<a id="__codelineno-5-17" name="__codelineno-5-17"></a>    <span class="c1"># Constraint 2: All points within unit circle (example, might depend on other calculations)</span>
+<a id="__codelineno-5-18" name="__codelineno-5-18"></a>    <span class="n">distances_to_origin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">coords</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">coords</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<a id="__codelineno-5-19" name="__codelineno-5-19"></a>    <span class="n">penalty2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">distances_to_origin</span><span class="p">[</span><span class="n">distances_to_origin</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+<a id="__codelineno-5-20" name="__codelineno-5-20"></a>
+<a id="__codelineno-5-21" name="__codelineno-5-21"></a>    <span class="k">return</span> <span class="n">penalty1</span><span class="p">,</span> <span class="n">penalty2</span> <span class="c1"># Or [penalty1, penalty2]</span>
+</code></pre></div></td></tr></table></div>
+<h4 id="defining-multiple-constraint-functions-each-returning-a-scalar-penalty">Defining Multiple Constraint Functions (each returning a scalar penalty)<a class="headerlink" href="#defining-multiple-constraint-functions-each-returning-a-scalar-penalty" title="Permanent link">&para;</a></h4>
+<p>Alternatively, you can define each constraint function separately, with each returning a single scalar penalty value.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-6-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-6-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-6-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-6-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-6-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-6-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-6-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-6-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-6-10">10</a></span>
+<span class="normal"><a href="#__codelineno-6-11">11</a></span>
+<span class="normal"><a href="#__codelineno-6-12">12</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">my_constraint</span><span class="p">(</span><span class="n">coords</span><span class="p">):</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3"></a><span class="sd">    Parameters:</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4"></a><span class="sd">        coords: numpy array of shape (n_points, 2)</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5"></a>
+<a id="__codelineno-6-6" name="__codelineno-6-6"></a><span class="sd">    Returns:</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7"></a><span class="sd">        float: penalty value for constraint violation (0 means no violation)</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9"></a>    <span class="c1"># Example: ensure all points are within unit circle</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10"></a>    <span class="n">distances</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">coords</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">coords</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<a id="__codelineno-6-11" name="__codelineno-6-11"></a>    <span class="n">violations</span> <span class="o">=</span> <span class="n">distances</span><span class="p">[</span><span class="n">distances</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span>
+<a id="__codelineno-6-12" name="__codelineno-6-12"></a>    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">violations</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="optimizer-parameters">Optimizer Parameters<a class="headerlink" href="#optimizer-parameters" title="Permanent link">&para;</a></h3>
+<h4 id="coordsnsga2-parameter-description">CoordsNSGA2 Parameter Description<a class="headerlink" href="#coordsnsga2-parameter-description" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>problem</code>: Problem instance</li>
+<li><code>pop_size</code>: Population size (must be even)</li>
+<li><code>prob_crs</code>: Crossover probability (between 0-1)</li>
+<li><code>prob_mut</code>: Mutation probability (between 0-1)</li>
+<li><code>random_seed</code>: Random seed (for reproducibility)</li>
+</ul>
+<h4 id="problem-parameter-description">Problem Parameter Description<a class="headerlink" href="#problem-parameter-description" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>objectives</code>: Objective function(s). Can be a list of functions (each returning a scalar) or a single function returning multiple objective values (tuple or list).</li>
+<li><code>n_points</code>: Number of coordinate points. Can be a fixed integer (e.g., <code>10</code>) or a list <code>[min, max]</code> to allow the number of points to vary within a range during optimization.</li>
+<li><code>region</code>: Region instance defining the valid search space</li>
+<li><code>constraints</code>: Constraint function(s) (optional). Can be a list of functions (each returning a scalar penalty value) or a single function returning multiple constraint penalty values (tuple or list).</li>
+</ul>
+<h4 id="parameter-tuning-suggestions">Parameter Tuning Suggestions<a class="headerlink" href="#parameter-tuning-suggestions" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Population size</strong>: Usually set to 20-100, use larger populations for complex problems</li>
+<li><strong>Crossover probability</strong>: Usually set to 0.5-0.9</li>
+<li><strong>Mutation probability</strong>: Usually set to 0.01-0.1</li>
+<li><strong>Generations</strong>: Set based on problem complexity, usually 100-1000 generations</li>
+</ul>
+<h3 id="result-analysis">Result Analysis<a class="headerlink" href="#result-analysis" title="Permanent link">&para;</a></h3>
+<p>After optimization is complete, you can access the following attributes:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-7-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-7-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-7-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-7-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-7-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-7-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-7-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-7-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-7-10">10</a></span>
+<span class="normal"><a href="#__codelineno-7-11">11</a></span>
+<span class="normal"><a href="#__codelineno-7-12">12</a></span>
+<span class="normal"><a href="#__codelineno-7-13">13</a></span>
+<span class="normal"><a href="#__codelineno-7-14">14</a></span>
+<span class="normal"><a href="#__codelineno-7-15">15</a></span>
+<span class="normal"><a href="#__codelineno-7-16">16</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="c1"># Final population</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2"></a><span class="n">final_population</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">P</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3"></a>
+<a id="__codelineno-7-4" name="__codelineno-7-4"></a><span class="c1"># Objective function values (shape: n_objectives × pop_size)</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5"></a><span class="n">values</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">values_P</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6"></a><span class="n">values1</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7"></a><span class="n">values2</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8"></a>
+<a id="__codelineno-7-9" name="__codelineno-7-9"></a><span class="c1"># Optimization history</span>
+<a id="__codelineno-7-10" name="__codelineno-7-10"></a><span class="n">population_history</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">P_history</span>
+<a id="__codelineno-7-11" name="__codelineno-7-11"></a><span class="n">values_history</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">values_history</span>  <span class="c1"># list of (n_objectives, pop_size) per generation</span>
+<a id="__codelineno-7-12" name="__codelineno-7-12"></a>
+<a id="__codelineno-7-13" name="__codelineno-7-13"></a><span class="c1"># Find Pareto optimal solutions (based on last generation objective values)</span>
+<a id="__codelineno-7-14" name="__codelineno-7-14"></a><span class="kn">from</span><span class="w"> </span><span class="nn">coords_nsga2.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">fast_non_dominated_sort</span>
+<a id="__codelineno-7-15" name="__codelineno-7-15"></a><span class="n">fronts</span> <span class="o">=</span> <span class="n">fast_non_dominated_sort</span><span class="p">(</span><span class="n">optimizer</span><span class="o">.</span><span class="n">values_P</span><span class="p">)</span>
+<a id="__codelineno-7-16" name="__codelineno-7-16"></a><span class="n">pareto_front</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">P</span><span class="p">[</span><span class="n">fronts</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
 </code></pre></div></td></tr></table></div>
 <h3 id="save-and-load">Save and Load<a class="headerlink" href="#save-and-load" title="Permanent link">&para;</a></h3>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span>
-<span class="normal"><a href="#__codelineno-6-2">2</a></span>
-<span class="normal"><a href="#__codelineno-6-3">3</a></span>
-<span class="normal"><a href="#__codelineno-6-4">4</a></span>
-<span class="normal"><a href="#__codelineno-6-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="c1"># Save optimization state</span>
-<a id="__codelineno-6-2" name="__codelineno-6-2"></a><span class="n">optimizer</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;optimization_result.pkl&quot;</span><span class="p">)</span>
-<a id="__codelineno-6-3" name="__codelineno-6-3"></a>
-<a id="__codelineno-6-4" name="__codelineno-6-4"></a><span class="c1"># Load optimization state</span>
-<a id="__codelineno-6-5" name="__codelineno-6-5"></a><span class="n">optimizer</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;optimization_result.pkl&quot;</span><span class="p">)</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span>
+<span class="normal"><a href="#__codelineno-8-2">2</a></span>
+<span class="normal"><a href="#__codelineno-8-3">3</a></span>
+<span class="normal"><a href="#__codelineno-8-4">4</a></span>
+<span class="normal"><a href="#__codelineno-8-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="c1"># Save optimization state</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2"></a><span class="n">optimizer</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;optimization_result.pkl&quot;</span><span class="p">)</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3"></a>
+<a id="__codelineno-8-4" name="__codelineno-8-4"></a><span class="c1"># Load optimization state</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5"></a><span class="n">optimizer</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;optimization_result.pkl&quot;</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
 
 

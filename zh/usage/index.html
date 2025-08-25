@@ -20,7 +20,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.17">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.18">
     
     
       
@@ -553,12 +553,13 @@
     </span>
   </a>
   
-</li>
+    <nav class="md-nav" aria-label="目标函数定义">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#_8" class="md-nav__link">
     <span class="md-ellipsis">
-      约束条件定义
+      定义单个函数返回多个目标值
     </span>
   </a>
   
@@ -566,6 +567,53 @@
         
           <li class="md-nav__item">
   <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      定义多个目标函数（每个返回一个标量）
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      约束条件定义
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="约束条件定义">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      定义单个函数返回多个约束值
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      定义多个约束函数（每个返回一个标量惩罚）
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
     <span class="md-ellipsis">
       优化器参数
     </span>
@@ -593,7 +641,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_10" class="md-nav__link">
+  <a href="#_14" class="md-nav__link">
     <span class="md-ellipsis">
       参数调优建议
     </span>
@@ -607,7 +655,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_11" class="md-nav__link">
+  <a href="#_15" class="md-nav__link">
     <span class="md-ellipsis">
       结果分析
     </span>
@@ -616,7 +664,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_12" class="md-nav__link">
+  <a href="#_16" class="md-nav__link">
     <span class="md-ellipsis">
       保存和加载
     </span>
@@ -775,12 +823,13 @@
     </span>
   </a>
   
-</li>
+    <nav class="md-nav" aria-label="目标函数定义">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#_8" class="md-nav__link">
     <span class="md-ellipsis">
-      约束条件定义
+      定义单个函数返回多个目标值
     </span>
   </a>
   
@@ -788,6 +837,53 @@
         
           <li class="md-nav__item">
   <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      定义多个目标函数（每个返回一个标量）
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      约束条件定义
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="约束条件定义">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      定义单个函数返回多个约束值
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      定义多个约束函数（每个返回一个标量惩罚）
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
     <span class="md-ellipsis">
       优化器参数
     </span>
@@ -815,7 +911,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_10" class="md-nav__link">
+  <a href="#_14" class="md-nav__link">
     <span class="md-ellipsis">
       参数调优建议
     </span>
@@ -829,7 +925,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_11" class="md-nav__link">
+  <a href="#_15" class="md-nav__link">
     <span class="md-ellipsis">
       结果分析
     </span>
@@ -838,7 +934,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_12" class="md-nav__link">
+  <a href="#_16" class="md-nav__link">
     <span class="md-ellipsis">
       保存和加载
     </span>
@@ -971,10 +1067,10 @@
 <a id="__codelineno-0-30" name="__codelineno-0-30"></a>
 <a id="__codelineno-0-31" name="__codelineno-0-31"></a><span class="c1"># 4. 创建问题实例（支持任意多个目标）</span>
 <a id="__codelineno-0-32" name="__codelineno-0-32"></a><span class="n">problem</span> <span class="o">=</span> <span class="n">Problem</span><span class="p">(</span>
-<a id="__codelineno-0-33" name="__codelineno-0-33"></a>    <span class="n">objectives</span><span class="o">=</span><span class="p">[</span><span class="n">objective_1</span><span class="p">,</span> <span class="n">objective_2</span><span class="p">],</span>
+<a id="__codelineno-0-33" name="__codelineno-0-33"></a>    <span class="n">objectives</span><span class="o">=</span><span class="p">[</span><span class="n">objective_1</span><span class="p">,</span> <span class="n">objective_2</span><span class="p">],</span>  <span class="c1"># 可以是函数列表，也可以是返回元组/列表的单个函数</span>
 <a id="__codelineno-0-34" name="__codelineno-0-34"></a>    <span class="n">n_points</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
 <a id="__codelineno-0-35" name="__codelineno-0-35"></a>    <span class="n">region</span><span class="o">=</span><span class="n">region</span><span class="p">,</span>
-<a id="__codelineno-0-36" name="__codelineno-0-36"></a>    <span class="n">constraints</span><span class="o">=</span><span class="p">[</span><span class="n">constraint_1</span><span class="p">]</span>
+<a id="__codelineno-0-36" name="__codelineno-0-36"></a>    <span class="n">constraints</span><span class="o">=</span><span class="p">[</span><span class="n">constraint_1</span><span class="p">]</span> <span class="c1"># 可以是函数列表，也可以是返回元组/列表的单个函数</span>
 <a id="__codelineno-0-37" name="__codelineno-0-37"></a><span class="p">)</span>
 <a id="__codelineno-0-38" name="__codelineno-0-38"></a>
 <a id="__codelineno-0-39" name="__codelineno-0-39"></a><span class="c1"># 5. 创建优化器</span>
@@ -1027,7 +1123,9 @@
 <a id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="n">region</span> <span class="o">=</span> <span class="n">region_from_range</span><span class="p">(</span><span class="n">x_min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">x_max</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">y_min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">y_max</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
 <h3 id="_7">目标函数定义<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
-<p>目标函数应该接受一个形状为 <code>(n_points, 2)</code> 的numpy数组作为输入，返回一个标量值：</p>
+<p>目标函数应该接受一个形状为 <code>(n_points, 2)</code> 的numpy数组作为输入。</p>
+<h4 id="_8">定义单个函数返回多个目标值<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h4>
+<p>当目标函数之间存在依赖关系或共享公共计算时，您可以定义一个返回目标值元组或列表的单个函数。</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-3-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-3-3"> 3</a></span>
@@ -1039,21 +1137,27 @@
 <span class="normal"><a href="#__codelineno-3-9"> 9</a></span>
 <span class="normal"><a href="#__codelineno-3-10">10</a></span>
 <span class="normal"><a href="#__codelineno-3-11">11</a></span>
-<span class="normal"><a href="#__codelineno-3-12">12</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">my_objective</span><span class="p">(</span><span class="n">coords</span><span class="p">):</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<a id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="sd">    参数:</span>
-<a id="__codelineno-3-4" name="__codelineno-3-4"></a><span class="sd">        coords: numpy数组，形状为(n_points, 2)</span>
-<a id="__codelineno-3-5" name="__codelineno-3-5"></a><span class="sd">                每行是一个坐标点 [x, y]</span>
-<a id="__codelineno-3-6" name="__codelineno-3-6"></a>
-<a id="__codelineno-3-7" name="__codelineno-3-7"></a><span class="sd">    返回:</span>
-<a id="__codelineno-3-8" name="__codelineno-3-8"></a><span class="sd">        float: 目标函数值</span>
-<a id="__codelineno-3-9" name="__codelineno-3-9"></a><span class="sd">    &quot;&quot;&quot;</span>
-<a id="__codelineno-3-10" name="__codelineno-3-10"></a>    <span class="c1"># 示例：计算所有点到原点的平均距离</span>
-<a id="__codelineno-3-11" name="__codelineno-3-11"></a>    <span class="n">distances</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">coords</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">coords</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
-<a id="__codelineno-3-12" name="__codelineno-3-12"></a>    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">distances</span><span class="p">)</span>
+<span class="normal"><a href="#__codelineno-3-12">12</a></span>
+<span class="normal"><a href="#__codelineno-3-13">13</a></span>
+<span class="normal"><a href="#__codelineno-3-14">14</a></span>
+<span class="normal"><a href="#__codelineno-3-15">15</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2"></a>
+<a id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="k">def</span><span class="w"> </span><span class="nf">combined_objectives</span><span class="p">(</span><span class="n">coords</span><span class="p">):</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5"></a><span class="sd">    参数:</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6"></a><span class="sd">        coords: numpy数组，形状为(n_points, 2)</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7"></a><span class="sd">                每行是一个坐标点 [x, y]</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8"></a>
+<a id="__codelineno-3-9" name="__codelineno-3-9"></a><span class="sd">    返回:</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10"></a><span class="sd">        tuple 或 list: 目标函数值的元组或列表。</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12"></a>    <span class="c1"># 示例：计算坐标和与点的分布</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13"></a>    <span class="n">obj1_val</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">coords</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">coords</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14"></a>    <span class="n">obj2_val</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">coords</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">coords</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15"></a>    <span class="k">return</span> <span class="n">obj1_val</span><span class="p">,</span> <span class="n">obj2_val</span> <span class="c1"># 或者 [obj1_val, obj2_val]</span>
 </code></pre></div></td></tr></table></div>
-<h3 id="_8">约束条件定义<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
-<p>约束函数应该返回违反约束的惩罚值。返回0表示没有违反约束：</p>
+<h4 id="_9">定义多个目标函数（每个返回一个标量）<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h4>
+<p>或者，您可以单独定义每个目标函数，每个函数返回一个标量值。</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-4-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-4-3"> 3</a></span>
@@ -1065,44 +1169,23 @@
 <span class="normal"><a href="#__codelineno-4-9"> 9</a></span>
 <span class="normal"><a href="#__codelineno-4-10">10</a></span>
 <span class="normal"><a href="#__codelineno-4-11">11</a></span>
-<span class="normal"><a href="#__codelineno-4-12">12</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">my_constraint</span><span class="p">(</span><span class="n">coords</span><span class="p">):</span>
+<span class="normal"><a href="#__codelineno-4-12">12</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">my_objective</span><span class="p">(</span><span class="n">coords</span><span class="p">):</span>
 <a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <a id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="sd">    参数:</span>
 <a id="__codelineno-4-4" name="__codelineno-4-4"></a><span class="sd">        coords: numpy数组，形状为(n_points, 2)</span>
-<a id="__codelineno-4-5" name="__codelineno-4-5"></a>
-<a id="__codelineno-4-6" name="__codelineno-4-6"></a><span class="sd">    返回:</span>
-<a id="__codelineno-4-7" name="__codelineno-4-7"></a><span class="sd">        float: 约束违反的惩罚值（0表示无违反）</span>
-<a id="__codelineno-4-8" name="__codelineno-4-8"></a><span class="sd">    &quot;&quot;&quot;</span>
-<a id="__codelineno-4-9" name="__codelineno-4-9"></a>    <span class="c1"># 示例：确保所有点都在单位圆内</span>
-<a id="__codelineno-4-10" name="__codelineno-4-10"></a>    <span class="n">distances</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">coords</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">coords</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
-<a id="__codelineno-4-11" name="__codelineno-4-11"></a>    <span class="n">violations</span> <span class="o">=</span> <span class="n">distances</span><span class="p">[</span><span class="n">distances</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span>
-<a id="__codelineno-4-12" name="__codelineno-4-12"></a>    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">violations</span><span class="p">)</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5"></a><span class="sd">                每行是一个坐标点 [x, y]</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6"></a>
+<a id="__codelineno-4-7" name="__codelineno-4-7"></a><span class="sd">    返回:</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8"></a><span class="sd">        float: 目标函数值</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10"></a>    <span class="c1"># 示例：计算所有点到原点的平均距离</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11"></a>    <span class="n">distances</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">coords</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">coords</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12"></a>    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">distances</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-<h3 id="_9">优化器参数<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
-<h4 id="coordsnsga2">CoordsNSGA2 参数说明<a class="headerlink" href="#coordsnsga2" title="Permanent link">&para;</a></h4>
-<ul>
-<li><code>problem</code>: Problem实例</li>
-<li><code>pop_size</code>: 种群大小（必须为偶数）</li>
-<li><code>prob_crs</code>: 交叉概率（0-1之间）</li>
-<li><code>prob_mut</code>: 变异概率（0-1之间）</li>
-<li><code>random_seed</code>: 随机种子（用于可重现性）</li>
-</ul>
-<h4 id="problem">Problem 参数说明<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h4>
-<ul>
-<li><code>objectives</code>: 目标函数列表</li>
-<li><code>n_points</code>: 坐标点数量。可以是固定整数（如 <code>10</code>）或列表 <code>[最小值, 最大值]</code>，允许点数在优化过程中在指定范围内变化。</li>
-<li><code>region</code>: 定义有效搜索空间的区域实例</li>
-<li><code>constraints</code>: 约束函数列表（可选）</li>
-</ul>
-<h4 id="_10">参数调优建议<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h4>
-<ul>
-<li><strong>种群大小</strong>: 通常设置为20-100，问题复杂时使用更大的种群</li>
-<li><strong>交叉概率</strong>: 通常设置为0.5-0.9</li>
-<li><strong>变异概率</strong>: 通常设置为0.01-0.1</li>
-<li><strong>代数</strong>: 根据问题复杂度设置，通常100-1000代</li>
-</ul>
-<h3 id="_11">结果分析<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
-<p>优化完成后，您可以访问以下属性：</p>
+<h3 id="_10">约束条件定义<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<p>约束函数应该接受一个形状为 <code>(n_points, 2)</code> 的numpy数组作为输入，并返回违反约束的惩罚值。返回0表示没有违反约束。</p>
+<h4 id="_11">定义单个函数返回多个约束值<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h4>
+<p>与目标函数类似，您可以定义一个返回多个约束惩罚值元组或列表的单个函数。</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-5-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-5-3"> 3</a></span>
@@ -1118,33 +1201,126 @@
 <span class="normal"><a href="#__codelineno-5-13">13</a></span>
 <span class="normal"><a href="#__codelineno-5-14">14</a></span>
 <span class="normal"><a href="#__codelineno-5-15">15</a></span>
-<span class="normal"><a href="#__codelineno-5-16">16</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="c1"># 最终种群</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2"></a><span class="n">final_population</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">P</span>
-<a id="__codelineno-5-3" name="__codelineno-5-3"></a>
-<a id="__codelineno-5-4" name="__codelineno-5-4"></a><span class="c1"># 目标函数值（形状: n_objectives × pop_size）</span>
-<a id="__codelineno-5-5" name="__codelineno-5-5"></a><span class="n">values</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">values_P</span>
-<a id="__codelineno-5-6" name="__codelineno-5-6"></a><span class="n">values1</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<a id="__codelineno-5-7" name="__codelineno-5-7"></a><span class="n">values2</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-<a id="__codelineno-5-8" name="__codelineno-5-8"></a>
-<a id="__codelineno-5-9" name="__codelineno-5-9"></a><span class="c1"># 优化历史</span>
-<a id="__codelineno-5-10" name="__codelineno-5-10"></a><span class="n">population_history</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">P_history</span>
-<a id="__codelineno-5-11" name="__codelineno-5-11"></a><span class="n">values_history</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">values_history</span>  <span class="c1"># 列表，每代一个 (n_objectives, pop_size) 数组</span>
-<a id="__codelineno-5-12" name="__codelineno-5-12"></a>
-<a id="__codelineno-5-13" name="__codelineno-5-13"></a><span class="c1"># 找到帕累托前沿（基于最后一代目标值）</span>
-<a id="__codelineno-5-14" name="__codelineno-5-14"></a><span class="kn">from</span><span class="w"> </span><span class="nn">coords_nsga2.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">fast_non_dominated_sort</span>
-<a id="__codelineno-5-15" name="__codelineno-5-15"></a><span class="n">fronts</span> <span class="o">=</span> <span class="n">fast_non_dominated_sort</span><span class="p">(</span><span class="n">optimizer</span><span class="o">.</span><span class="n">values_P</span><span class="p">)</span>
-<a id="__codelineno-5-16" name="__codelineno-5-16"></a><span class="n">pareto_front</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">P</span><span class="p">[</span><span class="n">fronts</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
+<span class="normal"><a href="#__codelineno-5-16">16</a></span>
+<span class="normal"><a href="#__codelineno-5-17">17</a></span>
+<span class="normal"><a href="#__codelineno-5-18">18</a></span>
+<span class="normal"><a href="#__codelineno-5-19">19</a></span>
+<span class="normal"><a href="#__codelineno-5-20">20</a></span>
+<span class="normal"><a href="#__codelineno-5-21">21</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">scipy.spatial</span><span class="w"> </span><span class="kn">import</span> <span class="n">distance</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2"></a>
+<a id="__codelineno-5-3" name="__codelineno-5-3"></a><span class="k">def</span><span class="w"> </span><span class="nf">combined_constraints</span><span class="p">(</span><span class="n">coords</span><span class="p">):</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5"></a><span class="sd">    参数:</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6"></a><span class="sd">        coords: numpy数组，形状为(n_points, 2)</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7"></a>
+<a id="__codelineno-5-8" name="__codelineno-5-8"></a><span class="sd">    返回:</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9"></a><span class="sd">        tuple 或 list: 约束违反惩罚值的元组或列表。</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11"></a>    <span class="n">spacing</span> <span class="o">=</span> <span class="mf">0.05</span>
+<a id="__codelineno-5-12" name="__codelineno-5-12"></a>    <span class="n">dist_list</span> <span class="o">=</span> <span class="n">distance</span><span class="o">.</span><span class="n">pdist</span><span class="p">(</span><span class="n">coords</span><span class="p">)</span>
+<a id="__codelineno-5-13" name="__codelineno-5-13"></a>
+<a id="__codelineno-5-14" name="__codelineno-5-14"></a>    <span class="c1"># 约束1：点之间的最小间距</span>
+<a id="__codelineno-5-15" name="__codelineno-5-15"></a>    <span class="n">penalty1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">spacing</span> <span class="o">-</span> <span class="n">dist_list</span><span class="p">[</span><span class="n">dist_list</span> <span class="o">&lt;</span> <span class="n">spacing</span><span class="p">])</span>
+<a id="__codelineno-5-16" name="__codelineno-5-16"></a>
+<a id="__codelineno-5-17" name="__codelineno-5-17"></a>    <span class="c1"># 约束2：所有点都在单位圆内（示例，可能依赖于其他计算）</span>
+<a id="__codelineno-5-18" name="__codelineno-5-18"></a>    <span class="n">distances_to_origin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">coords</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">coords</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<a id="__codelineno-5-19" name="__codelineno-5-19"></a>    <span class="n">penalty2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">distances_to_origin</span><span class="p">[</span><span class="n">distances_to_origin</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+<a id="__codelineno-5-20" name="__codelineno-5-20"></a>
+<a id="__codelineno-5-21" name="__codelineno-5-21"></a>    <span class="k">return</span> <span class="n">penalty1</span><span class="p">,</span> <span class="n">penalty2</span> <span class="c1"># 或者 [penalty1, penalty2]</span>
 </code></pre></div></td></tr></table></div>
-<h3 id="_12">保存和加载<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span>
-<span class="normal"><a href="#__codelineno-6-2">2</a></span>
-<span class="normal"><a href="#__codelineno-6-3">3</a></span>
-<span class="normal"><a href="#__codelineno-6-4">4</a></span>
-<span class="normal"><a href="#__codelineno-6-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="c1"># 保存优化状态</span>
-<a id="__codelineno-6-2" name="__codelineno-6-2"></a><span class="n">optimizer</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;optimization_result.pkl&quot;</span><span class="p">)</span>
-<a id="__codelineno-6-3" name="__codelineno-6-3"></a>
-<a id="__codelineno-6-4" name="__codelineno-6-4"></a><span class="c1"># 加载优化状态</span>
-<a id="__codelineno-6-5" name="__codelineno-6-5"></a><span class="n">optimizer</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;optimization_result.pkl&quot;</span><span class="p">)</span>
+<h4 id="_12">定义多个约束函数（每个返回一个标量惩罚）<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h4>
+<p>或者，您可以单独定义每个约束函数，每个函数返回一个标量惩罚值。</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-6-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-6-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-6-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-6-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-6-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-6-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-6-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-6-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-6-10">10</a></span>
+<span class="normal"><a href="#__codelineno-6-11">11</a></span>
+<span class="normal"><a href="#__codelineno-6-12">12</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">my_constraint</span><span class="p">(</span><span class="n">coords</span><span class="p">):</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3"></a><span class="sd">    参数:</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4"></a><span class="sd">        coords: numpy数组，形状为(n_points, 2)</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5"></a>
+<a id="__codelineno-6-6" name="__codelineno-6-6"></a><span class="sd">    返回:</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7"></a><span class="sd">        float: 约束违反的惩罚值（0表示无违反）</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9"></a>    <span class="c1"># 示例：确保所有点都在单位圆内</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10"></a>    <span class="n">distances</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">coords</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">coords</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<a id="__codelineno-6-11" name="__codelineno-6-11"></a>    <span class="n">violations</span> <span class="o">=</span> <span class="n">distances</span><span class="p">[</span><span class="n">distances</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span>
+<a id="__codelineno-6-12" name="__codelineno-6-12"></a>    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">violations</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="_13">优化器参数<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h3>
+<h4 id="coordsnsga2">CoordsNSGA2 参数说明<a class="headerlink" href="#coordsnsga2" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>problem</code>: Problem实例</li>
+<li><code>pop_size</code>: 种群大小（必须为偶数）</li>
+<li><code>prob_crs</code>: 交叉概率（0-1之间）</li>
+<li><code>prob_mut</code>: 变异概率（0-1之间）</li>
+<li><code>random_seed</code>: 随机种子（用于可重现性）</li>
+</ul>
+<h4 id="problem">Problem 参数说明<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>objectives</code>: 目标函数。可以是一个函数列表（每个函数返回一个标量），也可以是一个返回多个目标值（元组或列表）的单个函数。</li>
+<li><code>n_points</code>: 坐标点数量。可以是固定整数（如 <code>10</code>）或列表 <code>[最小值, 最大值]</code>，允许点数在优化过程中在指定范围内变化。</li>
+<li><code>region</code>: 定义有效搜索空间的区域实例</li>
+<li><code>constraints</code>: 约束函数（可选）。可以是一个函数列表（每个函数返回一个标量惩罚值），也可以是一个返回多个约束惩罚值（元组或列表）的单个函数。</li>
+</ul>
+<h4 id="_14">参数调优建议<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>种群大小</strong>: 通常设置为20-100，问题复杂时使用更大的种群</li>
+<li><strong>交叉概率</strong>: 通常设置为0.5-0.9</li>
+<li><strong>变异概率</strong>: 通常设置为0.01-0.1</li>
+<li><strong>代数</strong>: 根据问题复杂度设置，通常100-1000代</li>
+</ul>
+<h3 id="_15">结果分析<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h3>
+<p>优化完成后，您可以访问以下属性：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-7-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-7-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-7-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-7-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-7-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-7-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-7-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-7-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-7-10">10</a></span>
+<span class="normal"><a href="#__codelineno-7-11">11</a></span>
+<span class="normal"><a href="#__codelineno-7-12">12</a></span>
+<span class="normal"><a href="#__codelineno-7-13">13</a></span>
+<span class="normal"><a href="#__codelineno-7-14">14</a></span>
+<span class="normal"><a href="#__codelineno-7-15">15</a></span>
+<span class="normal"><a href="#__codelineno-7-16">16</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="c1"># 最终种群</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2"></a><span class="n">final_population</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">P</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3"></a>
+<a id="__codelineno-7-4" name="__codelineno-7-4"></a><span class="c1"># 目标函数值（形状: n_objectives × pop_size）</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5"></a><span class="n">values</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">values_P</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6"></a><span class="n">values1</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7"></a><span class="n">values2</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8"></a>
+<a id="__codelineno-7-9" name="__codelineno-7-9"></a><span class="c1"># 优化历史</span>
+<a id="__codelineno-7-10" name="__codelineno-7-10"></a><span class="n">population_history</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">P_history</span>
+<a id="__codelineno-7-11" name="__codelineno-7-11"></a><span class="n">values_history</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">values_history</span>  <span class="c1"># 列表，每代一个 (n_objectives, pop_size) 数组</span>
+<a id="__codelineno-7-12" name="__codelineno-7-12"></a>
+<a id="__codelineno-7-13" name="__codelineno-7-13"></a><span class="c1"># 找到帕累托前沿（基于最后一代目标值）</span>
+<a id="__codelineno-7-14" name="__codelineno-7-14"></a><span class="kn">from</span><span class="w"> </span><span class="nn">coords_nsga2.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">fast_non_dominated_sort</span>
+<a id="__codelineno-7-15" name="__codelineno-7-15"></a><span class="n">fronts</span> <span class="o">=</span> <span class="n">fast_non_dominated_sort</span><span class="p">(</span><span class="n">optimizer</span><span class="o">.</span><span class="n">values_P</span><span class="p">)</span>
+<a id="__codelineno-7-16" name="__codelineno-7-16"></a><span class="n">pareto_front</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">P</span><span class="p">[</span><span class="n">fronts</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="_16">保存和加载<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span>
+<span class="normal"><a href="#__codelineno-8-2">2</a></span>
+<span class="normal"><a href="#__codelineno-8-3">3</a></span>
+<span class="normal"><a href="#__codelineno-8-4">4</a></span>
+<span class="normal"><a href="#__codelineno-8-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="c1"># 保存优化状态</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2"></a><span class="n">optimizer</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;optimization_result.pkl&quot;</span><span class="p">)</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3"></a>
+<a id="__codelineno-8-4" name="__codelineno-8-4"></a><span class="c1"># 加载优化状态</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5"></a><span class="n">optimizer</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;optimization_result.pkl&quot;</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
 
 

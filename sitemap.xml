@@ -2,70 +2,70 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
     <url>
         <loc>https://coords-nsga2.cc/api/</loc>
-        <lastmod>2025-08-21</lastmod>
+        <lastmod>2025-08-25</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://coords-nsga2.cc/api/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://coords-nsga2.cc/zh/api/"/>
     </url>
     <url>
         <loc>https://coords-nsga2.cc/examples/</loc>
-        <lastmod>2025-08-21</lastmod>
+        <lastmod>2025-08-25</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://coords-nsga2.cc/examples/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://coords-nsga2.cc/zh/examples/"/>
     </url>
     <url>
         <loc>https://coords-nsga2.cc/</loc>
-        <lastmod>2025-08-21</lastmod>
+        <lastmod>2025-08-25</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://coords-nsga2.cc/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://coords-nsga2.cc/zh/"/>
     </url>
     <url>
         <loc>https://coords-nsga2.cc/install/</loc>
-        <lastmod>2025-08-21</lastmod>
+        <lastmod>2025-08-25</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://coords-nsga2.cc/install/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://coords-nsga2.cc/zh/install/"/>
     </url>
     <url>
         <loc>https://coords-nsga2.cc/usage/</loc>
-        <lastmod>2025-08-21</lastmod>
+        <lastmod>2025-08-25</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://coords-nsga2.cc/usage/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://coords-nsga2.cc/zh/usage/"/>
     </url>
     <url>
         <loc>https://coords-nsga2.cc/zh/api/</loc>
-        <lastmod>2025-08-21</lastmod>
+        <lastmod>2025-08-25</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="https://coords-nsga2.cc/zh/api/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://coords-nsga2.cc/api/"/>
     </url>
     <url>
         <loc>https://coords-nsga2.cc/zh/examples/</loc>
-        <lastmod>2025-08-21</lastmod>
+        <lastmod>2025-08-25</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="https://coords-nsga2.cc/zh/examples/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://coords-nsga2.cc/examples/"/>
     </url>
     <url>
         <loc>https://coords-nsga2.cc/zh/</loc>
-        <lastmod>2025-08-21</lastmod>
+        <lastmod>2025-08-25</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="https://coords-nsga2.cc/zh/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://coords-nsga2.cc/"/>
     </url>
     <url>
         <loc>https://coords-nsga2.cc/zh/install/</loc>
-        <lastmod>2025-08-21</lastmod>
+        <lastmod>2025-08-25</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="https://coords-nsga2.cc/zh/install/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://coords-nsga2.cc/install/"/>
     </url>
     <url>
         <loc>https://coords-nsga2.cc/zh/usage/</loc>
-        <lastmod>2025-08-21</lastmod>
+        <lastmod>2025-08-25</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="https://coords-nsga2.cc/zh/usage/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://coords-nsga2.cc/usage/"/>
