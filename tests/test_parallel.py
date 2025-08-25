@@ -43,7 +43,7 @@ def test_problem_evaluate_serial_vs_parallel(test_region):
     )
 
     # 生成测试种群
-    population = problem.sample_population(pop_size=10)
+    population = problem._sample_population(pop_size=10)
 
     # 串行评估
     serial_start = time.time()

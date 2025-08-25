@@ -24,7 +24,7 @@ Problem(objectives, n_points, region, constraints=[], penalty_weight=1e6)
 
 **Methods:**
 
-#### sample_population(pop_size)
+#### _sample_population(pop_size)
 Generate an initial population.
 
 **Parameters:**
@@ -79,7 +79,7 @@ region = region_from_points([[0, 0], [1, 0], [1, 1], [0, 1]])
 problem = Problem(objectives=[obj1, obj2], n_points=5, region=region)
 
 # Generate an initial population
-population = problem.sample_population(10)
+population = problem._sample_population(10)
 print(f"Population shape: {population.shape}")  # (10, 5, 2)
 
 # Evaluate the population

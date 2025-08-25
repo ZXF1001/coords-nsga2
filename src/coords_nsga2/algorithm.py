@@ -29,7 +29,7 @@ class Problem:
             self.n_points_min = self.n_points[0]
             self.n_points_max = self.n_points[1]
 
-    def sample_population(self, pop_size):
+    def _sample_population(self, pop_size):
         if self.variable_n_points:
             # 可变坐标点数的代码
             n_points_list = np.random.randint(
@@ -97,7 +97,7 @@ class CoordsNSGA2:
 
         np.random.seed(random_seed)
         assert pop_size % 2 == 0, "pop_size must be even number"
-        self.P = self.problem.sample_population(pop_size)
+        self.P = self.problem._sample_population(pop_size)
         self.values_P = self.problem.evaluate(
             self.P, n_jobs=self.n_jobs)  # 并行评估
         self.P_history = [self.P]  # 记录每一代的解
@@ -116,7 +116,7 @@ class CoordsNSGA2:
             self.crossover = coords_crossover  # 使用外部定义的crossover函数
             self.mutation = coords_mutation  # 使用外部定义的mutation函数
 
-    def get_next_population(self, R,
+    def _get_next_population(self, R,
                             population_sorted_in_fronts,
                             crowding_distances):
         """
@@ -178,7 +178,7 @@ class CoordsNSGA2:
                 values_R[:, front]) for front in population_sorted_in_fronts]
 
             # 选择下一代种群
-            self.P = self.get_next_population(R,
+            self.P = self._get_next_population(R,
                                               population_sorted_in_fronts, crowding_distances)
 
             self.values_P = self.problem.evaluate(

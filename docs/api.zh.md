@@ -24,7 +24,7 @@ Problem(objectives, n_points, region, constraints=[], penalty_weight=1e6)
 
 **方法：**
 
-#### sample_population(pop_size)
+#### _sample_population(pop_size)
 生成初始种群。
 
 **参数：**
@@ -79,7 +79,7 @@ region = region_from_points([[0,0], [1,0], [1,1], [0,1]])
 problem = Problem(objectives=[obj1, obj2], n_points=5, region=region)
 
 # 生成初始种群
-population = problem.sample_population(10)
+population = problem._sample_population(10)
 print(f"种群形状: {population.shape}")  # (10, 5, 2)
 
 # 评估种群
