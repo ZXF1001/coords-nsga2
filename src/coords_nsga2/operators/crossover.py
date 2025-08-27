@@ -1,8 +1,19 @@
+from typing import List
+
 import numpy as np
 
 
-def coords_crossover(population, prob_crs):
-    """坐标交叉算子"""
+def coords_crossover(population: np.ndarray, prob_crs: float) -> np.ndarray:
+    """
+    Performs coordinate-based crossover on a population with a fixed number of points.
+    
+    Args:
+        population: A NumPy array of shape (pop_size, n_points, 2) representing the population.
+        prob_crs: Crossover probability.
+        
+    Returns:
+        The population after applying crossover.
+    """
     n_points = population.shape[1]
     for i in range(0, len(population), 2):
         if np.random.rand() < prob_crs:
@@ -12,48 +23,49 @@ def coords_crossover(population, prob_crs):
     return population
 
 
-def region_crossover(population_list, prob_crs, n_points_min, n_points_max, max_attempts=100):
+def region_crossover(
+    population_list: List[np.ndarray], 
+    prob_crs: float, 
+    n_points_min: int, 
+    n_points_max: int, 
+    max_attempts: int = 100
+) -> List[np.ndarray]:
     """
-    区域交叉算子    
+    Performs region-based crossover on a population with a variable number of points.
+    
     Args:
-        population_list: 长度为n_pop的列表，每个元素为包含坐标点的np.array
-        prob_crs: 交叉概率
-        max_attempts: 最大尝试次数，防止无限循环
-
+        population_list: A list of NumPy arrays, where each array represents an individual's
+                         coordinate points.
+        prob_crs: Crossover probability.
+        n_points_min: Minimum number of points allowed for an individual.
+        n_points_max: Maximum number of points allowed for an individual.
+        max_attempts: Maximum number of attempts to find a valid crossover region.
+        
     Returns:
-        交叉后的种群列表
+        The population list after applying region crossover.
     """
-
-    # 使用向量化操作一次性计算全局边界，比原来的列表推导式更高效
     all_points = np.vstack(population_list)
     x_min, x_max = all_points[:, 0].min(), all_points[:, 0].max()
     y_min, y_max = all_points[:, 1].min(), all_points[:, 1].max()
 
-    # 创建副本避免修改原始数据
     result = [individual.copy() for individual in population_list]
 
-    # 成对处理个体进行交叉
     for i in range(0, len(result), 2):
         if np.random.rand() < prob_crs:
             parent1, parent2 = result[i], result[i + 1]
 
-            # 尝试找到有效的交叉区域
             for attempt in range(max_attempts):
-                # 使用np.sort直接生成有序坐标，避免min/max调用
                 x_coords = np.sort(np.random.uniform(x_min, x_max, 2))
                 y_coords = np.sort(np.random.uniform(y_min, y_max, 2))
                 region_x_min, region_x_max = x_coords[0], x_coords[1]
                 region_y_min, region_y_max = y_coords[0], y_coords[1]
 
-                # 创建区域掩码
                 mask1 = ((parent1[:, 0] >= region_x_min) & (parent1[:, 0] <= region_x_max) &
                          (parent1[:, 1] >= region_y_min) & (parent1[:, 1] <= region_y_max))
                 mask2 = ((parent2[:, 0] >= region_x_min) & (parent2[:, 0] <= region_x_max) &
                          (parent2[:, 1] >= region_y_min) & (parent2[:, 1] <= region_y_max))
 
-                # 如果至少有一个个体在区域内有点，则进行交叉
                 if mask1.any() or mask2.any():
-                    # 提取区域内的点
                     region1 = parent1[mask1]
                     region2 = parent2[mask2]
 
@@ -61,8 +73,9 @@ def region_crossover(population_list, prob_crs, n_points_min, n_points_max, max_
                         [parent1[~mask1], region2]) if region2.size > 0 else parent1[~mask1]
                     result_2 = np.vstack(
                         [parent2[~mask2], region1]) if region1.size > 0 else parent2[~mask2]
-                    # 限制点的范围
-                    if len(result_1) >= n_points_min and len(result_1) <= n_points_max and len(result_2) >= n_points_min and len(result_2) <= n_points_max:
+                    
+                    if len(result_1) >= n_points_min and len(result_1) <= n_points_max and \
+                       len(result_2) >= n_points_min and len(result_2) <= n_points_max:
                         result[i] = result_1
                         result[i + 1] = result_2
                         break

@@ -1,26 +1,37 @@
+from typing import List
+
 import numpy as np
+from shapely.geometry import Polygon
 
 from ..spatial import create_points_in_polygon
 
 
-def coords_mutation(population, prob_mut, region):
-    """Coordinate mutation operator that mutates individual coordinates within region.
+def coords_mutation(
+    population: np.ndarray, 
+    prob_mut: float, 
+    region: Polygon
+) -> np.ndarray:
+    """
+    Coordinate mutation operator that mutates individual coordinates within region.
 
     Args:
-        population: numpy array of shape (n_individuals, n_points, 2)
-        prob_mut: mutation probability for each coordinate (-1 is auto set as 1/N_points)
-        region: region defining valid regions
+        population: NumPy array of shape (n_individuals, n_points, 2).
+        prob_mut: Mutation probability for each coordinate. If -1, auto-set as 1/n_points.
+        region: Shapely Polygon defining valid regions.
 
     Returns:
-        Mutated population array
+        Mutated population array.
     """
     if prob_mut == -1:
-        prob_mut = 1/population.shape[1]
+        prob_mut_actual = 1/population.shape[1]
+    else:
+        prob_mut_actual = prob_mut
+    
     # Generate mutation mask
-    mutation_mask = np.random.random(population.shape[:-1]) < prob_mut
+    mutation_mask = np.random.random(population.shape[:-1]) < prob_mut_actual
 
     # Count mutations needed
-    n_mutations = np.sum(mutation_mask)
+    n_mutations = int(np.sum(mutation_mask))
 
     if n_mutations > 0:
         # Generate all new points at once
@@ -32,47 +43,69 @@ def coords_mutation(population, prob_mut, region):
     return population
 
 
-def variable_mutation(population, prob_mut, region, n_points_min, n_points_max):
+def variable_mutation(
+    population: List[np.ndarray], 
+    prob_mut: float, 
+    region: Polygon, 
+    n_points_min: int, 
+    n_points_max: int
+) -> List[np.ndarray]:
+    """
+    Variable mutation operator for populations with variable number of points.
+    
+    Each point can undergo one of three mutations:
+    1. Point removal (if above minimum)
+    2. Point replacement 
+    3. Point replacement with addition (if below maximum)
+
+    Args:
+        population: List of NumPy arrays, each representing an individual's coordinate points.
+        prob_mut: Mutation probability for each point. If -1, auto-set as 1/average_n_points.
+        region: Shapely Polygon defining valid regions.
+        n_points_min: Minimum number of points allowed for an individual.
+        n_points_max: Maximum number of points allowed for an individual.
+
+    Returns:
+        Mutated population list.
+    """
     if prob_mut == -1:
-        # If prob_mut is -1, auto-set it as 1/average_n_points
         total_points = sum(len(ind) for ind in population)
-        avg_points = total_points / \
-            len(population) if len(population) > 0 else 1
+        avg_points = total_points / len(population) if len(population) > 0 else 1
         prob_mut = 1 / avg_points
 
     new_population = []
     for ind in population:
-        # ind为shape=(n_points, 2)的点集，不同ind的n_points不同。
-        # 现在逻辑为：对ind中的每个point，判断是否突变
-        # 如果突变，有1/3概率点消失，有1/3概率点数不变只是换个位置，有1/3概率换位置同时新增一个点。
         current_n_points = len(ind)
         temp_ind_points = []
+        
         for point in ind:
             random_status = np.random.random()
-            if random_status < 1/3*prob_mut:
+            if random_status < 1/3 * prob_mut:
+                # Point removal (1/3 probability)
                 if current_n_points > n_points_min:
-                    # 点数多余最小点数时才触发消失
                     current_n_points -= 1
+                    # Point is removed (not added to temp_ind_points)
                 else:
-                    # 如果点数已经最少，不能再消失，那就保留原来的
+                    # Cannot remove, keep original point
                     temp_ind_points.append(point)
-            elif random_status < 2/3*prob_mut:
-                # 触发不变
+            elif random_status < 2/3 * prob_mut:
+                # Point replacement (1/3 probability)
                 new_point = create_points_in_polygon(region, 1)
                 temp_ind_points.append(new_point[0])
             elif random_status < prob_mut:
+                # Point replacement with addition (1/3 probability)
                 if current_n_points < n_points_max:
-                    # 点数少于最大点数时触发新增
                     current_n_points += 1
                     new_points = create_points_in_polygon(region, 2).tolist()
                     temp_ind_points += new_points
                 else:
-                    # 如果点数已经要超过了，就不多突变新的那个了
+                    # Cannot add, just replace
                     new_point = create_points_in_polygon(region, 1)
                     temp_ind_points.append(new_point[0])
             else:
-                # 不突变
+                # No mutation
                 temp_ind_points.append(point)
+                
         new_population.append(np.array(temp_ind_points))
     return new_population
 
