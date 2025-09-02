@@ -4,12 +4,13 @@ import numpy as np
 from .utils import _plot_region_boundary
 
 
-def plot_optimal_coords(optimizer, obj_indices, generation = -1, figsize=None, is_show=True):
+def plot_optimal_coords(optimizer, obj_indices, generation=-1, figsize=None, is_show=True):
     # 根据generation参数选择数据源
     # 允许负数索引，例如-1表示最新一代
     if abs(generation) >= len(optimizer.values_history):
-        raise ValueError(f"Generation {generation} is out of bounds. Must be between {-len(optimizer.values_history)} and {len(optimizer.values_history) - 1}.")
-    
+        raise ValueError(
+            f"Generation {generation} is out of bounds. Must be between {-len(optimizer.values_history)} and {len(optimizer.values_history) - 1}.")
+
     values_to_plot = optimizer.values_history[generation]
     coords_to_plot = optimizer.P_history[generation]
 
@@ -31,9 +32,10 @@ def plot_optimal_coords(optimizer, obj_indices, generation = -1, figsize=None, i
                 is_max_or_min = " (Max)"
             elif len(best_solution) == optimizer.n_points_min:
                 is_max_or_min = " (Min)"
-
+        generation_label = generation if generation >= 0 \
+            else len(optimizer.P_history) + generation
         ax.set_title(f'Optimal Layout for Objective {obj_index}\n'
-                     f'Generation: {generation}, '
+                     f'Generation: {generation_label}, '
                      f'Value: {values_to_plot[obj_index][best_idx]:.4f}, Points Number: {len(best_solution)}{is_max_or_min}')
         ax.set_xlabel('X Coordinate')
         ax.set_ylabel('Y Coordinate')

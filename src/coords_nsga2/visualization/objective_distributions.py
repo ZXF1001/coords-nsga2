@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-def plot_objective_distributions(optimizer, generation = -1, figsize=None, is_show=True):
+def plot_objective_distributions(optimizer, generation=-1, figsize=None, is_show=True):
     """
     Plot distribution of objective function values
 
@@ -18,10 +18,11 @@ def plot_objective_distributions(optimizer, generation = -1, figsize=None, is_sh
     # 根据generation参数选择数据源
     # 允许负数索引，例如-1表示最新一代
     if abs(generation) >= len(optimizer.values_history):
-        raise ValueError(f"Generation {generation} is out of bounds. Must be between {-len(optimizer.values_history)} and {len(optimizer.values_history) - 1}.")
-    
+        raise ValueError(
+            f"Generation {generation} is out of bounds. Must be between {-len(optimizer.values_history)} and {len(optimizer.values_history) - 1}.")
+
     values_to_plot = optimizer.values_history[generation]
-    
+
     n_objectives = len(values_to_plot)
 
     # Create subplots
@@ -47,7 +48,10 @@ def plot_objective_distributions(optimizer, generation = -1, figsize=None, is_sh
 
         ax.set_xlabel(f'Objective {obj} Value')
         ax.set_ylabel('Frequency')
-        ax.set_title(f'Distribution of Objective {obj}\n(Generation: {generation})')
+        generation_label = generation if generation >= 0 \
+            else len(optimizer.P_history) + generation
+        ax.set_title(
+            f'Distribution of Objective {obj}\n(Generation: {generation_label})')
         ax.legend()
         ax.grid(True, alpha=0.3)
 

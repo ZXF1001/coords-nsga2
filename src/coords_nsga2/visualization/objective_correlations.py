@@ -3,7 +3,7 @@ import numpy as np
 from scipy.stats import pearsonr
 
 
-def plot_objective_correlations(optimizer, generation = -1, figsize=None, is_show=True):
+def plot_objective_correlations(optimizer, generation=-1, figsize=None, is_show=True):
     """
     Plot correlation heatmap between objectives
 
@@ -19,10 +19,11 @@ def plot_objective_correlations(optimizer, generation = -1, figsize=None, is_sho
     # 根据generation参数选择数据源
     # 允许负数索引，例如-1表示最新一代
     if abs(generation) >= len(optimizer.values_history):
-        raise ValueError(f"Generation {generation} is out of bounds. Must be between {-len(optimizer.values_history)} and {len(optimizer.values_history) - 1}.")
-    
+        raise ValueError(
+            f"Generation {generation} is out of bounds. Must be between {-len(optimizer.values_history)} and {len(optimizer.values_history) - 1}.")
+
     values_to_plot = optimizer.values_history[generation]
-    
+
     n_objectives = len(values_to_plot)
 
     # Calculate correlation matrix
@@ -63,8 +64,10 @@ def plot_objective_correlations(optimizer, generation = -1, figsize=None, is_sho
                 text += '*'  # Mark significant correlations
             ax.text(j, i, text, ha='center', va='center',
                     color='white' if abs(correlation_matrix[i, j]) > 0.5 else 'black')
-
-    ax.set_title(f'Objective Correlations (Generation: {generation})\n(* indicates p < 0.05)')
+    generation_label = generation if generation >= 0 \
+        else len(optimizer.P_history) + generation
+    ax.set_title(
+        f'Objective Correlations (Generation: {generation_label})\n(* indicates p < 0.05)')
 
     if is_show:
         plt.tight_layout()

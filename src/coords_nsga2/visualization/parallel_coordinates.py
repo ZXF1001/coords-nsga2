@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-def plot_parallel_coordinates(optimizer, generation = -1, figsize=None, is_show=True):
+def plot_parallel_coordinates(optimizer, generation=-1, figsize=None, is_show=True):
     """
     Plot parallel coordinates for multi-objective solutions
 
@@ -18,8 +18,9 @@ def plot_parallel_coordinates(optimizer, generation = -1, figsize=None, is_show=
     # 根据generation参数选择数据源
     # 允许负数索引，例如-1表示最新一代
     if abs(generation) >= len(optimizer.values_history):
-        raise ValueError(f"Generation {generation} is out of bounds. Must be between {-len(optimizer.values_history)} and {len(optimizer.values_history) - 1}.")
-    
+        raise ValueError(
+            f"Generation {generation} is out of bounds. Must be between {-len(optimizer.values_history)} and {len(optimizer.values_history) - 1}.")
+
     values_to_plot = optimizer.values_history[generation]
 
     n_objectives = len(values_to_plot)
@@ -46,7 +47,10 @@ def plot_parallel_coordinates(optimizer, generation = -1, figsize=None, is_show=
     ax.set_xticks(range(n_objectives))
     ax.set_xticklabels([f'Obj {i+1}' for i in range(n_objectives)])
     ax.set_ylabel('Normalized Objective Value')
-    ax.set_title(f'Parallel Coordinates Plot of Pareto Solutions (Generation: {generation})')
+    generation_label = generation if generation >= 0 \
+        else len(optimizer.P_history) + generation
+    ax.set_title(
+        f'Parallel Coordinates Plot of Pareto Solutions (Generation: {generation_label})')
     ax.grid(True, alpha=0.3)
     ax.set_ylim(-0.05, 1.05)
 

@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-def plot_constraint_violations(optimizer, generation = -1, figsize=None, is_show=True):
+def plot_constraint_violations(optimizer, generation=-1, figsize=None, is_show=True):
     """
     Plot constraint violation statistics
 
@@ -19,8 +19,8 @@ def plot_constraint_violations(optimizer, generation = -1, figsize=None, is_show
     if not hasattr(optimizer.problem, 'constraints') or not optimizer.problem.constraints:
         print("No constraints defined in the problem")
         return
-    
-    # 特殊处理：如果generation为-1，显示所有代的 如果generation为其他负数或正数，显示特定代的约束违反情况
+
+    # 特殊处理：如果generation为-1，显示所有代的；如果generation为其他负数或正数，显示特定代的约束违反情况
     if generation == -1:
         generations = range(len(optimizer.P_history))
         violation_stats = []
@@ -60,7 +60,8 @@ def plot_constraint_violations(optimizer, generation = -1, figsize=None, is_show
         axes[0, 1].grid(True, alpha=0.3)
 
         # Feasible solutions ratio
-        feasible_ratios = [stats['feasible_ratio'] for stats in violation_stats]
+        feasible_ratios = [stats['feasible_ratio']
+                           for stats in violation_stats]
         axes[1, 0].plot(generations, feasible_ratios, 'g-',
                         marker='^', markersize=4)
         axes[1, 0].set_xlabel('Generation')
@@ -86,8 +87,9 @@ def plot_constraint_violations(optimizer, generation = -1, figsize=None, is_show
         # 显示特定代的约束违反情况
         # 允许负数索引，例如-2表示倒数第二代
         if abs(generation) >= len(optimizer.P_history):
-            raise ValueError(f"Generation {generation} is out of bounds. Must be between {-len(optimizer.P_history)} and {len(optimizer.P_history) - 1}.")
-        
+            raise ValueError(
+                f"Generation {generation} is out of bounds. Must be between {-len(optimizer.P_history)} and {len(optimizer.P_history) - 1}.")
+
         population_to_plot = optimizer.P_history[generation]
         violations = []
         for individual in population_to_plot:
@@ -96,24 +98,29 @@ def plot_constraint_violations(optimizer, generation = -1, figsize=None, is_show
             violations.append(max(0, total_violation))
 
         fig, axes = plt.subplots(1, 2, figsize=figsize)
-        
+
         # Violation distribution
-        axes[0].hist(violations, bins=20, alpha=0.7, color='red', edgecolor='black')
+        axes[0].hist(violations, bins=20, alpha=0.7,
+                     color='red', edgecolor='black')
         axes[0].set_xlabel('Constraint Violation')
         axes[0].set_ylabel('Frequency')
-        axes[0].set_title(f'Violation Distribution (Generation: {generation})')
+        generation_label = generation if generation >= 0 \
+            else len(optimizer.P_history) + generation
+        axes[0].set_title(
+            f'Violation Distribution (Generation: {generation_label})')
         axes[0].grid(True, alpha=0.3)
-        
+
         # Statistics
         mean_violation = np.mean(violations)
         max_violation = np.max(violations)
         feasible_ratio = np.sum(np.array(violations) == 0) / len(violations)
-        
+
         stats_text = f'Mean: {mean_violation:.4f}\nMax: {max_violation:.4f}\nFeasible Ratio: {feasible_ratio:.2%}'
-        axes[1].text(0.1, 0.5, stats_text, fontsize=12, verticalalignment='center')
+        axes[1].text(0.1, 0.5, stats_text, fontsize=12,
+                     verticalalignment='center')
         axes[1].set_xlim(0, 1)
         axes[1].set_ylim(0, 1)
-        axes[1].set_title(f'Statistics (Generation: {generation})')
+        axes[1].set_title(f'Statistics (Generation: {generation_label})')
         axes[1].axis('off')
 
     if is_show:

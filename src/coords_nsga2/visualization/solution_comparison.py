@@ -53,8 +53,10 @@ def plot_solution_comparison(optimizer, solution_indices, generation=-1, figsize
 
         obj_values = [f'{values_to_plot[j][sol_idx]:.2f}' for j in range(
             len(values_to_plot))]
+        generation_label = generation if generation >= 0 \
+            else len(optimizer.P_history) + generation
         ax.set_title(
-            f'Generation: {generation}\n'
+            f'Generation: {generation_label}\n'
             f'Solution: {sol_idx}\n'
             f'Points Number: {len(solution)}{is_max_or_min}\n'
             f'Objectives: [{", ".join(obj_values)}]')

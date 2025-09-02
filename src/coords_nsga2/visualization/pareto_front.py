@@ -17,7 +17,9 @@ def plot_pareto_front(optimizer, obj_indices, generation=-1, figsize=None, is_sh
                    alpha=0.7, edgecolors='black')
         ax.set_xlabel(f'Objective {obj_indices[0]+1}')
         ax.set_ylabel(f'Objective {obj_indices[1]+1}')
-        ax.set_title(f'2D Pareto Front (Generation: {generation})')
+        generation_label = generation if generation >= 0 \
+            else len(optimizer.P_history) + generation
+        ax.set_title(f'2D Pareto Front (Generation: {generation_label})')
         ax.grid(True, alpha=0.3)
 
     elif len(obj_indices) == 3:
@@ -30,7 +32,9 @@ def plot_pareto_front(optimizer, obj_indices, generation=-1, figsize=None, is_sh
         ax.set_xlabel(f'Objective {obj_indices[0]}')
         ax.set_ylabel(f'Objective {obj_indices[1]}')
         ax.set_zlabel(f'Objective {obj_indices[2]}')
-        ax.set_title(f'3D Pareto Front (Generation: {generation})')
+        generation_label = generation if generation >= 0 \
+            else len(optimizer.P_history) + generation
+        ax.set_title(f'3D Pareto Front (Generation: {generation_label})')
 
     else:
         raise ValueError("Can only plot 2D or 3D Pareto fronts")
