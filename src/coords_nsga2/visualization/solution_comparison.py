@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from .utils import _plot_region_boundary
 
 
-def plot_solution_comparison(optimizer, solution_indices, figsize=None, is_show=True):
+def plot_solution_comparison(optimizer, solution_indices, generation=-1, figsize=None, is_show=True):
     """
     Compare multiple solutions side by side
 
@@ -16,9 +16,18 @@ def plot_solution_comparison(optimizer, solution_indices, figsize=None, is_show=
     figsize : tuple
         Figure size
     """
+    # 根据generation参数选择数据源
+    # 允许负数索引，例如-1表示最新一代
+    if abs(generation) >= len(optimizer.values_history):
+        raise ValueError(
+            f"Generation {generation} is out of bounds. Must be between {-len(optimizer.values_history)} and {len(optimizer.values_history) - 1}.")
+
+    values_to_plot = optimizer.values_history[generation]
+    coords_to_plot = optimizer.P_history[generation]
+
     n_solutions = len(solution_indices)
 
-    fig, axes = plt.subplots(n_solutions, 1, figsize=figsize)
+    fig, axes = plt.subplots(1, n_solutions, figsize=figsize)
 
     for i, sol_idx in enumerate(solution_indices):
         ax = axes[i]
@@ -27,7 +36,7 @@ def plot_solution_comparison(optimizer, solution_indices, figsize=None, is_show=
             _plot_region_boundary(ax, optimizer.problem.region)
 
         # Plot solution
-        solution = optimizer.P[sol_idx]
+        solution = coords_to_plot[sol_idx]
 
         ax.scatter(
             solution[:, 0],
@@ -42,10 +51,11 @@ def plot_solution_comparison(optimizer, solution_indices, figsize=None, is_show=
             elif len(solution) == optimizer.n_points_min:
                 is_max_or_min = " (Min)"
 
-        obj_values = [f'{optimizer.values_P[j][sol_idx]:.2f}' for j in range(
-            len(optimizer.values_P))]
+        obj_values = [f'{values_to_plot[j][sol_idx]:.2f}' for j in range(
+            len(values_to_plot))]
         ax.set_title(
-            f'Solution {sol_idx}\n'
+            f'Generation: {generation}\n'
+            f'Solution: {sol_idx}\n'
             f'Points Number: {len(solution)}{is_max_or_min}\n'
             f'Objectives: [{", ".join(obj_values)}]')
         ax.set_xlabel('X Coordinate')

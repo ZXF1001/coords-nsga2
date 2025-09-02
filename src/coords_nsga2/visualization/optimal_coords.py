@@ -4,16 +4,24 @@ import numpy as np
 from .utils import _plot_region_boundary
 
 
-def plot_optimal_coords(optimizer, obj_indices, figsize=None, is_show=True):
+def plot_optimal_coords(optimizer, obj_indices, generation = -1, figsize=None, is_show=True):
+    # 根据generation参数选择数据源
+    # 允许负数索引，例如-1表示最新一代
+    if abs(generation) >= len(optimizer.values_history):
+        raise ValueError(f"Generation {generation} is out of bounds. Must be between {-len(optimizer.values_history)} and {len(optimizer.values_history) - 1}.")
+    
+    values_to_plot = optimizer.values_history[generation]
+    coords_to_plot = optimizer.P_history[generation]
+
     if isinstance(obj_indices, int):
         obj_indices = [obj_indices]
 
     # Find best solution for each objective
     for obj_index in obj_indices:
-        best_idx = np.argmax(optimizer.values_P[obj_index])
+        best_idx = np.argmax(values_to_plot[obj_index])
         fig, ax = plt.subplots(figsize=figsize)
         _plot_region_boundary(ax, optimizer.problem.region)
-        best_solution = optimizer.P[best_idx]
+        best_solution = coords_to_plot[best_idx]
         ax.scatter(best_solution[:, 0], best_solution[:,
                    1],  alpha=0.8, edgecolors='black')
 
@@ -25,7 +33,8 @@ def plot_optimal_coords(optimizer, obj_indices, figsize=None, is_show=True):
                 is_max_or_min = " (Min)"
 
         ax.set_title(f'Optimal Layout for Objective {obj_index}\n'
-                     f'Value: {optimizer.values_P[obj_index][best_idx]:.4f}, Points Number: {len(best_solution)}{is_max_or_min}')
+                     f'Generation: {generation}, '
+                     f'Value: {values_to_plot[obj_index][best_idx]:.4f}, Points Number: {len(best_solution)}{is_max_or_min}')
         ax.set_xlabel('X Coordinate')
         ax.set_ylabel('Y Coordinate')
         ax.grid(True, alpha=0.3)

@@ -5,7 +5,7 @@ from coords_nsga2 import CoordsNSGA2, Problem
 from coords_nsga2.spatial import region_from_points
 
 
-def test_main():
+def test_main(is_show=False):
 
     # 创建边界
     region = region_from_points([
@@ -61,28 +61,62 @@ def test_main():
     # 断言result存在
     assert len(result) == 20
 
+    # 默认绘制最后一代
     # 1. Pareto Front Visualizations
-    optimizer.plot.pareto_front(obj_indices=[0, 1], is_show=False)  # 2D
-    optimizer.plot.pareto_front(obj_indices=[0, 1, 2], is_show=False)  # 3D
+    optimizer.plot.pareto_front(obj_indices=[0, 1], is_show=is_show)  # 2D
+    optimizer.plot.pareto_front(obj_indices=[0, 1, 2], is_show=is_show)  # 3D
 
     # 2. Objective Optimal Layouts
-    optimizer.plot.optimal_coords(obj_indices=0, is_show=False)
+    optimizer.plot.optimal_coords(obj_indices=0, is_show=is_show)
 
     # 3. Constraint Violations
-    optimizer.plot.constraint_violations(is_show=False)
+    optimizer.plot.constraint_violations(is_show=is_show)
 
     # 3. Objective Correlations
-    optimizer.plot.objective_correlations(is_show=False)
+    optimizer.plot.objective_correlations(is_show=is_show)
 
     # 4. Objective Distributions
-    optimizer.plot.objective_distributions(is_show=False)
+    optimizer.plot.objective_distributions(is_show=is_show)
 
     # 5. Solution Comparison
-    optimizer.plot.solution_comparison(solution_indices=[0, 1], is_show=False)
+    optimizer.plot.solution_comparison(
+        solution_indices=[0, 1], is_show=is_show)
 
     # 6. Parallel Coordinates
-    optimizer.plot.parallel_coordinates(is_show=False)
+    optimizer.plot.parallel_coordinates(is_show=is_show)
+
+    # 绘制指定一代
+    # 1. Pareto Front Visualizations
+    optimizer.plot.pareto_front(obj_indices=[0, 1],
+                                generation=-10,
+                                is_show=is_show)  # 2D
+
+    optimizer.plot.pareto_front(obj_indices=[0, 1, 2],
+                                generation=-10,
+                                is_show=is_show)  # 3D
+
+    # 2. Objective Optimal Layouts
+    optimizer.plot.optimal_coords(obj_indices=0,
+                                  generation=-10,
+                                  is_show=is_show)
+
+    # 3. Constraint Violations
+    optimizer.plot.constraint_violations(generation=-10, is_show=is_show)
+
+    # 3. Objective Correlations
+    optimizer.plot.objective_correlations(generation=-10, is_show=is_show)
+
+    # 4. Objective Distributions
+    optimizer.plot.objective_distributions(generation=-10, is_show=is_show)
+
+    # 5. Solution Comparison
+    optimizer.plot.solution_comparison(solution_indices=[0, 1],
+                                       generation=-10,
+                                       is_show=is_show)
+
+    # 6. Parallel Coordinates
+    optimizer.plot.parallel_coordinates(generation=-10, is_show=is_show)
 
 
 if __name__ == '__main__':
-    test_main()
+    test_main(is_show=True)

@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-def plot_objective_distributions(optimizer, figsize=None, is_show=True):
+def plot_objective_distributions(optimizer, generation = -1, figsize=None, is_show=True):
     """
     Plot distribution of objective function values
 
@@ -10,10 +10,19 @@ def plot_objective_distributions(optimizer, figsize=None, is_show=True):
     -----------
     optimizer : CoordsNSGA2
         The optimizer instance with optimization results
+    generation : int
+        Generation to plot (-1 for latest generation)
     figsize : tuple
         Figure size
     """
-    n_objectives = len(optimizer.values_P)
+    # 根据generation参数选择数据源
+    # 允许负数索引，例如-1表示最新一代
+    if abs(generation) >= len(optimizer.values_history):
+        raise ValueError(f"Generation {generation} is out of bounds. Must be between {-len(optimizer.values_history)} and {len(optimizer.values_history) - 1}.")
+    
+    values_to_plot = optimizer.values_history[generation]
+    
+    n_objectives = len(values_to_plot)
 
     # Create subplots
     cols = min(2, n_objectives)
@@ -27,7 +36,7 @@ def plot_objective_distributions(optimizer, figsize=None, is_show=True):
         row, col = obj // cols, obj % cols
         ax = axes[row, col] if rows > 1 else axes[col]
 
-        values = optimizer.values_P[obj]
+        values = values_to_plot[obj]
 
         # Create histogram
         ax.hist(values, bins=20, alpha=0.7, color=f'C{obj}', edgecolor='black')
@@ -38,7 +47,7 @@ def plot_objective_distributions(optimizer, figsize=None, is_show=True):
 
         ax.set_xlabel(f'Objective {obj} Value')
         ax.set_ylabel('Frequency')
-        ax.set_title(f'Distribution of Objective {obj}')
+        ax.set_title(f'Distribution of Objective {obj}\n(Generation: {generation})')
         ax.legend()
         ax.grid(True, alpha=0.3)
 

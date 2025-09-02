@@ -1,28 +1,36 @@
 import matplotlib.pyplot as plt
 
 
-def plot_pareto_front(optimizer, obj_indices, figsize=None, is_show=True):
+def plot_pareto_front(optimizer, obj_indices, generation=-1, figsize=None, is_show=True):
+    # 根据generation参数选择数据源
+    # 允许负数索引，例如-1表示最新一代
+    if abs(generation) >= len(optimizer.values_history):
+        raise ValueError(
+            f"Generation {generation} is out of bounds. Must be between {-len(optimizer.values_history)} and {len(optimizer.values_history) - 1}.")
+
+    values_to_plot = optimizer.values_history[generation]
+
     if len(obj_indices) == 2:
         # 2D Pareto front
         fig, ax = plt.subplots(figsize=figsize)
-        ax.scatter(optimizer.values_P[obj_indices[0]], optimizer.values_P[obj_indices[1]],
+        ax.scatter(values_to_plot[obj_indices[0]], values_to_plot[obj_indices[1]],
                    alpha=0.7, edgecolors='black')
         ax.set_xlabel(f'Objective {obj_indices[0]+1}')
         ax.set_ylabel(f'Objective {obj_indices[1]+1}')
-        ax.set_title('2D Pareto Front')
+        ax.set_title(f'2D Pareto Front (Generation: {generation})')
         ax.grid(True, alpha=0.3)
 
     elif len(obj_indices) == 3:
         # 3D Pareto front
         fig = plt.figure(figsize=figsize)
         ax = fig.add_subplot(111, projection='3d')
-        ax.scatter(optimizer.values_P[obj_indices[0]], optimizer.values_P[obj_indices[1]],
-                   optimizer.values_P[obj_indices[2]], alpha=0.7,
+        ax.scatter(values_to_plot[obj_indices[0]], values_to_plot[obj_indices[1]],
+                   values_to_plot[obj_indices[2]], alpha=0.7,
                    edgecolors='black')
         ax.set_xlabel(f'Objective {obj_indices[0]}')
         ax.set_ylabel(f'Objective {obj_indices[1]}')
         ax.set_zlabel(f'Objective {obj_indices[2]}')
-        ax.set_title('3D Pareto Front')
+        ax.set_title(f'3D Pareto Front (Generation: {generation})')
 
     else:
         raise ValueError("Can only plot 2D or 3D Pareto fronts")

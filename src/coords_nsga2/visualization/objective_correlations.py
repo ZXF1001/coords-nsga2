@@ -3,7 +3,7 @@ import numpy as np
 from scipy.stats import pearsonr
 
 
-def plot_objective_correlations(optimizer, figsize=None, is_show=True):
+def plot_objective_correlations(optimizer, generation = -1, figsize=None, is_show=True):
     """
     Plot correlation heatmap between objectives
 
@@ -11,10 +11,19 @@ def plot_objective_correlations(optimizer, figsize=None, is_show=True):
     -----------
     optimizer : CoordsNSGA2
         The optimizer instance with optimization results
+    generation : int
+        Generation to plot (-1 for latest generation)
     figsize : tuple
         Figure size
     """
-    n_objectives = len(optimizer.values_P)
+    # 根据generation参数选择数据源
+    # 允许负数索引，例如-1表示最新一代
+    if abs(generation) >= len(optimizer.values_history):
+        raise ValueError(f"Generation {generation} is out of bounds. Must be between {-len(optimizer.values_history)} and {len(optimizer.values_history) - 1}.")
+    
+    values_to_plot = optimizer.values_history[generation]
+    
+    n_objectives = len(values_to_plot)
 
     # Calculate correlation matrix
     correlation_matrix = np.zeros((n_objectives, n_objectives))
@@ -26,10 +35,10 @@ def plot_objective_correlations(optimizer, figsize=None, is_show=True):
                 correlation_matrix[i, j] = 1.0
                 p_values[i, j] = 0.0
             else:
-                result = pearsonr(
-                    optimizer.values_P[i], optimizer.values_P[j])
-                correlation_matrix[i, j] = result.statistic
-                p_values[i, j] = result.pvalue
+                correlation, pvalue = pearsonr(
+                    values_to_plot[i], values_to_plot[j])
+                correlation_matrix[i, j] = correlation
+                p_values[i, j] = pvalue
 
     # Create heatmap
     fig, ax = plt.subplots(figsize=figsize)
@@ -55,7 +64,7 @@ def plot_objective_correlations(optimizer, figsize=None, is_show=True):
             ax.text(j, i, text, ha='center', va='center',
                     color='white' if abs(correlation_matrix[i, j]) > 0.5 else 'black')
 
-    ax.set_title('Objective Function Correlations\n(* indicates p < 0.05)')
+    ax.set_title(f'Objective Correlations (Generation: {generation})\n(* indicates p < 0.05)')
 
     if is_show:
         plt.tight_layout()
