@@ -6,7 +6,7 @@ specifically designed for coordinate point layouts using the NSGA-II algorithm.
 """
 
 import pickle
-from typing import Callable, List, Union
+from typing import Callable, List, Tuple, Union
 
 import numpy as np
 from joblib import Parallel, delayed
@@ -200,7 +200,7 @@ class CoordsNSGA2:
         R: Union[np.ndarray, List[np.ndarray]],
         population_sorted_in_fronts: List[List[int]],
         crowding_distances: List[np.ndarray]
-    ) -> Union[np.ndarray, List[np.ndarray]]:
+    ) -> Union[Tuple[np.ndarray, List[int]], Tuple[List[np.ndarray], List[int]]]:
         """
         Select next generation population based on Pareto fronts and crowding distance.
         
@@ -210,7 +210,9 @@ class CoordsNSGA2:
             crowding_distances: Crowding distances for each front.
             
         Returns:
-            Selected population for next generation.
+            Tuple containing:
+            - Selected population for next generation
+            - Indices of selected individuals in R
         """
         new_idx = []
         for i, front in enumerate(population_sorted_in_fronts):
@@ -227,7 +229,9 @@ class CoordsNSGA2:
                 sorted_front = np.array(front)[sorted_front_idx]
                 new_idx.extend(sorted_front[:remaining_size])
                 break
-        return [R[i] for i in new_idx] if self.variable_n_points else R[new_idx]
+        
+        selected_pop = [R[i] for i in new_idx] if self.variable_n_points else R[new_idx]
+        return selected_pop, new_idx
 
     def run(self, gen: int = 1000, verbose: bool = True) -> Union[np.ndarray, List[np.ndarray]]:
         """
@@ -269,10 +273,10 @@ class CoordsNSGA2:
             crowding_distances = [crowding_distance(
                 values_R[:, front]) for front in population_sorted_in_fronts]
 
-            self.P = self._get_next_population(R,
+            self.P, p_idx = self._get_next_population(R,
                                               population_sorted_in_fronts, crowding_distances)
 
-            self.values_P = self.problem.evaluate(self.P, n_jobs=self.n_jobs)
+            self.values_P = values_R[:, p_idx]
 
             self.P_history.append(self.P)
             self.values_history.append(self.values_P)

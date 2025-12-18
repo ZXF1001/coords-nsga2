@@ -1,6 +1,7 @@
 from typing import List, Union
 
 import numpy as np
+import shapely
 from shapely.geometry import Point, Polygon
 
 
@@ -45,12 +46,22 @@ def create_points_in_polygon(polygons: Polygon, n: int = 1) -> np.ndarray:
         A NumPy array of shape (n, 2) containing the generated points.
     """
     minx, miny, maxx, maxy = polygons.bounds
-    n_valid = 0
-    points = []
-    while n_valid < n:
-        x = np.random.uniform(minx, maxx)
-        y = np.random.uniform(miny, maxy)
-        if polygons.contains(Point(x, y)):
-            points.append([x, y])
-            n_valid += 1
-    return np.array(points)
+    points = np.empty((0, 2))
+    
+    # Adaptive batch size
+    batch_size = max(n * 2, 100)
+    
+    while len(points) < n:
+        # Generate batch
+        xs = np.random.uniform(minx, maxx, batch_size)
+        ys = np.random.uniform(miny, maxy, batch_size)
+        
+        # Vectorized check
+        candidates = shapely.points(xs, ys)
+        mask = shapely.contains(polygons, candidates)
+        
+        if np.any(mask):
+            valid_points = np.column_stack((xs[mask], ys[mask]))
+            points = np.vstack((points, valid_points))
+            
+    return points[:n]
