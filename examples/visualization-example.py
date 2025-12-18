@@ -84,36 +84,28 @@ print("\n1. Plotting Pareto Front (2D and 3D)...")
 optimizer.plot.pareto_front(obj_indices=[0, 1])  # 2D
 optimizer.plot.pareto_front(obj_indices=[0, 1, 2])  # 3D
 
-# # 2. Parallel Coordinates Plot
-# print("\n2. Plotting Parallel Coordinates...")
-# optimizer.plot.parallel_coordinates()
+# 2. Parallel Coordinates Plot
+print("\n2. Plotting Parallel Coordinates...")
+optimizer.plot.parallel_coordinates()
 
-# # 3. Hypervolume Trend
-# print("\n3. Plotting Hypervolume Trend...")
-# optimizer.plot.hypervolume_trend()
-
-# 4. Objective Optimal Layouts
-print("\n4. Plotting Optimal Layouts for Each Objective...")
+# 3. Objective Optimal Layouts
+print("\n3. Plotting Optimal Layouts for Each Objective...")
 optimizer.plot.optimal_coords(obj_indices=0)
 
-# # 5. Solution Comparison
-# print("\n5. Plotting Solution Comparison...")
-# # Select some diverse solutions for comparison
-# selected_solutions = [0, 5, 10, 15, 20, 25]  # Indices of solutions to compare
-# optimizer.plot.solution_comparison(solution_indices=selected_solutions)
+# 4. Solution Comparison
+print("\n4. Plotting Solution Comparison...")
+# Select some diverse solutions for comparison
+selected_solutions = [0, 5, 10, 15, 20, 25]  # Indices of solutions to compare
+optimizer.plot.solution_comparison(solution_indices=selected_solutions)
 
-# # 6. Convergence Analysis
-# print("\n6. Plotting Convergence Analysis...")
-# optimizer.plot.convergence_analysis()
+# 5. Constraint Violations
+print("\n5. Plotting Constraint Violations...")
+optimizer.plot.constraint_violations()
 
-# # 7. Constraint Violations
-# print("\n7. Plotting Constraint Violations...")
-# optimizer.plot.constraint_violations()
+# 6. Objective Distributions
+print("\n6. Plotting Objective Distributions...")
+optimizer.plot.objective_distributions()
 
-# # 8. Objective Distributions
-# print("\n8. Plotting Objective Distributions...")
-# optimizer.plot.objective_distributions()
-
-# # 9. Objective Correlations
-# print("\n9. Plotting Objective Correlations...")
-# optimizer.plot.objective_correlations()
+# 7. Objective Correlations
+print("\n7. Plotting Objective Correlations...")
+optimizer.plot.objective_correlations()
