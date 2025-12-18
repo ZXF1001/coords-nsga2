@@ -2,7 +2,7 @@ from typing import List, Union
 
 import numpy as np
 import shapely
-from shapely.geometry import Point, Polygon
+from shapely.geometry import Polygon
 
 
 def region_from_points(points: Union[np.ndarray, List[List[float]]]) -> Polygon:
